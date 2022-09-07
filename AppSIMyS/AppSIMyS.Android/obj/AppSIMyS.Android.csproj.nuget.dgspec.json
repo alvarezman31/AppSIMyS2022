@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj": {}
+    "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj": {}
   },
   "projects": {
-    "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj": {
+    "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
         "projectName": "AppSIMyS.Android",
-        "projectPath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+        "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\NuGet.Config",
           "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -27,14 +26,13 @@
           "monoandroid12.0"
         ],
         "sources": {
-          "https://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
-                "projectPath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
+              "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
+                "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
               }
             }
           }
@@ -75,21 +73,20 @@
         }
       }
     },
-    "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
+    "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
         "projectName": "AppSIMyS",
-        "projectPath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
+        "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\NuGet.Config",
           "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -99,8 +96,7 @@
         ],
         "sources": {
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {

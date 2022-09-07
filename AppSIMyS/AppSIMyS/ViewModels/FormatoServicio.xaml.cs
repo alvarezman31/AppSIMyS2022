@@ -1,31 +1,30 @@
 ﻿using AppSIMyS.Models;
-using AppSIMyS;
+using iText.IO.Image;
+using iText.Kernel.Events;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.StyledXmlParser.Jsoup.Nodes;
 using SignaturePad.Forms;
-using Syncfusion.Drawing;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Forms.PlatformConfiguration;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using PdfDocument = iText.Kernel.Pdf.PdfDocument;
-using TextAlignment = iText.Layout.Properties.TextAlignment;
-using iText.IO.Image;
-using Image = iText.Layout.Element.Image;
-using iText.IO.Source;
-using System.Diagnostics;
-using System.Drawing;
 using Cell = iText.Layout.Element.Cell;
-using iText.Layout.Borders;
+using Document = iText.Layout.Document;
+using Image = iText.Layout.Element.Image;
+using Path = System.IO.Path;
+using PdfDocument = iText.Kernel.Pdf.PdfDocument;
+using Rectangle = iText.Kernel.Geom.Rectangle;
+using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace AppSIMyS.ViewModels
 {
@@ -140,6 +139,12 @@ namespace AppSIMyS.ViewModels
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf);
+            document.SetMargins(20f, 20f, 150f, 100f);
+
+
+            // encabezado 
+            pdf.AddEventHandler(PdfDocumentEvent.START_PAGE,new HeaderEventHandler1());
+
             document.Add(new Paragraph("Lorem Ipsum ..."));
             document.Add(new Paragraph(Convert.ToBase64String(Firma)));
 
@@ -407,6 +412,44 @@ namespace AppSIMyS.ViewModels
 
             LbTipoServicio.Text = dt.Empresa;// .ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
             //LbTipoServicio.Text = picker.ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
+        }
+
+        public class HeaderEventHandler1 : IEventHandler
+        {
+            public void HandleEvent(Event @event)
+            {
+                PdfDocumentEvent pdfEvent = (PdfDocumentEvent)@event;
+                PdfDocument pdfDoc = pdfEvent.GetDocument();
+                PdfPage page = pdfEvent.GetPage();
+
+                Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 50);
+                     Canvas canvas = new Canvas(page, rootArea);
+                canvas
+                    .Add(getTable(pdfEvent));
+                /*
+                         .ShowTextAligned("Este es el Encabezado de págna", 10, 0, TextAlignment.CENTER)
+                         .ShowTextAligned("Este es el pie de pagina", 10, 0, TextAlignment.CENTER)
+                         .ShowTextAligned("texto agregado", 10, 0, TextAlignment.RIGHT)
+                         .Close();
+                */
+                
+
+            }
+
+            public Table getTable(PdfDocumentEvent docEvent)
+            {
+                float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
+                Table table = new Table(pointColumnWidths);
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell().Add(new Paragraph("Firma Técnico").SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell().Add(new Paragraph("Firma Cliente").SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+
+                return table;
+            }
+
+
         }
     }
 }
