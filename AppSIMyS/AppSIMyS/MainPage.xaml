@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fonts="clr-namespace:AppSIMyS.Fonts"
+             mc:Ignorable="d"
+             BackgroundColor="LightBlue"
+             IconImageSource="wln.ico"             
+             x:Class="AppSIMyS.MainPage">
+
+    <NavigationPage.TitleView >
+        <StackLayout
+          Orientation="Horizontal"
+          VerticalOptions="Center"
+            HorizontalOptions="EndAndExpand"
+          Spacing="10">
+            <!--<Image
+               Source="Icon.png"
+               Aspect="AspectFit" />-->
+            <Label
+               Text="{StaticResource usuario}"
+               FontSize="18"
+               TextColor="White"
+               FontFamily="{StaticResource Fontello }"
+               VerticalTextAlignment="Center" />
+            <Label x:Name="LbUsuario"
+               Text="TitleView"
+               FontSize="18"
+               TextColor="White"               
+               VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <!--<CollectionView  x:Name="MyCollectionView" 
+                     Margin="20"
+                     ItemsSource="{Binding LClientes}"                      
+                     SelectionMode="Single"  
+                     SelectionChanged="CollectionView_SelectionChanged"
+                     SelectionChangedCommand="{Binding ExecuteHubTappedCommand}" 
+                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MyCollectionView}}">-->
+    <StackLayout>
+        <!--<Label Text="{StaticResource usuario}"
+               FontSize="Header"
+               TextColor="Beige"
+               FontFamily="{StaticResource Fontello }"
+               HorizontalOptions="Center"
+               ></Label>
+        <Button Text="Iniciar Sesión" BorderRadius="10" ></Button>
+        <Label Text="{x:Static fonts:IconsConstantes.User}"
+               FontSize="Header"
+               TextColor="Beige"
+               FontFamily="{StaticResource Fontello }"
+               HorizontalOptions="Center"
+               ></Label>-->
+       <!-- <StackLayout>
+            <Image Source="" x:Name="ImgFirma" WidthRequest="100" HeightRequest="100"  />
+        </StackLayout> -->
+        <StackLayout x:Name="LayoutConexion" >
+            <Label Text="" TextColor="Blue" x:Name="LblConexion"/>
+        </StackLayout>
+        <CollectionView  x:Name="MyCollectionView"  
+                     Margin="15"
+                     ItemsSource="{Binding LClientes}"                         
+                     SelectionMode="Single"                     
+                   	 SelectionChanged="MyCollectionView_SelectionChanged">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="1"/>
+        </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                
+            <DataTemplate>                
+                <Frame Padding="5" CornerRadius="20" BorderColor="Blue"  BackgroundColor="Beige" 
+                       IsClippedToBounds="True" >
+                    <Grid HeightRequest="130" BackgroundColor="Beige"  >
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width=".2*"/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height=".4*"/>
+                            <RowDefinition Height=".4*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Image VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               Aspect="AspectFill"
+                               Grid.RowSpan="4"  
+                               Source="{Binding Logo}" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                                
+                        
+                        <Label Grid.Column="1" 
+                               Grid.Row="0"
+                               FontAttributes="Bold"
+                               FontSize="Body"
+                               Text="{Binding Rut}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                               Grid.Row="1"
+                               FontAttributes="Bold"
+                               FontSize="Body"
+                               Text="{Binding Empresa}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                               Grid.Row="2"                               
+                               FontSize="Small"
+                               Text="{Binding Telefono}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                               Grid.Row="3"                               
+                               FontSize="Small"
+                               Text="{Binding Url}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                               Grid.Row="4"                               
+                               FontSize="Small"
+                               Text="{Binding Direccion}"
+                               VerticalOptions="Center"/>                        
+                    </Grid>                    
+                </Frame>
+                
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
+        <!--<CollectionView.ItemsSource>            
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Manuel</x:String>                                
+                <x:String>Antonio</x:String>                                
+                <x:String>Alvarez</x:String>                                
+                <x:String>Luchon</x:String>                                
+            </x:Array>
+            
+        </CollectionView.ItemsSource>-->
+    </CollectionView>
+        <StackLayout>
+            <ListView x:Name="LstCliente">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Rut}" Grid.Row="0" Grid.Column="0" TextColor="Blue"></Label>
+                                <Label Text="{Binding Empresa}" Grid.Row="0" Grid.Column="1" TextColor="Blue"></Label>
+                                <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="2" TextColor="Blue"></Label>
+                                <Label Text="{Binding Telefono}" Grid.Row="0" Grid.Column="3" TextColor="Blue"></Label>
+                                <Label Text="{Binding Url}" Grid.Row="0" Grid.Column="4" TextColor="Blue"></Label>
+                                <Label Text="{Binding Direccion}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" TextColor="Blue"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>

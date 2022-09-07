@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:controls="clr-namespace:App2.Fonts;assembly=App2"
+             mc:Ignorable="d"
+             x:Class="AppSIMyS.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="Fontello" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="fontello"/>
+                <On Platform="Android" Value="fontello.ttf#fontello"/>
+            </OnPlatform>
+
+            <!--<OnPlatform x:Key="PoppinsLight" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Poppins-Light"/>
+                <On Platform="Android" Value="Poppins-Light.ttf#Poppins-Light"/>
+            </OnPlatform>-->
+        </ResourceDictionary>
+        <x:String x:Key="usuario">&#xE808;</x:String>
+    </Application.Resources>
+
+</Application>

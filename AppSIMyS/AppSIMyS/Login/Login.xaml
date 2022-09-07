@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Generar Informe"
+             x:Class="AppSIMyS.Login.Login">
+    <ContentPage.Content>        
+        <Grid>
+            <StackLayout x:Name="LayoutConexion" >
+                <Label Text="" TextColor="Blue" x:Name="LblConexion"/>
+            </StackLayout>
+            <Image  Source="fondologin.jpg" Aspect="AspectFill" ></Image>            
+            <BoxView Color="LightBlue" Opacity=".8"></BoxView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>                    
+                </Grid.RowDefinitions>
+                
+                    <Frame CornerRadius="60" 
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        HorizontalOptions="Center"
+                        Margin="0,30,0,10" BackgroundColor="LightBlue"
+                        Padding="0"
+                        IsClippedToBounds="True" HasShadow="True" >
+                        <Image Grid.Row="0" Source="alvaluc.ico" HorizontalOptions="Center"
+                            VerticalOptions="Center" ></Image>
+                    </Frame>
+                
+                <StackLayout Grid.Row="1"  Padding="20,10">
+                    <Entry x:Name="TxtUsuario" Placeholder="Usuario" PlaceholderColor="White" FontAttributes="Bold" ></Entry>
+                    <Entry x:Name="TxtClave"   Placeholder="Contraseña" PlaceholderColor="White" FontAttributes="Bold" IsPassword="True"></Entry>
+                    <Button Clicked="BtnEntrar_Clicked"   x:Name="BtnEntrar" Text="Iniciar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>
+                    <Button Pressed="BtnEntrar_Pressed"  x:Name="BtnCerrar" Text="Cerrar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>
+                </StackLayout>
+                <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="10" VerticalOptions="Center">
+                    <Label Text=" • Copyright © Alvaluc 2022 • " FontSize="Micro"></Label>
+                    <Label Text=" • All rights reserved. Privacy Policy • " FontSize="Micro"></Label>                
+                </StackLayout>
+            </Grid>
+        </Grid> 
+        
+        
+
+    </ContentPage.Content>
+</ContentPage>

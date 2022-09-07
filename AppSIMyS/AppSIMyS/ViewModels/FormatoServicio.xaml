@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sign="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             x:Class="AppSIMyS.ViewModels.FormatoServicio">
+    
+    <ContentPage.Content>
+        <ScrollView  >
+            <StackLayout  >
+                <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="LbUsuario" Text="" />
+                <Label x:Name="LbRutCliente" Text="" />
+                <Label x:Name="LbTipoServicio" Text="" />
+                
+                <Picker Title="--- Seleccionar Tipo Servicio --- " SelectedIndexChanged="Picker_SelectedIndexChanged" >
+                      <Picker.Items>
+                        <x:String>Servicio </x:String>
+                        <x:String>Mantención</x:String>
+                        <x:String>Otro</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker x:Name="ListClientes"                         
+                        Title="--- Seleccionar Cliente --- "                           
+                        SelectedItem="{Binding Empresa}" 
+                        ItemsSource="{Binding GetLstcliente}"
+                        ItemDisplayBinding="{Binding Descripcion}"  
+                        SelectedIndexChanged="ListClientes_SelectedIndexChanged"  StyleClass="fieldForm" />
+
+                <Entry x:Name="LbConCopia"  Placeholder="Enviar Correo a..." Text="manuelalvarezl@hotmail.com"  />
+                <Entry x:Name="TxtObservacion"  Placeholder="Observación" Text="manuelalvarezl@hotmail.com" />
+                <Button Text="Volver" Clicked="Button_Clicked"  />
+                <Label Text="Input Your Signature"/>
+                <Frame>
+                    <Editor x:Name="editor" Text="I am an Editor"  />
+                </Frame>
+                <StackLayout>
+                    <sign:SignaturePadView x:Name="signature" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
+                    <!--<Button Clicked="Save" Text="Salvar"/>-->
+                </StackLayout>
+                <StackLayout>
+                    <sign:SignaturePadView x:Name="signatureCliente" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>                    
+                </StackLayout>
+                <StackLayout>
+                    <Button Clicked="Save" Text="Salvar"/>
+                </StackLayout>
+                <StackLayout>
+                    <ListView x:Name="LstCliente">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Rut}" Grid.Row="0" Grid.Column="0" TextColor="Blue"></Label>
+                                        <Label Text="{Binding Empresa}" Grid.Row="0" Grid.Column="1" TextColor="Blue"></Label>
+                                        <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="2" TextColor="Blue"></Label>
+                                        <Label Text="{Binding Telefono}" Grid.Row="0" Grid.Column="3" TextColor="Blue"></Label>
+                                        <Label Text="{Binding Url}" Grid.Row="0" Grid.Column="4" TextColor="Blue"></Label>
+                                        <Label Text="{Binding Direccion}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" TextColor="Blue"></Label>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <!--  <StackLayout>
+                    <sign:SignaturePadView x:Name="signature2" StrokeWidth="5" WidthRequest="200" HeightRequest="300" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma" ></sign:SignaturePadView>                    
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="XXXXXX" />
+                    <Image Source="" x:Name="ImgFirma" WidthRequest="200" HeightRequest="200"  />
+                </StackLayout> -->
+            </StackLayout>
+
+
+
+            <!--<StackLayout>
+                <ListView x:Name="LstCliente">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Rut}" Grid.Row="0" Grid.Column="0" TextColor="Blue"></Label>
+                                    <Label Text="{Binding Empresa}" Grid.Row="0" Grid.Column="1" TextColor="Blue"></Label>
+                                    <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="2" TextColor="Blue"></Label>
+                                    <Label Text="{Binding Telefono}" Grid.Row="0" Grid.Column="3" TextColor="Blue"></Label>
+                                    <Label Text="{Binding Url}" Grid.Row="0" Grid.Column="4" TextColor="Blue"></Label>
+                                    <Label Text="{Binding Direccion}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" TextColor="Blue"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>-->
+
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>
