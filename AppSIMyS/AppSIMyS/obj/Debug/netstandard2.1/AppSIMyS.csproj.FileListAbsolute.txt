@@ -124,3 +124,6 @@ C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\bin\De
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\XamlC.stamp
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\AppSIMyS.csproj.CopyComplete
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\ref\AppSIMyS.dll
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\bin\Debug\netstandard2.1\Mono.Android.dll
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\bin\Debug\netstandard2.1\Mono.Android.pdb
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\bin\Debug\netstandard2.1\Mono.Android.xml

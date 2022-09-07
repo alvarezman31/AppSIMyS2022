@@ -111,6 +111,8 @@ namespace AppSIMyS.ViewModels
             //ListClientes.ItemsSource=GetLstcliente;
         }
 
+
+
         protected void GenerarPdfFormatoServicio(byte[] Firma,byte[] FirmaCliente)
         {
             Random nro = new Random();
@@ -139,9 +141,9 @@ namespace AppSIMyS.ViewModels
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf);
-            document.SetMargins(20f, 20f, 150f, 100f);
+            document.SetMargins(100f, 70f, 100f, 70f);
 
-
+            
             // encabezado 
             pdf.AddEventHandler(PdfDocumentEvent.START_PAGE,new HeaderEventHandler1());
 

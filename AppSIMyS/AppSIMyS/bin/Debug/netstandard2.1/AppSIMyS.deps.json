@@ -16,6 +16,7 @@
           "Xamarin.Forms": "4.8.0.1821",
           "itext7": "7.2.3",
           "sqlite-net-pcl": "1.8.116",
+          "Mono.Android": "0.0.0.0",
           "System.Drawing.Common": "4.0.0.0"
         },
         "runtime": {
@@ -1059,6 +1060,14 @@
           }
         }
       },
+      "Mono.Android/0.0.0.0": {
+        "runtime": {
+          "Mono.Android.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "System.Drawing.Common/4.0.0.0": {
         "runtime": {
           "System.Drawing.Common.dll": {
@@ -1739,6 +1748,11 @@
       "sha512": "sha512-3e/5DwE/bExRLtM1tA3iI9E6TCnIF+e9+lINgwLOUs0g49ebFmQiNDXBKb06jmqqV4VyNaUGZqs0bI13ruv8bQ==",
       "path": "xamarin.forms/4.8.0.1821",
       "hashPath": "xamarin.forms.4.8.0.1821.nupkg.sha512"
+    },
+    "Mono.Android/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     },
     "System.Drawing.Common/4.0.0.0": {
       "type": "reference",
