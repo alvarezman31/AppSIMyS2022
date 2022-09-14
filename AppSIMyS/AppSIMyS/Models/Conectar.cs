@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 
@@ -10,7 +11,10 @@ namespace AppSIMyS.Models
     {
         //public static string cCon = "Server=srv29.cpanelhost.cl;UserID=cal42270_wln;Database=cal42270_worldlan;Password=Wln.2020;";
         public static string cCon = "Server=alvaluc.com;UserID=amdappserv;Database=alvalucc_appserv;Password=M@@L+2209;";
-
+        private static string Servidor = "alvaluc.com";// WebConfigurationManager.AppSettings["servidor"].ToString(); 
+        private static string Usuario = "AdmCondo";// WebConfigurationManager.AppSettings["usuario"].ToString();
+        private static string Base = "alvalucc_condominios"; // WebConfigurationManager.AppSettings["base"].ToString();
+        private static string PassBD = "!1m19g3Ee";// clsSeguridad.Desencriptar2(WebConfigurationManager.AppSettings["passbd"].ToS
         public static string Acceder(string usuario, string clave)
         {
             clave = md5(clave);
@@ -113,6 +117,21 @@ namespace AppSIMyS.Models
             con.Close();
             return retorno;
         }
+        public static SqlConnection conectarSql()
+        {
 
+            string cCon = @"Data Source=" + Servidor + ";Initial Catalog=" + Base + ";Persist Security Info=True;Connection Timeout=300;User ID=" + Usuario + ";Password=" + PassBD;
+            SqlConnection cnn = new SqlConnection(cCon);
+
+            cnn.Open();
+            return cnn;
+        }
+
+        public static SqlDataReader consultarSql(string consulta, SqlConnection con)
+        {
+            SqlCommand cmd2 = new SqlCommand(consulta, con);
+            SqlDataReader res = cmd2.ExecuteReader();  // consulta.consultar(com           
+            return res;
+        }
     }
 }

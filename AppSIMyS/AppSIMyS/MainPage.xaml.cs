@@ -45,6 +45,7 @@ namespace AppSIMyS
                 DisplayAlert("Advertencia", "Conectado", "Ok");
 
             }
+            LlenarColletionView();
             //collectionView.ItemsSource = new string[]
             //{
             //    "Manuel",
@@ -52,9 +53,22 @@ namespace AppSIMyS
             //    "Alvarez",
             //    "Luchon"
             //};
-           
+
         }
-        
+        public async void LlenarColletionView()
+        {
+            //var stocksStartingWithA = db.Query<Clientes>("SELECT * FROM Items WHERE Symbol = ?", "A");
+            //foreach (var s in stocksStartingWithA)
+            //{
+            //    Console.WriteLine("a " + s.Symbol);
+            //}
+            var GetLstcliente = await App.SQLiteDB.GetClsEmpresasAsync();
+
+            if (GetLstcliente != null)
+            {
+                MyCollectionView.ItemsSource = GetLstcliente;
+            }
+        }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             //var cliente = e.Item as Clientes;
@@ -74,9 +88,9 @@ namespace AppSIMyS
 
         private async void MyCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string clientesAnt = (e.PreviousSelection.FirstOrDefault() as Clientes)?.Empresa;
-            string clientesAct = (e.CurrentSelection.FirstOrDefault() as Clientes)?.Empresa;
-            string RutCliente = (e.CurrentSelection.FirstOrDefault() as Clientes)?.Rut;
+            string clientesAnt = (e.PreviousSelection.FirstOrDefault() as ClsEmpresas)?.Empresa;
+            string clientesAct = (e.CurrentSelection.FirstOrDefault() as ClsEmpresas)?.Empresa;
+            string RutCliente = (e.CurrentSelection.FirstOrDefault() as ClsEmpresas)?.Rut;
             if (RutCliente!=null)
             {
 

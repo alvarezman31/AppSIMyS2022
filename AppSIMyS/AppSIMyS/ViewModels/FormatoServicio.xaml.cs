@@ -1,38 +1,37 @@
 ﻿using AppSIMyS.Models;
-using AppSIMyS;
+using iText.IO.Image;
+using iText.Kernel.Events;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.StyledXmlParser.Jsoup.Nodes;
 using SignaturePad.Forms;
-using Syncfusion.Drawing;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Forms.PlatformConfiguration;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using PdfDocument = iText.Kernel.Pdf.PdfDocument;
-using TextAlignment = iText.Layout.Properties.TextAlignment;
-using iText.IO.Image;
-using Image = iText.Layout.Element.Image;
-using iText.IO.Source;
-using System.Diagnostics;
-using System.Drawing;
 using Cell = iText.Layout.Element.Cell;
-using iText.Layout.Borders;
+using Document = iText.Layout.Document;
+using Image = iText.Layout.Element.Image;
+using Path = System.IO.Path;
+using PdfDocument = iText.Kernel.Pdf.PdfDocument;
+using Rectangle = iText.Kernel.Geom.Rectangle;
+using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace AppSIMyS.ViewModels
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormatoServicio : ContentPage
     {
-        
+
         public FormatoServicio(string usuario, string RutCliente)
         {
             InitializeComponent();
@@ -44,9 +43,9 @@ namespace AppSIMyS.ViewModels
         }
 
         private void Button_Clicked(object sender, EventArgs e)
-        {            
-            Navigation.RemovePage(this);            
-            
+        {
+            Navigation.RemovePage(this);
+
         }
 
         public async void LLenarClientes()
@@ -58,7 +57,7 @@ namespace AppSIMyS.ViewModels
                 ListClientes.ItemsSource = GetLstcliente;
             }
 
-            
+
         }
         public async void Save(object sender, EventArgs eventArgs)
         {
@@ -112,13 +111,15 @@ namespace AppSIMyS.ViewModels
             //ListClientes.ItemsSource=GetLstcliente;
         }
 
-        protected void GenerarPdfFormatoServicio(byte[] Firma,byte[] FirmaCliente)
+
+
+        protected void GenerarPdfFormatoServicio(byte[] Firma, byte[] FirmaCliente)
         {
             Random nro = new Random();
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"), root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);            
-            fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");             
-            
-            fileName = "OT"+ nro.Next(200000, 999999).ToString()+".pdf";
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"), root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
+
+            fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
 
             //Save the document to the stream
             //MemoryStream stream = new MemoryStream();
@@ -140,6 +141,12 @@ namespace AppSIMyS.ViewModels
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf);
+            document.SetMargins(100f, 70f, 100f, 70f);
+
+
+            // encabezado 
+            pdf.AddEventHandler(PdfDocumentEvent.START_PAGE, new HeaderEventHandler1());
+
             document.Add(new Paragraph("Lorem Ipsum ..."));
             document.Add(new Paragraph(Convert.ToBase64String(Firma)));
 
@@ -209,7 +216,7 @@ namespace AppSIMyS.ViewModels
             cmSendMailCcopy(Path.Combine(root, fileName));
             //cmSendMailCcopy(Path.Combine("/AppSimys", fileName));
 
-        
+
         }
 
 
@@ -218,12 +225,12 @@ namespace AppSIMyS.ViewModels
             Random nro = new Random();
 
             //string root = Environment.ex .ExternalStorageDirectory.ToString();
-        
+
             //root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             //fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
-             //fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
             // Create a new PDF document
@@ -288,12 +295,12 @@ namespace AppSIMyS.ViewModels
 
             //Save the stream as a file in the device and invoke it for viewing
             //Random nro = new Random();
-            
-            fileName = "OT"+ nro.Next(200000, 999999).ToString()+".pdf";
+
+            fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
 
             //Save the document to the stream
             MemoryStream stream = new MemoryStream();
-           // document.Save(stream);
+            // document.Save(stream);
 
             //Close the document
             //document.Close(true);
@@ -307,21 +314,21 @@ namespace AppSIMyS.ViewModels
 
         protected void cmSendMailCcopy(string file)
         {
-             string mailTo;
-             string mailCopy;
-             string mailFrom;
-             string mailSubject;
-             string mailBody;
-             string mailAuthentication;
-             string mailPassword;
-             string mailSmtpServer;
+            string mailTo;
+            string mailCopy;
+            string mailFrom;
+            string mailSubject;
+            string mailBody;
+            string mailAuthentication;
+            string mailPassword;
+            string mailSmtpServer;
 
-        List<string> mailAttachment = null;
+            List<string> mailAttachment = null;
             //string filename = Configuraciones.PathApp + "/HolaMundo";
             //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.pdf");
             //var archivo = Path.Combine(filename, "Prueba.pdf");
 
-            
+
             /* public void Send(string mailTo, string mailCopy, string mailFromAddress, string mailFromName,
                           string mailSubject, string mailBody, string mailAuthentication, string mailPassword,
                           string mailSmtpServer, int mailPort, List<string> mailAttachment = null)
@@ -337,7 +344,7 @@ namespace AppSIMyS.ViewModels
                 string asunto = "Prueba envio Xamarin";
                 string mensaje = "Prueba de Envio";
                 string mailAutenticacion = "manuelalvarezl@hotmail.com";
-                string mailContra = "m@@L3108";
+                string mailContra = "M@@l*2209";
                 string mailSmtp = "smtp.office365.com";
                 int mailPuerto = 587;
                 List<string> mailAdjunto = mailAttachment;
@@ -396,7 +403,7 @@ namespace AppSIMyS.ViewModels
         {
             var picker = (Picker)sender;
             //int selectedIndex = 
-            LbTipoServicio.Text= picker.SelectedIndex.ToString();
+            LbTipoServicio.Text = picker.SelectedIndex.ToString();
         }
 
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -407,6 +414,44 @@ namespace AppSIMyS.ViewModels
 
             LbTipoServicio.Text = dt.Empresa;// .ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
             //LbTipoServicio.Text = picker.ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
+        }
+
+        public class HeaderEventHandler1 : IEventHandler
+        {
+            public void HandleEvent(Event @event)
+            {
+                PdfDocumentEvent pdfEvent = (PdfDocumentEvent)@event;
+                PdfDocument pdfDoc = pdfEvent.GetDocument();
+                PdfPage page = pdfEvent.GetPage();
+
+                Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 50);
+                Canvas canvas = new Canvas(page, rootArea);
+                canvas
+                    .Add(getTable(pdfEvent));
+                /*
+                         .ShowTextAligned("Este es el Encabezado de págna", 10, 0, TextAlignment.CENTER)
+                         .ShowTextAligned("Este es el pie de pagina", 10, 0, TextAlignment.CENTER)
+                         .ShowTextAligned("texto agregado", 10, 0, TextAlignment.RIGHT)
+                         .Close();
+                */
+
+
+            }
+
+            public Table getTable(PdfDocumentEvent docEvent)
+            {
+                float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
+                Table table = new Table(pointColumnWidths);
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell().Add(new Paragraph("Firma Técnico").SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell().Add(new Paragraph("Firma Cliente").SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+
+                return table;
+            }
+
+
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yRpGwStghhpOsNpnC4C24Cid7ihapO9jPgH70R2wzFZQBxyuUGCKe6d4c+3O/G2ULX/Pw2kpmijXCcUMrQpcIA==",
+  "dgSpecHash": "EQ21GbmozlNwXNQyEkca5TgbM2ZcMlz7A0aRSBh6o2qmnxiW8H/6gCWvc2IkVlC7AaKrh9mdXYOwObuSr96CIg==",
   "success": true,
-  "projectFilePath": "D:\\respositorio\\SIMyS\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\itext7\\7.2.3\\itext7.7.2.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\itext7.commons\\7.2.3\\itext7.commons.7.2.3.nupkg.sha512",
@@ -29,6 +29,7 @@
     "C:\\Users\\usuario\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.process\\4.3.0\\system.diagnostics.process.4.3.0.nupkg.sha512",

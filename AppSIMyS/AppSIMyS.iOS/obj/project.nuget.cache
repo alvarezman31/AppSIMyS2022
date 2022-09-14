@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+VOoTCO4z8haDEBaNJsVuVq1IQHKkIArXv/UOxEyEGfkRDOWLh9gP8iigUjEtsKzmXQP1abxPLlKLTQ04EopvQ==",
+  "dgSpecHash": "h6Lv5NJ8v2cJkIs0NoHHeLxXZ6mvMfhT0HIBgK8/pfMIJr3Ssw8EVydq2Ke6GYLs+VPQBtYtAaM97ezs3VpVbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS_VS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\itext7\\7.2.3\\itext7.7.2.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\itext7.commons\\7.2.3\\itext7.commons.7.2.3.nupkg.sha512",
@@ -28,6 +28,7 @@
     "C:\\Users\\usuario\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.diagnostics.process\\4.3.0\\system.diagnostics.process.4.3.0.nupkg.sha512",

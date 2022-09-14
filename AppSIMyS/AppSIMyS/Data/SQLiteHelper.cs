@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppSIMyS.Data
 {
-    public  class SQLiteHelper
+    public class SQLiteHelper
     {
         SQLiteAsyncConnection db;
 
@@ -21,16 +21,44 @@ namespace AppSIMyS.Data
             db.CreateTableAsync<ClsUsuarios>().Wait();
         }
 
-        public Task <int> SaveCliente(Clientes cliente)
+        public Task<int> SaveCliente(Clientes cliente)
         {
             if (cliente.Rut != "")
-            {                
+            {
                 return db.InsertAsync(cliente);
             }
             else
             {
                 return null;
             }
+        }
+        public Task<int> SaveEmpresa(ClsEmpresas empresa)
+        {
+            if (empresa.Rut != "")
+            {
+                return db.InsertAsync(empresa);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task<int> UpdateEmpresa(ClsEmpresas empresa)
+        {
+            if (empresa.Rut != "")
+            {
+                return db.UpdateAsync(empresa);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task DeleteEmpresas()
+        {
+            db.DeleteAllAsync<ClsEmpresas>();
+            return null;
+
         }
 
         /// <summary>
@@ -41,16 +69,18 @@ namespace AppSIMyS.Data
         {
             return db.Table<Clientes>().ToListAsync();
         }
+
         /// <summary>
         /// Recuperar clientes por rut 
         /// </summary>
         /// <param name="Rut"> Rut del cliente</param>
         /// <returns></returns>
-        
+
         public Task<Clientes> GetClienteByRutAsync(string Rut)
         {
             return db.Table<Clientes>().Where(a => a.Rut == Rut).FirstOrDefaultAsync();
         }
+
 
         public Task<List<ClsServicios>> GetServiciosAsync()
         {
@@ -65,7 +95,7 @@ namespace AppSIMyS.Data
         public Task<ClsEmpresas> GetClsEmpresasByRutAsync(string Rut)
         {
             return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).FirstOrDefaultAsync();
-        }    
+        }
         public Task<List<ClsUsuarios>> GetUsuariosAsync()
         {
             return db.Table<ClsUsuarios>().ToListAsync();
@@ -77,3 +107,6 @@ namespace AppSIMyS.Data
         }
     }
 }
+
+
+

@@ -58,9 +58,9 @@
         <StackLayout x:Name="LayoutConexion" >
             <Label Text="" TextColor="Blue" x:Name="LblConexion"/>
         </StackLayout>
+        <!--ItemsSource="{Binding LClientes}"-->
         <CollectionView  x:Name="MyCollectionView"  
-                     Margin="15"
-                     ItemsSource="{Binding LClientes}"                         
+                     Margin="15"                     
                      SelectionMode="Single"                     
                    	 SelectionChanged="MyCollectionView_SelectionChanged">
         <CollectionView.ItemsLayout>
