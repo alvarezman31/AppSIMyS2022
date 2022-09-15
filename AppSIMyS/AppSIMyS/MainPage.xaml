@@ -61,7 +61,8 @@
         <!--ItemsSource="{Binding LClientes}"-->
         <CollectionView  x:Name="MyCollectionView"  
                      Margin="15"                     
-                     SelectionMode="Single"                     
+                     SelectionMode="Single"  
+                     ItemsSource="{Binding LEmpresas}"
                    	 SelectionChanged="MyCollectionView_SelectionChanged">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="1"/>

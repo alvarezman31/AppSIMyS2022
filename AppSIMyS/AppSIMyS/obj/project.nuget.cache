@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XNKDDG+jE3m9/9/v0FcgvXLmieZnKQs2x9sBBB3ZW4GyjMxRFtK9ia1WczBV3UzTDHxRNQZPm6HSxCK6Ufh1dg==",
+  "dgSpecHash": "tYNVZcCGcFo2Nw76piZ8u4J8tZ3AOzZ1bY7CLSepZKGdPXWNtwG9QNjgPeUbhdJjCaIK1BnP/8NP7YDXMtchvQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\itext7\\7.2.3\\itext7.7.2.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\itext7.commons\\7.2.3\\itext7.commons.7.2.3.nupkg.sha512",

@@ -45,14 +45,8 @@ namespace AppSIMyS
                 DisplayAlert("Advertencia", "Conectado", "Ok");
 
             }
-            LlenarColletionView();
-            //collectionView.ItemsSource = new string[]
-            //{
-            //    "Manuel",
-            //    "Antonio",
-            //    "Alvarez",
-            //    "Luchon"
-            //};
+            //LlenarColletionView();
+            
 
         }
         public async void LlenarColletionView()
@@ -88,9 +82,9 @@ namespace AppSIMyS
 
         private async void MyCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string clientesAnt = (e.PreviousSelection.FirstOrDefault() as ClsEmpresas)?.Empresa;
-            string clientesAct = (e.CurrentSelection.FirstOrDefault() as ClsEmpresas)?.Empresa;
-            string RutCliente = (e.CurrentSelection.FirstOrDefault() as ClsEmpresas)?.Rut;
+            string clientesAnt = (e.PreviousSelection.FirstOrDefault() as Empresas)?.Empresa;
+            string clientesAct = (e.CurrentSelection.FirstOrDefault() as Empresas)?.Empresa;
+            string RutCliente = (e.CurrentSelection.FirstOrDefault() as Empresas)?.Rut;
             if (RutCliente!=null)
             {
 
@@ -100,12 +94,12 @@ namespace AppSIMyS
 
            // await DisplayAlert("Registro", "Guardado Existosamente", "OK");
 
-            var GetLstcliente = await App.SQLiteDB.GetClientesAsync();
+            //var GetLstcliente = await App.SQLiteDB.GetClsEmpresasAsync();
 
-            if (GetLstcliente != null)
-            {
-                LstCliente.ItemsSource = GetLstcliente;
-            }
+            //if (GetLstcliente != null)
+            //{
+            //    MyCollectionView.ItemsSource = GetLstcliente;
+            //}
             //DisplayAlert("Advertencia", "Cliente Ant:" + clientesAnt + (char)13 + "Cliente Act:" +clientesAct, "Aceptar");
 
 

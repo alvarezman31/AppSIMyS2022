@@ -4840,11 +4840,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
       "projectName": "AppSIMyS.Android",
-      "projectPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+      "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -4864,8 +4864,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
-              "projectPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
+            "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
+              "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
             }
           }
         }

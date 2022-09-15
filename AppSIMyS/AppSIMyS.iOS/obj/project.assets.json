@@ -5619,11 +5619,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
       "projectName": "AppSIMyS.iOS",
-      "projectPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
+      "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\AppSIMyS.iOS.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -5643,8 +5643,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
-              "projectPath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
+            "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj": {
+              "projectPath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj"
             }
           }
         }

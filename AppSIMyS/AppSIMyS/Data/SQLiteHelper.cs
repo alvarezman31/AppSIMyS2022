@@ -4,6 +4,7 @@ using System.Text;
 using SQLite;
 using AppSIMyS.Models;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace AppSIMyS.Data
 {
@@ -95,6 +96,18 @@ namespace AppSIMyS.Data
         public Task<ClsEmpresas> GetClsEmpresasByRutAsync(string Rut)
         {
             return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).FirstOrDefaultAsync();
+        }
+        public  IEnumerable<ClsEmpresas> GetClsEmpresasByRutAsync2(string Rut)
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result =  db.QueryAsync<ClsEmpresas>("select top 1 * from ClsEmpresas where rut = ?", Rut);
+            return result.Result;
+        }
+        public  IEnumerable<ClsEmpresas> GetClsEmpresasByAsync2()
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result =  db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas");
+            return result.Result;
         }
         public Task<List<ClsUsuarios>> GetUsuariosAsync()
         {

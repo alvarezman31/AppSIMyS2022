@@ -34,10 +34,12 @@ namespace AppSIMyS
             }
         }
 
-        protected override void OnStart()
+        protected  override void OnStart()
         {
             base.OnStart();
-            App.SQLiteDB.DeleteEmpresas();
+             App.SQLiteDB.DeleteEmpresas();
+             App.SQLiteDB.DeleteEmpresas();
+             App.SQLiteDB.DeleteEmpresas();
             //Limpiar = 1;
             string comando = "Select * from conds_empresas order by descripcion";
             SqlConnection con1 = Conectar.conectarSql();
@@ -53,7 +55,6 @@ namespace AppSIMyS
                 empresaNew.Telefono = res1["telefono"].ToString();
                 empresaNew.Logo = (byte[])res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
 
-
                 //if (App.SQLiteDB.GetClsEmpresasByRutAsync(empresaNew.Rut) != null)
                 //{
 
@@ -62,6 +63,8 @@ namespace AppSIMyS
                 //else
                 //{
                     App.SQLiteDB.SaveEmpresa(empresaNew);
+                   // App.SQLiteDB.SaveEmpresa(empresaNew);
+                   // App.SQLiteDB.SaveEmpresa(empresaNew);
                 //}
             }
         }

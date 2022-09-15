@@ -31,13 +31,19 @@ namespace AppSIMyS.ViewModels
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormatoServicio : ContentPage
     {
-
+        public static string EmpresaActual;  
+        public static byte[] LogoEmpresa;
+        public static IEnumerable<ClsEmpresas> EmpresaActiva;
         public FormatoServicio(string usuario, string RutCliente)
         {
             InitializeComponent();
             LbUsuario.Text = usuario;
             LbRutCliente.Text = RutCliente;
             LLenarClientes();
+            EmpresaActual = RutCliente;
+            EmpresaActiva = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
+            
+
             //insert into serv_servicios(cliente, descripcion, tecnico) values('12345678', 'prueba de inclusión', '1');
             //SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'alvalucc_appserv' AND TABLE_NAME = 'serv_servicios';
         }
@@ -443,11 +449,10 @@ namespace AppSIMyS.ViewModels
                 float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
                 Table table = new Table(pointColumnWidths);
                 table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell().Add(new Paragraph("Firma Técnico").SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("Firma Técnico" + EmpresaActual ).SetTextAlignment(TextAlignment.CENTER)));
                 table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell().Add(new Paragraph("Firma Cliente").SetTextAlignment(TextAlignment.CENTER)));
-                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
-
+                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));                
                 return table;
             }
 

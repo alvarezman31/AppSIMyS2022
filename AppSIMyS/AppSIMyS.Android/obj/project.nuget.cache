@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EQ21GbmozlNwXNQyEkca5TgbM2ZcMlz7A0aRSBh6o2qmnxiW8H/6gCWvc2IkVlC7AaKrh9mdXYOwObuSr96CIg==",
+  "dgSpecHash": "iJ9CgZAbqFteY9RZDTvAvYpTxlVd22TukQ1VqEeZk92z9st53syll/MKh1JpBnqmoHUgWXxBKRC/2QMW1M3L6w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\Source\\Repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS.Android\\AppSIMyS.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\itext7\\7.2.3\\itext7.7.2.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\itext7.commons\\7.2.3\\itext7.commons.7.2.3.nupkg.sha512",
