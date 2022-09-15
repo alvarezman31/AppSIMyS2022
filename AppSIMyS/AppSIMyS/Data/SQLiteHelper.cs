@@ -109,6 +109,18 @@ namespace AppSIMyS.Data
             var result =  db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas");
             return result.Result;
         }
+        public void  EliminarClsEmpresas()
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result =  db.QueryAsync<ClsEmpresas>("delete from ClsEmpresas");
+            //return result.Result;
+        }
+        public void  AgregarClsEmpresas(ClsEmpresas empresas)
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result =  db.QueryAsync<ClsEmpresas>("insert into ClsEmpresas (empresa, descripcion, rut, direccion, telefono, email, logo) values (?,?,?,?,?,?,?)",empresas.Empresa,empresas.Descripcion,empresas.Rut, empresas.Direccion, empresas.Telefono, empresas.Empresa, empresas.Logo);
+            //return result.Result;
+        }
         public Task<List<ClsUsuarios>> GetUsuariosAsync()
         {
             return db.Table<ClsUsuarios>().ToListAsync();

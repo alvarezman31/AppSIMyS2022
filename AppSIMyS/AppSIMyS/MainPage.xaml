@@ -139,7 +139,7 @@
             
         </CollectionView.ItemsSource>-->
     </CollectionView>
-        <StackLayout>
+        <!--<StackLayout>
             <ListView x:Name="LstCliente">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -170,7 +170,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </StackLayout>-->
     </StackLayout>
     
 </ContentPage>

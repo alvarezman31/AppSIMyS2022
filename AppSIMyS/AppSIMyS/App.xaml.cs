@@ -37,9 +37,9 @@ namespace AppSIMyS
         protected  override void OnStart()
         {
             base.OnStart();
-             App.SQLiteDB.DeleteEmpresas();
-             App.SQLiteDB.DeleteEmpresas();
-             App.SQLiteDB.DeleteEmpresas();
+             //App.SQLiteDB.DeleteEmpresas();
+             //App.SQLiteDB.DeleteEmpresas();
+             App.SQLiteDB.EliminarClsEmpresas();
             //Limpiar = 1;
             string comando = "Select * from conds_empresas order by descripcion";
             SqlConnection con1 = Conectar.conectarSql();
@@ -62,9 +62,9 @@ namespace AppSIMyS
                 //}
                 //else
                 //{
-                    App.SQLiteDB.SaveEmpresa(empresaNew);
+                    //App.SQLiteDB.SaveEmpresa(empresaNew);
                    // App.SQLiteDB.SaveEmpresa(empresaNew);
-                   // App.SQLiteDB.SaveEmpresa(empresaNew);
+                   App.SQLiteDB.AgregarClsEmpresas(empresaNew);
                 //}
             }
         }
