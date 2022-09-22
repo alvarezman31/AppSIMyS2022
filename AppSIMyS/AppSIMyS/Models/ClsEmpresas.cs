@@ -15,6 +15,7 @@ namespace AppSIMyS.Models
         public string Telefono { get; set; }
         public string Email { get; set; }
         public byte[]? Logo { get; set; }
+        public byte[]? PiePagina { get; set; }
         
     }
 }

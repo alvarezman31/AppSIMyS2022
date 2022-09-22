@@ -15,6 +15,7 @@ namespace AppSIMyS.Data
         public SQLiteHelper(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath);
+           // db.DropTableAsync<ClsEmpresas>().Wait();
             db.CreateTableAsync<Clientes>().Wait();
             db.CreateTableAsync<ClsServicios>().Wait();
             db.CreateTableAsync<ClsDetServicios>().Wait();
@@ -100,7 +101,9 @@ namespace AppSIMyS.Data
         public  IEnumerable<ClsEmpresas> GetClsEmpresasByRutAsync2(string Rut)
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("select top 1 * from ClsEmpresas where rut = ?", Rut);
+            //string comando = "select top 1 * from ClsEmpresas where rut = '" + Rut + "'";
+            var result =  db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas where rut = ?", Rut);
+            //var result =  db.QueryAsync<ClsEmpresas>(comando);
             return result.Result;
         }
         public  IEnumerable<ClsEmpresas> GetClsEmpresasByAsync2()
@@ -118,7 +121,7 @@ namespace AppSIMyS.Data
         public void  AgregarClsEmpresas(ClsEmpresas empresas)
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("insert into ClsEmpresas (empresa, descripcion, rut, direccion, telefono, email, logo) values (?,?,?,?,?,?,?)",empresas.Empresa,empresas.Descripcion,empresas.Rut, empresas.Direccion, empresas.Telefono, empresas.Empresa, empresas.Logo);
+            var result =  db.QueryAsync<ClsEmpresas>("insert into ClsEmpresas (empresa, descripcion, rut, direccion, telefono, email, logo, piepagina) values (?,?,?,?,?,?,?,?)",empresas.Empresa,empresas.Descripcion,empresas.Rut, empresas.Direccion, empresas.Telefono, empresas.Empresa, empresas.Logo, empresas.PiePagina);
             //return result.Result;
         }
         public Task<List<ClsUsuarios>> GetUsuariosAsync()

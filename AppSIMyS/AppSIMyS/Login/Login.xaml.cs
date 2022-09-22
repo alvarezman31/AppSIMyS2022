@@ -1,6 +1,7 @@
 ﻿using AppSIMyS.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -21,43 +22,52 @@ namespace AppSIMyS.Login
         //public static string EncryptionKey = "WLN@2020";
         static string strKey = "WLN@2020";
         static string strIV = "101712";
+        static int validado;
         public Login()
         {
             InitializeComponent();
             //TxtUsuario.Text= Sha256encrypt("a9zYz1ipnJ9i");
-            string mensaje = "Aela.2018";
 
-            string iv = "101712";
-            string password = "WLN@2020";
-            
-            iv = MD5Hash(iv).Substring(0, 16);
-            
-            password = MD5Hash(password);
-
-
-            //  iv = SHA256Hash(iv).Substring(0, 16);
-            // password = SHA256Hash(password);
-
-            string reta = Seguridad.EncryptString(mensaje, password, iv);
-
-
-            string retb = Seguridad.Decrypt(reta, password, iv); //, "4ac4eefd21476f3351dc6dc335382764c281a99a21ac8ab69dd67db2d1c35f27", "25d4c3609e2cd59d");
-            TxtUsuario.Focus();
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            if (validado==0 || validado == null)
             {
-                LayoutConexion.BackgroundColor = Color.Red;
-                LblConexion.Text = "---- Sin conexión ----";
-                DisplayAlert("Advertencia", "Sin Internet", "Ok");
-            }
-            else
-            {
-                LayoutConexion.BackgroundColor = Color.Blue;
-                LblConexion.Text = "---- Conectado ----";
-                LblConexion.TextColor = Color.White;
-                DisplayAlert("Advertencia", "Conectado", "Ok");
+                string mensaje = "Aela.2018";
 
+                string iv = "101712";
+                string password = "WLN@2020";
+
+                iv = MD5Hash(iv).Substring(0, 16);
+
+                password = MD5Hash(password);
+
+
+                //  iv = SHA256Hash(iv).Substring(0, 16);
+                // password = SHA256Hash(password);
+
+                string reta = Seguridad.EncryptString(mensaje, password, iv);
+
+
+                string retb = Seguridad.Decrypt(reta, password, iv); //, "4ac4eefd21476f3351dc6dc335382764c281a99a21ac8ab69dd67db2d1c35f27", "25d4c3609e2cd59d");
+                TxtUsuario.Focus();
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                {
+                    LayoutConexion.BackgroundColor = Color.Red;
+                    LblConexion.Text = "---- Sin conexión ----";
+                    DisplayAlert("Advertencia", "Sin Internet", "Ok");
+                }
+                else
+                {
+                    LayoutConexion.BackgroundColor = Color.Blue;
+                    LblConexion.Text = "---- Conectado ----";
+                    LblConexion.TextColor = Color.White;
+                    DisplayAlert("Advertencia", "Conectado", "Ok");
+
+                }
+
+                validado = 1;
             }
+            
         }
+
 
        
 

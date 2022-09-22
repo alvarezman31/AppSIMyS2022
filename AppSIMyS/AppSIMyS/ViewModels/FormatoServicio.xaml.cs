@@ -11,11 +11,13 @@ using iText.StyledXmlParser.Jsoup.Nodes;
 using SignaturePad.Forms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Cell = iText.Layout.Element.Cell;
@@ -32,17 +34,48 @@ namespace AppSIMyS.ViewModels
     public partial class FormatoServicio : ContentPage
     {
         public static string EmpresaActual;  
-        public static byte[] LogoEmpresa;
-        public static IEnumerable<ClsEmpresas> EmpresaActiva;
-        public FormatoServicio(string usuario, string RutCliente)
+        //public static byte[] LogoEmpresaAct;
+        public static ClsEmpresas EmpresaActiva;
+        
+        public FormatoServicio(string usuario, string RutCliente, ImageSource LogoEmpresa)
         {
             InitializeComponent();
             LbUsuario.Text = usuario;
             LbRutCliente.Text = RutCliente;
             LLenarClientes();
             EmpresaActual = RutCliente;
-            EmpresaActiva = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
+            //LogoEmpresaAct = LogoEmpresa;
+            EmpresaActiva = new ClsEmpresas();
             
+
+            var EmpresaActiva1 = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
+            
+            foreach (var item in EmpresaActiva1)
+            {
+                //Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
+                //Byte[] bindata;
+                //bindata = (byte[])(item.Logo);
+                //LogoEmpresaAct = bindata;
+
+                EmpresaActiva.Logo = item.Logo;
+                EmpresaActiva.PiePagina = item.PiePagina;
+                EmpresaActiva.Rut = item.Rut;
+                EmpresaActiva.Descripcion = item.Descripcion;
+                EmpresaActiva.Direccion = item.Direccion;
+                EmpresaActiva.Telefono=item.Telefono;
+                EmpresaActiva.Email = item.Email;
+
+                //image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
+
+                //Empresas empresa = new Empresas();
+                //empresa.Rut = item.Rut;
+                //empresa.Descripcion = item.Descripcion;
+                //empresa.Empresa = item.Empresa;
+                //empresa.Telefono = "Tel. " + item.Telefono;
+                //empresa.Direccion = "Dir. " + (item.Direccion.Trim() + "                                                                  ").Substring(0, 50).Trim();
+                //empresa.Logo = image1.Source;
+                //EmpresaActiva.Add(empresa);
+            }
 
             //insert into serv_servicios(cliente, descripcion, tecnico) values('12345678', 'prueba de inclusión', '1');
             //SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'alvalucc_appserv' AND TABLE_NAME = 'serv_servicios';
@@ -147,7 +180,7 @@ namespace AppSIMyS.ViewModels
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf);
-            document.SetMargins(100f, 70f, 100f, 70f);
+            document.SetMargins(120f, 70f, 100f, 70f);
 
 
             // encabezado 
@@ -428,7 +461,12 @@ namespace AppSIMyS.ViewModels
             {
                 PdfDocumentEvent pdfEvent = (PdfDocumentEvent)@event;
                 PdfDocument pdfDoc = pdfEvent.GetDocument();
-                PdfPage page = pdfEvent.GetPage();
+                PdfPage page = pdfEvent.GetPage();                
+                var document = new Document(pdfDoc);
+                iText.Layout.Element.Image img;
+                img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
+                //document.Add(new Cell(3, 1).Add(img).SetBorder(Border.NO_BORDER));
+
 
                 Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 50);
                 Canvas canvas = new Canvas(page, rootArea);
@@ -441,18 +479,47 @@ namespace AppSIMyS.ViewModels
                          .Close();
                 */
 
+                if (EmpresaActiva.PiePagina != null)
+                {
+                    //img = new Image(ImageDataFactory.Create(EmpresaActiva.PiePagina)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(550);
+                    rootArea = new Rectangle(35, page.GetPageSize().GetBottom() + 50, page.GetPageSize().GetRight() + 70, 50);
+                    canvas = new Canvas(page, rootArea);
+                    canvas.Add(getTableFooter(pdfEvent));
+                }
 
             }
 
             public Table getTable(PdfDocumentEvent docEvent)
             {
-                float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
+              /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
+                Byte[] bindata;
+                bindata = (byte[])(EmpresaActiva.);
+                image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
+                */
+                float[] pointColumnWidths = { 200F, 350F, 100F, 100F, 100F };
                 Table table = new Table(pointColumnWidths);
-                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell().Add(new Paragraph("Firma Técnico" + EmpresaActual ).SetTextAlignment(TextAlignment.CENTER)));
-                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell().Add(new Paragraph("Firma Cliente").SetTextAlignment(TextAlignment.CENTER)));
-                table.AddCell(new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER));                
+                iText.Layout.Element.Image img;
+                img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
+                table.AddCell(new Cell().Add(img).SetBorder(Border.NO_BORDER));                
+                table.AddCell(new Cell().Add(new Paragraph(EmpresaActiva.Descripcion).SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph(EmpresaActiva.Direccion)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell().Add(new Paragraph("Telefono: " + EmpresaActiva.Telefono  + " Email: " + EmpresaActiva.Email).SetTextAlignment(TextAlignment.CENTER)));
+                table.AddCell(new Cell().Add(new Paragraph("---")).SetBorder(Border.NO_BORDER));
+
+                return table;
+            }
+            public Table getTableFooter(PdfDocumentEvent docEvent)
+            {
+              /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
+                Byte[] bindata;
+                bindata = (byte[])(EmpresaActiva.);
+                image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
+                */
+                float[] pointColumnWidths = { 1 };
+                Table table = new Table(pointColumnWidths);
+                iText.Layout.Element.Image img;
+                img = new Image(ImageDataFactory.Create(EmpresaActiva.PiePagina)).SetTextAlignment(TextAlignment.CENTER).SetHeight(80).SetWidth(500);
+                table.AddCell(new Cell().Add(img).SetBorder(Border.NO_BORDER));
                 return table;
             }
 

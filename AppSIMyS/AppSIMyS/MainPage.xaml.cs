@@ -31,20 +31,19 @@ namespace AppSIMyS
             BindingContext = new MainPageViewModel();
             MyCollectionView.SelectedItem = false;
             LblConexion.Text = "";
-            if (Connectivity.NetworkAccess!= NetworkAccess.Internet)
-            {
-                LayoutConexion.BackgroundColor = Color.Red; 
-                LblConexion.Text = "---- Sin conexión ----";
-                DisplayAlert("Advertencia","Sin Internet","Ok");
-            }
-            else
-            {
-                LayoutConexion.BackgroundColor = Color.Blue;
-                LblConexion.Text = "---- Conectado ----";
-                LblConexion.TextColor = Color.White;
-                DisplayAlert("Advertencia", "Conectado", "Ok");
-
-            }
+            //if (Connectivity.NetworkAccess!= NetworkAccess.Internet)
+            //{
+            //    LayoutConexion.BackgroundColor = Color.Red; 
+            //    LblConexion.Text = "---- Sin conexión ----";
+            //    DisplayAlert("Advertencia","Sin Internet","Ok");
+            //}
+            //else
+            //{
+            //    LayoutConexion.BackgroundColor = Color.Blue;
+            //    LblConexion.Text = "---- Conectado ----";
+            //    LblConexion.TextColor = Color.White;
+            //    DisplayAlert("Advertencia", "Conectado", "Ok");
+            //}
             //LlenarColletionView();
             
 
@@ -80,16 +79,17 @@ namespace AppSIMyS
         //    await DisplayAlert("Message", "item " + parameter + " clicked", "Ok");
         //}
 
-        private async void MyCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private  void MyCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string clientesAnt = (e.PreviousSelection.FirstOrDefault() as Empresas)?.Empresa;
             string clientesAct = (e.CurrentSelection.FirstOrDefault() as Empresas)?.Empresa;
             string RutCliente = (e.CurrentSelection.FirstOrDefault() as Empresas)?.Rut;
+            ImageSource LogoEmpresa = (e.CurrentSelection.FirstOrDefault() as Empresas)?.Logo;
             if (RutCliente!=null)
             {
 
                 MyCollectionView.SelectedItem = false;
-                await Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente));
+                 Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente, LogoEmpresa));
             }
 
            // await DisplayAlert("Registro", "Guardado Existosamente", "OK");

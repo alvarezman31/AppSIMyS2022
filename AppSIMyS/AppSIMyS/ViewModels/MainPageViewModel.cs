@@ -5,8 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Xamarin.Forms;
 using AppSIMyS.Data;
-
-
+using System.Runtime.CompilerServices;
 
 namespace AppSIMyS.ViewModels
 {
@@ -19,8 +18,8 @@ namespace AppSIMyS.ViewModels
         {
 
 
-            if (LLenarEmpras == null || LLenarEmpras == 0)
-            {
+            //if (LLenarEmpras == null || LLenarEmpras == 0)
+            //{
 
 
                 string sql = "SELECT * FROM serv_clientes order by empresa ";
@@ -29,6 +28,7 @@ namespace AppSIMyS.ViewModels
                 LEmpresas = new ObservableCollection<Empresas>();
                 var EmpresaActiva = App.SQLiteDB.GetClsEmpresasByAsync2();
                 LEmpresas.Clear();
+            
                 foreach (var item in EmpresaActiva)
                 {
                     Image image1 = new Image();
@@ -48,7 +48,7 @@ namespace AppSIMyS.ViewModels
                     LEmpresas.Add(empresa);
                 }
                 LLenarEmpras = 1;
-            }
+            //}
             //using (MySqlConnection con = new MySqlConnection(Conectar.cCon))
             //{
             //    con.Open();
