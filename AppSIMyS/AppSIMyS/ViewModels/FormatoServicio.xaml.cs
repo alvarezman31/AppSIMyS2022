@@ -9,6 +9,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using iText.StyledXmlParser.Jsoup.Nodes;
 using SignaturePad.Forms;
+using Syncfusion.Pdf.Tables;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,6 +37,8 @@ namespace AppSIMyS.ViewModels
         public static string EmpresaActual;  
         //public static byte[] LogoEmpresaAct;
         public static ClsEmpresas EmpresaActiva;
+        public static string nroOrden;
+        public static string TipoInforme;
         
         public FormatoServicio(string usuario, string RutCliente, ImageSource LogoEmpresa)
         {
@@ -157,9 +160,10 @@ namespace AppSIMyS.ViewModels
             Random nro = new Random();
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"), root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
-
-            fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
-
+            
+            nroOrden = nro.Next(20000000, 99999999).ToString();
+            fileName = "OT" +  nroOrden + ".pdf";
+            
             //Save the document to the stream
             //MemoryStream stream = new MemoryStream();
             //PdfWriter writer = new PdfWriter(stream);
@@ -259,97 +263,97 @@ namespace AppSIMyS.ViewModels
         }
 
 
-        protected void GenerarPdfFormatoServicio2(byte[] Firma)
-        {
-            Random nro = new Random();
+        //protected void GenerarPdfFormatoServicio2(byte[] Firma)
+        //{
+        //    Random nro = new Random();
 
-            //string root = Environment.ex .ExternalStorageDirectory.ToString();
+        //    //string root = Environment.ex .ExternalStorageDirectory.ToString();
 
-            //root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //    //root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            //fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
-            //fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //    //fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
+        //    string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
+        //    //fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
-            // Create a new PDF document
+        //    //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
+        //    // Create a new PDF document
 
-            //PdfDocument document = new PdfDocument();
+        //    //PdfDocument document = new PdfDocument();
 
-            //Add a page to the document
-            //PdfPage page = document.Pages.Add();
+        //    //Add a page to the document
+        //    //PdfPage page = document.Pages.Add();
 
-            //Create PDF graphics for the page
-            //PdfGraphics graphics = page.Graphics;
+        //    //Create PDF graphics for the page
+        //    //PdfGraphics graphics = page.Graphics;
 
-            //Stream imageStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("App2.img.logo_dcservicios.PNG");
+        //    //Stream imageStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("App2.img.logo_dcservicios.PNG");
 
-            //PdfBitmap image = new PdfBitmap(imageStream);
-            ////Draw the image
-            //graphics.DrawImage(image, 0, 0);
-
-
-            //Set the standard font
-            //PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
-
-            //Draw the text
-            //graphics.DrawString(TxtObservacion.Text, font, PdfBrushes.Black, new PointF(0, 0));
-            //graphics.DrawString(LbConCopia.Text, font, PdfBrushes.Black, new PointF(50, 25));
-            //graphics.DrawString(LbConCopia.Text+"12121212121221", font, PdfBrushes.Black, new PointF(100, 50));
+        //    //PdfBitmap image = new PdfBitmap(imageStream);
+        //    ////Draw the image
+        //    //graphics.DrawImage(image, 0, 0);
 
 
-            //Save the document to the stream
-            //byte[] byteArray = Encoding.UTF8.GetBytes(fileName);
-            // MemoryStream stream = new MemoryStream();
+        //    //Set the standard font
+        //    //PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
 
-            //Stream str = GenerateStreamFromString(filename);
-            //  document.Save(stream);            
-
-            //Close the document
-            //  document.Close(true);
+        //    //Draw the text
+        //    //graphics.DrawString(TxtObservacion.Text, font, PdfBrushes.Black, new PointF(0, 0));
+        //    //graphics.DrawString(LbConCopia.Text, font, PdfBrushes.Black, new PointF(50, 25));
+        //    //graphics.DrawString(LbConCopia.Text+"12121212121221", font, PdfBrushes.Black, new PointF(100, 50));
 
 
-            //byte[] bytes = new byte[stream.Length];
-            //stream.Read(bytes, 0, bytes.Length);
-            //string Firma = Convert.ToBase64String(bytes);
+        //    //Save the document to the stream
+        //    //byte[] byteArray = Encoding.UTF8.GetBytes(fileName);
+        //    // MemoryStream stream = new MemoryStream();
+
+        //    //Stream str = GenerateStreamFromString(filename);
+        //    //  document.Save(stream);            
+
+        //    //Close the document
+        //    //  document.Close(true);
 
 
-            //using (FileStream fs = new FileStream(fileName, FileMode.Create))
-            //{
-            //    fs.Write(bytes, 0, bytes.Length);
-            //}
+        //    //byte[] bytes = new byte[stream.Length];
+        //    //stream.Read(bytes, 0, bytes.Length);
+        //    //string Firma = Convert.ToBase64String(bytes);
+
+
+        //    //using (FileStream fs = new FileStream(fileName, FileMode.Create))
+        //    //{
+        //    //    fs.Write(bytes, 0, bytes.Length);
+        //    //}
 
 
 
-            //string filename = Configuraciones.PathApp + "/HolaMundo";
-            //var archivo = Path.Combine(filename, "Prueba.pdf");
+        //    //string filename = Configuraciones.PathApp + "/HolaMundo";
+        //    //var archivo = Path.Combine(filename, "Prueba.pdf");
 
-            //byte[] byteArray = Encoding.UTF8.GetBytes(fileName);
-            //stream = new MemoryStream(byteArray);
-            //stream.Write(bytes, 0, bytes.Length);
-            //stream.Close();
+        //    //byte[] byteArray = Encoding.UTF8.GetBytes(fileName);
+        //    //stream = new MemoryStream(byteArray);
+        //    //stream.Write(bytes, 0, bytes.Length);
+        //    //stream.Close();
 
 
-            // Conectar.GuardarFirma(Firma, 14237889);
+        //    // Conectar.GuardarFirma(Firma, 14237889);
 
-            //Save the stream as a file in the device and invoke it for viewing
-            //Random nro = new Random();
+        //    //Save the stream as a file in the device and invoke it for viewing
+        //    //Random nro = new Random();
 
-            fileName = "OT" + nro.Next(200000, 999999).ToString() + ".pdf";
+        //    fileName = "OT" + nroOrden + ".pdf";
 
-            //Save the document to the stream
-            MemoryStream stream = new MemoryStream();
-            // document.Save(stream);
+        //    //Save the document to the stream
+        //    MemoryStream stream = new MemoryStream();
+        //    // document.Save(stream);
 
-            //Close the document
-            //document.Close(true);
+        //    //Close the document
+        //    //document.Close(true);
 
-            //Save the stream as a file in the device and invoke it for viewing
-            Xamarin.Forms.DependencyService.Get<ISavePdf>().SaveAndView(fileName, "application/pdf", stream, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+        //    //Save the stream as a file in the device and invoke it for viewing
+        //    Xamarin.Forms.DependencyService.Get<ISavePdf>().SaveAndView(fileName, "application/pdf", stream, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
-            cmSendMailCcopy(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName));
-            //cmSendMailCcopy(Path.Combine("/AppSimys", fileName));
-        }
+        //    cmSendMailCcopy(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName));
+        //    //cmSendMailCcopy(Path.Combine("/AppSimys", fileName));
+        //}
 
         protected void cmSendMailCcopy(string file)
         {
@@ -443,6 +447,7 @@ namespace AppSIMyS.ViewModels
             var picker = (Picker)sender;
             //int selectedIndex = 
             LbTipoServicio.Text = picker.SelectedIndex.ToString();
+            TipoInforme= picker.SelectedItem.ToString(); 
         }
 
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -457,6 +462,7 @@ namespace AppSIMyS.ViewModels
 
         public class HeaderEventHandler1 : IEventHandler
         {
+
             public void HandleEvent(Event @event)
             {
                 PdfDocumentEvent pdfEvent = (PdfDocumentEvent)@event;
@@ -468,7 +474,7 @@ namespace AppSIMyS.ViewModels
                 //document.Add(new Cell(3, 1).Add(img).SetBorder(Border.NO_BORDER));
 
 
-                Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 50);
+                Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 120, page.GetPageSize().GetRight() - 70, 100);
                 Canvas canvas = new Canvas(page, rootArea);
                 canvas
                     .Add(getTable(pdfEvent));
@@ -482,7 +488,7 @@ namespace AppSIMyS.ViewModels
                 if (EmpresaActiva.PiePagina != null)
                 {
                     //img = new Image(ImageDataFactory.Create(EmpresaActiva.PiePagina)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(550);
-                    rootArea = new Rectangle(35, page.GetPageSize().GetBottom() + 50, page.GetPageSize().GetRight() + 70, 50);
+                    rootArea = new Rectangle(40, page.GetPageSize().GetBottom() + 50, page.GetPageSize().GetRight() + 50, 50);
                     canvas = new Canvas(page, rootArea);
                     canvas.Add(getTableFooter(pdfEvent));
                 }
@@ -491,20 +497,33 @@ namespace AppSIMyS.ViewModels
 
             public Table getTable(PdfDocumentEvent docEvent)
             {
-              /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
-                Byte[] bindata;
-                bindata = (byte[])(EmpresaActiva.);
-                image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
-                */
-                float[] pointColumnWidths = { 200F, 350F, 100F, 100F, 100F };
+                /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
+                  Byte[] bindata;
+                  bindata = (byte[])(EmpresaActiva.);
+                  image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
+                  */
+                float[] pointColumnWidths = { 180F, 350F, 70F, 110F, 110F };
+
                 Table table = new Table(pointColumnWidths);
                 iText.Layout.Element.Image img;
-                img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
-                table.AddCell(new Cell().Add(img).SetBorder(Border.NO_BORDER));                
-                table.AddCell(new Cell().Add(new Paragraph(EmpresaActiva.Descripcion).SetTextAlignment(TextAlignment.CENTER)));
-                table.AddCell(new Cell().Add(new Paragraph(EmpresaActiva.Direccion)).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell().Add(new Paragraph("Telefono: " + EmpresaActiva.Telefono  + " Email: " + EmpresaActiva.Email).SetTextAlignment(TextAlignment.CENTER)));
-                table.AddCell(new Cell().Add(new Paragraph("---")).SetBorder(Border.NO_BORDER));
+                img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetHorizontalAlignment(HorizontalAlignment.CENTER).SetHeight(80).SetWidth(150);
+                table.AddCell(new Cell(4, 1).Add(img).SetHorizontalAlignment(HorizontalAlignment.CENTER).SetVerticalAlignment(VerticalAlignment.MIDDLE).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(2, 2).Add(new Paragraph(EmpresaActiva.Descripcion)).SetBorder(Border.NO_BORDER).SetFontSize(12).SetVerticalAlignment(VerticalAlignment.BOTTOM).SetBold());
+                table.AddCell(new Cell(1, 2).Add(new Paragraph("Informe de " + TipoInforme)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12).SetBorderBottom(Border.NO_BORDER).SetVerticalAlignment(VerticalAlignment.BOTTOM));
+                table.AddCell(new Cell(1, 2).Add(new Paragraph(" Nro: OT-" + nroOrden)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12).SetBorderTop(Border.NO_BORDER).SetVerticalAlignment(VerticalAlignment.TOP));
+                //table.AddCell(new Cell(1, 1).Add(new Paragraph(" Nro: OT-" + nroOrden)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12));
+                
+                //table.AddCell(new Cell(1,2).Add(new Paragraph(TipoInforme)));                
+                
+                table.AddCell(new Cell(1,4).Add(new Paragraph(EmpresaActiva.Direccion)).SetBorder(Border.NO_BORDER).SetFontSize(10));
+                
+                table.AddCell(new Cell(1,4).Add(new Paragraph("Telefono: " + EmpresaActiva.Telefono + " Email: " + EmpresaActiva.Email)).SetBorder(Border.NO_BORDER).SetFontSize(10));
+                //table.AddCell(new Cell(1, 1).Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
+                
+                //table.AddCell(new Cell().Add(new Paragraph("222")).SetBorder(Border.NO_BORDER));
+                //table.AddCell(new Cell().Add(new Paragraph("144")).SetBorder(Border.NO_BORDER));
+                //table.AddCell(new Cell().Add(new Paragraph("244")).SetBorder(Border.NO_BORDER));
+                //table.AddCell(new Cell().Add(new Paragraph("344")).SetBorder(Border.NO_BORDER));
 
                 return table;
             }
