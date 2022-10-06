@@ -15,6 +15,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using iText.Layout.Element;
 using Xamarin.Essentials;
+using AppSIMyS.Services;
 
 namespace AppSIMyS
 {
@@ -23,6 +24,7 @@ namespace AppSIMyS
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+
         public MainPage(string usuario)
         {
             
@@ -62,6 +64,20 @@ namespace AppSIMyS
                 MyCollectionView.ItemsSource = GetLstcliente;
             }
         }
+
+        async void OnPickPhotoButtonClicked(object sender, EventArgs e)
+        {
+            (sender as Button).IsEnabled = false;
+
+            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            if (stream != null)
+            {
+                image.Source = ImageSource.FromStream(() => stream);
+            }
+
+          (sender as Button).IsEnabled = true;
+        }
+
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             //var cliente = e.Item as Clientes;

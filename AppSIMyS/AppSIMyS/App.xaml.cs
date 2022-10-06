@@ -55,6 +55,7 @@ namespace AppSIMyS
                 //App.SQLiteDB.DeleteEmpresas();
                 //App.SQLiteDB.DeleteEmpresas();
                 App.SQLiteDB.EliminarClsEmpresas();
+                App.SQLiteDB.EliminarClsClientes();
                 //Limpiar = 1;
                 string comando = "Select * from conds_empresas order by descripcion";
                 SqlConnection con1 = Conectar.conectarSql();
@@ -91,6 +92,30 @@ namespace AppSIMyS
                     //}
                     
 
+                }
+                comando = "Select * from conds_clientes order by razon";
+                //con1 = Conectar.conectarSql();
+                res1.Close();
+                res1 = Conectar.consultarSql(comando, con1);
+                while (res1.Read())
+                {
+                    ClsClientes clienteNew = new ClsClientes();
+                    {
+
+                        clienteNew.Rut = res1["rut"].ToString().Trim() + "-" + res1["verifi"].ToString().Trim();
+                        clienteNew.Empresa = res1["rut"].ToString();
+                        clienteNew.Descripcion = res1["razon"].ToString();
+                        empresaNew.Direccion = res1["direccion"].ToString();
+                        clienteNew.Telefono = res1["telefono"].ToString();
+                        clienteNew.Url = res1["url"].ToString();
+                        clienteNew.Email = res1["email"].ToString();
+                        clienteNew.Logo = null;// res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
+                        if (res1["logo"].ToString() != "")
+                            clienteNew.Logo = (byte[])res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
+
+                        App.SQLiteDB.AgregarClsClientes(clienteNew);
+
+                    }
                 }
             }
             

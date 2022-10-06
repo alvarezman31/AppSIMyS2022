@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tYNVZcCGcFo2Nw76piZ8u4J8tZ3AOzZ1bY7CLSepZKGdPXWNtwG9QNjgPeUbhdJjCaIK1BnP/8NP7YDXMtchvQ==",
+  "dgSpecHash": "CoWXzqr1coU3ZaE9qVtlf+/ZzX8klke0W/Bd7FOyXTPjqyoMNf6rdsqTbfX5zyufeLb+m8ysqWwQVj95WwVJog==",
   "success": true,
   "projectFilePath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\mysqlconnector\\2.1.13\\mysqlconnector.2.1.13.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\portable.bouncycastle\\1.8.9\\portable.bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

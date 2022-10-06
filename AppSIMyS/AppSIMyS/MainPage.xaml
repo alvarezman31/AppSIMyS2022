@@ -173,6 +173,14 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>-->
+        <StackLayout Margin="20,35,20,20">
+            <Label Text="Photo Picker"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Button Text="Pick Photo"
+                    Clicked="OnPickPhotoButtonClicked" />
+            <Image x:Name="image" />
+        </StackLayout>
     </StackLayout>
     
 </ContentPage>

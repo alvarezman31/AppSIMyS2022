@@ -35,6 +35,21 @@
                 <Frame>
                     <Editor x:Name="editor" Text="I am an Editor"  />
                 </Frame>
+
+                <!-- Imagenes -->
+                <StackLayout>
+                    <Image x:Name="MiImagen"></Image>
+                    <Button x:Name="TomarFoto" Text="Hacer una Foto" Clicked="TomarFoto_Clicked"   ></Button>
+                    <Button x:Name="ElegirFoto" Text="Seleccione una Imagen" Clicked="ElegirFoto_Clicked"></Button>
+                </StackLayout>
+                <StackLayout Margin="20,35,20,20">
+                    <Label Text="Photo Picker"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                    <Button Text="Pick Photo"
+                    Clicked="OnPickPhotoButtonClicked" />
+                    <Image x:Name="image" />
+                </StackLayout>
                 <StackLayout>
                     <sign:SignaturePadView x:Name="signature" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
                     <!--<Button Clicked="Save" Text="Salvar"/>-->
@@ -77,6 +92,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
+               
                 <!--  <StackLayout>
                     <sign:SignaturePadView x:Name="signature2" StrokeWidth="5" WidthRequest="200" HeightRequest="300" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma" ></sign:SignaturePadView>                    
                 </StackLayout>

@@ -1,4 +1,5 @@
 ﻿using AppSIMyS.Models;
+using AppSIMyS.Services;
 using iText.IO.Image;
 using iText.Kernel.Events;
 using iText.Kernel.Geom;
@@ -19,6 +20,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Threading;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Cell = iText.Layout.Element.Cell;
@@ -28,6 +30,8 @@ using Path = System.IO.Path;
 using PdfDocument = iText.Kernel.Pdf.PdfDocument;
 using Rectangle = iText.Kernel.Geom.Rectangle;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
+//using Plugin.Media.Abstractions;
+//using Plugin.Media;
 
 namespace AppSIMyS.ViewModels
 {
@@ -454,7 +458,7 @@ namespace AppSIMyS.ViewModels
         {
             var picker = (Picker)sender;
             //int selectedIndex = 
-            Clientes dt = picker.SelectedItem as Clientes;
+            ClsClientes dt = picker.SelectedItem as ClsClientes;
 
             LbTipoServicio.Text = dt.Empresa;// .ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
             //LbTipoServicio.Text = picker.ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
@@ -543,6 +547,54 @@ namespace AppSIMyS.ViewModels
             }
 
 
+        }
+
+        private async void TomarFoto_Clicked(object sender, EventArgs e)
+        {
+            //var opciones_almacenamiento = new StoreCameraMediaOptions()
+            //{
+            //    SaveToAlbum = true,
+            //    Name = "MiFoto.jpg"
+
+            //};
+            //var foto = await CrossMedia.Current.TakePhotoAsync(opciones_almacenamiento);
+            //MiImagen.Source = ImageSource.FromStream(() =>
+            //{
+            //    var strem = foto.GetStream();
+            //    foto.Dispose();
+            //    return strem;
+            //    });
+        }
+
+
+        async void OnPickPhotoButtonClicked(object sender, EventArgs e)
+        {
+            ((Button)sender).IsEnabled = false;
+            
+            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            if (stream != null)
+            {
+                image.Source = ImageSource.FromStream(() => stream);
+            }
+
+            ((Button)sender).IsEnabled = true;
+        }
+
+        private async void ElegirFoto_Clicked(object sender, EventArgs e)
+        {
+            //if (CrossMedia.Current.IsTakePhotoSupported)
+            //{
+            //    var imagen = await CrossMedia.Current.PickPhotoAsync();
+            //    if (imagen != null)
+            //    {
+            //        MiImagen.Source = ImageSource.FromStream(() =>
+            //        {
+            //            var strem = imagen.GetStream();
+            //            imagen.Dispose();
+            //            return strem;                        
+            //        });
+            //    }
+            //}
         }
     }
 }

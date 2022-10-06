@@ -13,8 +13,8 @@ namespace AppSIMyS.Models
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
-        public ImageSource Logo { get; set; }
-        public ImageSource PiePagina { get; set; }
+        public ImageSource? Logo { get; set; }
+        public ImageSource? PiePagina { get; set; }
 
     }
 }

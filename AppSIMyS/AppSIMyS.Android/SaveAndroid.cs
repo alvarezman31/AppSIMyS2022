@@ -1,3 +1,4 @@
+
 using System;
 using System.IO;
 using AppSIMyS.Droid;
@@ -18,7 +19,7 @@ using AndroidX.Core.App;
 class SaveAndroid : ISavePdf
 {
     //Method to save document as a file in Android and view the saved document
-    public  async Task  SaveAndView(string fileName, String contentType, MemoryStream stream, string root)
+    public  async Task SaveAndView(string fileName, String contentType, MemoryStream stream, string root)
     {
         //string root = null;
 

@@ -1,0 +1,10 @@
+﻿using System.IO;
+using System.Threading.Tasks;
+
+namespace AppSIMyS.Services
+{
+    public interface IPhotoPickerService
+    {
+        Task<Stream> GetImageStreamAsync();
+    }
+}
