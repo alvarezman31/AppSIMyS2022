@@ -49,17 +49,21 @@
               "target": "Package",
               "version": "[20.2.0.45, )"
             },
+            "Xam.Plugin.Media": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
             "Xamarin.Controls.SignaturePad.Forms": {
               "target": "Package",
               "version": "[3.0.0, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.0, )"
+              "version": "[1.7.3, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1821, )"
+              "version": "[5.0.0.2515, )"
             },
             "itext7": {
               "target": "Package",
@@ -141,17 +145,21 @@
               "target": "Package",
               "version": "[4.8.3, )"
             },
+            "Xam.Plugin.Media": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
             "Xamarin.Controls.SignaturePad.Forms": {
               "target": "Package",
               "version": "[3.0.0, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.0, )"
+              "version": "[1.7.3, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1821, )"
+              "version": "[5.0.0.2515, )"
             },
             "itext7": {
               "target": "Package",

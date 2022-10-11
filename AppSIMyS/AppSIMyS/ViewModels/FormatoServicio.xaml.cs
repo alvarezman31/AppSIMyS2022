@@ -2,25 +2,18 @@
 using AppSIMyS.Services;
 using iText.IO.Image;
 using iText.Kernel.Events;
-using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using iText.StyledXmlParser.Jsoup.Nodes;
 using SignaturePad.Forms;
-using Syncfusion.Pdf.Tables;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
-using System.Threading;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Cell = iText.Layout.Element.Cell;
@@ -549,22 +542,22 @@ namespace AppSIMyS.ViewModels
 
         }
 
-        private async void TomarFoto_Clicked(object sender, EventArgs e)
-        {
-            //var opciones_almacenamiento = new StoreCameraMediaOptions()
-            //{
-            //    SaveToAlbum = true,
-            //    Name = "MiFoto.jpg"
+        //private async void TomarFoto_Clicked(object sender, EventArgs e)
+        //{
+        //    //var opciones_almacenamiento = new StoreCameraMediaOptions()
+        //    //{
+        //    //    SaveToAlbum = true,
+        //    //    Name = "MiFoto.jpg"
 
-            //};
-            //var foto = await CrossMedia.Current.TakePhotoAsync(opciones_almacenamiento);
-            //MiImagen.Source = ImageSource.FromStream(() =>
-            //{
-            //    var strem = foto.GetStream();
-            //    foto.Dispose();
-            //    return strem;
-            //    });
-        }
+        //    //};
+        //    //var foto = await CrossMedia.Current.TakePhotoAsync(opciones_almacenamiento);
+        //    //MiImagen.Source = ImageSource.FromStream(() =>
+        //    //{
+        //    //    var strem = foto.GetStream();
+        //    //    foto.Dispose();
+        //    //    return strem;
+        //    //    });
+        //}
 
 
         async void OnPickPhotoButtonClicked(object sender, EventArgs e)
@@ -580,21 +573,33 @@ namespace AppSIMyS.ViewModels
             ((Button)sender).IsEnabled = true;
         }
 
-        private async void ElegirFoto_Clicked(object sender, EventArgs e)
+        //private async void ElegirFoto_Clicked(object sender, EventArgs e)
+        //{
+        //    //if (CrossMedia.Current.IsTakePhotoSupported)
+        //    //{
+        //    //    var imagen = await CrossMedia.Current.PickPhotoAsync();
+        //    //    if (imagen != null)
+        //    //    {
+        //    //        MiImagen.Source = ImageSource.FromStream(() =>
+        //    //        {
+        //    //            var strem = imagen.GetStream();
+        //    //            imagen.Dispose();
+        //    //            return strem;                        
+        //    //        });
+        //    //    }
+        //    //}
+        //}
+
+        private async void BtnCamara_Clicked(object sender, EventArgs e)
         {
-            //if (CrossMedia.Current.IsTakePhotoSupported)
-            //{
-            //    var imagen = await CrossMedia.Current.PickPhotoAsync();
-            //    if (imagen != null)
-            //    {
-            //        MiImagen.Source = ImageSource.FromStream(() =>
-            //        {
-            //            var strem = imagen.GetStream();
-            //            imagen.Dispose();
-            //            return strem;                        
-            //        });
-            //    }
-            //}
+            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
+            if (photo != null)
+            {
+                image.Source = ImageSource.FromStream(() =>
+                {
+                    return photo.GetStream();
+                });
+            }
         }
     }
 }

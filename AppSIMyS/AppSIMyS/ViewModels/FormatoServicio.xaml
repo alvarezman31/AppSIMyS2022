@@ -37,17 +37,17 @@
                 </Frame>
 
                 <!-- Imagenes -->
-                <StackLayout>
+                <!--<StackLayout>
                     <Image x:Name="MiImagen"></Image>
                     <Button x:Name="TomarFoto" Text="Hacer una Foto" Clicked="TomarFoto_Clicked"   ></Button>
                     <Button x:Name="ElegirFoto" Text="Seleccione una Imagen" Clicked="ElegirFoto_Clicked"></Button>
-                </StackLayout>
+                </StackLayout>-->
                 <StackLayout Margin="20,35,20,20">
                     <Label Text="Photo Picker"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
-                    <Button Text="Pick Photo"
-                    Clicked="OnPickPhotoButtonClicked" />
+                    <Button Text="Galeria" Clicked="OnPickPhotoButtonClicked" />
+                    <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" />
                     <Image x:Name="image" />
                 </StackLayout>
                 <StackLayout>

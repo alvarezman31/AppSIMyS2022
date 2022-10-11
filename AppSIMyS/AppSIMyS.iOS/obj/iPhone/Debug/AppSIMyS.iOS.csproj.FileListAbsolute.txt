@@ -103,3 +103,5 @@ C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\ob
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\obj\iPhone\Debug\AppSIMyS.iOS.csproj.CopyComplete
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\obj\iPhone\Debug\AppSIMyS.iOS.exe
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\obj\iPhone\Debug\AppSIMyS.iOS.pdb
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\bin\iPhone\Debug\Plugin.Media.dll
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.iOS\bin\iPhone\Debug\Plugin.Media.pdb

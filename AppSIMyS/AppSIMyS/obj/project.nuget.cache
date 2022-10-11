@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CoWXzqr1coU3ZaE9qVtlf+/ZzX8klke0W/Bd7FOyXTPjqyoMNf6rdsqTbfX5zyufeLb+m8ysqWwQVj95WwVJog==",
+  "dgSpecHash": "xuICP7FSe8VECslZQSQk5Ad12IDRw09cB8tusajHgsiA/+geGjXabZoOg3yW2LhFSYVaIMm+i3XbTDGYplQKbQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\usuario\\source\\repos\\alvarezman31\\AppSIMyS2022\\AppSIMyS\\AppSIMyS\\AppSIMyS.csproj",
   "expectedPackageFiles": [
@@ -104,9 +104,10 @@
     "C:\\Users\\usuario\\.nuget\\packages\\system.threading.threadpool\\4.3.0\\system.threading.threadpool.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\xamarin.controls.signaturepad.forms\\3.0.0\\xamarin.controls.signaturepad.forms.3.0.0.nupkg.sha512",
-    "C:\\Users\\usuario\\.nuget\\packages\\xamarin.essentials\\1.5.0\\xamarin.essentials.1.5.0.nupkg.sha512",
-    "C:\\Users\\usuario\\.nuget\\packages\\xamarin.forms\\4.8.0.1821\\xamarin.forms.4.8.0.1821.nupkg.sha512"
+    "C:\\Users\\usuario\\.nuget\\packages\\xamarin.essentials\\1.7.3\\xamarin.essentials.1.7.3.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\xamarin.forms\\5.0.0.2515\\xamarin.forms.5.0.0.2515.nupkg.sha512"
   ],
   "logs": []
 }

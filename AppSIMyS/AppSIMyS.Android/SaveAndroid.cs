@@ -1,19 +1,15 @@
 
-using System;
-using System.IO;
-using AppSIMyS.Droid;
-using AppSIMyS;
+using Android;
 using Android.Content;
+using Android.Content.PM;
+using AndroidX.Core.App;
+using AndroidX.Core.Content;
 using AppSIMyS.ViewModels;
 using Java.IO;
-using Xamarin.Forms;
+using System;
+using System.IO;
 using System.Threading.Tasks;
-using Android.Support.V4;
-using Android;
-using Android.Content.PM;
-using Android.Support.V4.App;
-using AndroidX.Core.Content;
-using AndroidX.Core.App;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SaveAndroid))]
 class SaveAndroid : ISavePdf

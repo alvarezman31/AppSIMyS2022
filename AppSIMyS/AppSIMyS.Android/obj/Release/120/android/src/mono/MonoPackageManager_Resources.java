@@ -26,6 +26,9 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Extensions.Primitives.dll",
 		"MySqlConnector.dll",
 		"Newtonsoft.Json.dll",
+		"Plugin.CurrentActivity.dll",
+		"Plugin.Media.dll",
+		"Plugin.Permissions.dll",
 		"SignaturePad.dll",
 		"SignaturePad.Forms.dll",
 		"SQLite-net.dll",
@@ -45,6 +48,8 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.CardView.dll",
 		"Xamarin.AndroidX.CoordinatorLayout.dll",
 		"Xamarin.AndroidX.Core.dll",
+		"Xamarin.AndroidX.CursorAdapter.dll",
+		"Xamarin.AndroidX.CustomView.dll",
 		"Xamarin.AndroidX.DrawerLayout.dll",
 		"Xamarin.AndroidX.Fragment.dll",
 		"Xamarin.AndroidX.Legacy.Support.Core.UI.dll",
@@ -62,6 +67,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",
 		"Xamarin.Google.Android.Material.dll",
+		"Xamarin.Google.Guava.ListenableFuture.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};
