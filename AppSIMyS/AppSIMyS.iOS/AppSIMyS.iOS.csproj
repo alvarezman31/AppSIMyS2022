@@ -164,4 +164,7 @@
   <ItemGroup>
     <None Include="Resources\logo_dcservicios.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\eliminar.jpg" />
+  </ItemGroup>
 </Project>

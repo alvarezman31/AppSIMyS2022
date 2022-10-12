@@ -15,12 +15,14 @@ namespace AppSIMyS.Data
         public SQLiteHelper(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath);
-           // db.DropTableAsync<ClsEmpresas>().Wait();
+            // db.DropTableAsync<ClsEmpresas>().Wait();
+            db.DropTableAsync<TblImagenServicio>().Wait();
             db.CreateTableAsync<ClsClientes>().Wait();
             db.CreateTableAsync<ClsServicios>().Wait();
             db.CreateTableAsync<ClsDetServicios>().Wait();
             db.CreateTableAsync<ClsEmpresas>().Wait();
             db.CreateTableAsync<ClsUsuarios>().Wait();
+            db.CreateTableAsync<TblImagenServicio>().Wait();
         }
 
         public Task<int> SaveCliente(ClsClientes cliente)
@@ -145,6 +147,29 @@ namespace AppSIMyS.Data
         {
             return db.Table<ClsUsuarios>().Where(a => a.rut == Rut).FirstOrDefaultAsync();
         }
+
+
+        // imagenes
+        public void EliminarTblImagenServicio()
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result = db.QueryAsync<TblImagenServicio>("delete from TblImagenServicio");
+            //return result.Result;
+        }
+
+        public IEnumerable<TblImagenServicio> GetTblImagenesByAsync2()
+        {
+            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
+            var result = db.QueryAsync<TblImagenServicio>("select * from TblImagenServicio");
+            return result.Result;
+        }
+
+        public void AgregarTblImagenServicio(TblImagenServicio imagen)
+        {
+            var result = db.QueryAsync<ClsEmpresas>("insert into TblImagenServicio (empresa, comentario, imagen) values (?,?,?)", imagen.Empresa, imagen.Comentario, imagen.Imagen);
+        }
+
+        // fin imagenes
     }
 }
 

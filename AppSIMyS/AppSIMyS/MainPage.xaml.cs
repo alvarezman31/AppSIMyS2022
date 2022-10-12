@@ -65,18 +65,18 @@ namespace AppSIMyS
             }
         }
 
-        async void OnPickPhotoButtonClicked(object sender, EventArgs e)
-        {
-            (sender as Button).IsEnabled = false;
+        //async void OnPickPhotoButtonClicked(object sender, EventArgs e)
+        //{
+        //    (sender as Button).IsEnabled = false;
 
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            if (stream != null)
-            {
-                image.Source = ImageSource.FromStream(() => stream);
-            }
+        //    Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+        //    if (stream != null)
+        //    {
+        //        image.Source = ImageSource.FromStream(() => stream);
+        //    }
 
-          (sender as Button).IsEnabled = true;
-        }
+        //  (sender as Button).IsEnabled = true;
+        //}
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

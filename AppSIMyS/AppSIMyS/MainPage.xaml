@@ -15,11 +15,6 @@
           VerticalOptions="Center"
             HorizontalOptions="EndAndExpand"
           Spacing="10">
-            <!--<Image
-               Source="Icon.png"
-               Aspect="AspectFit" 
-              FontFamily="{StaticResource Fontello }"
-            />-->
             <Label
                Text="{StaticResource usuario}"
                FontSize="18"
@@ -30,62 +25,38 @@
                Text="TitleView"
                FontSize="18"
                TextColor="White"               
-               VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+               VerticalTextAlignment="Center" Margin="0,0,0,0"/>
         </StackLayout>
     </NavigationPage.TitleView>
-    <!--<CollectionView  x:Name="MyCollectionView" 
-                     Margin="20"
-                     ItemsSource="{Binding LClientes}"                      
-                     SelectionMode="Single"  
-                     SelectionChanged="CollectionView_SelectionChanged"
-                     SelectionChangedCommand="{Binding ExecuteHubTappedCommand}" 
-                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MyCollectionView}}">-->
     <StackLayout>
-        <!--<Label Text="{StaticResource usuario}"
-               FontSize="Header"
-               TextColor="Beige"
-               FontFamily="{StaticResource Fontello }"
-               HorizontalOptions="Center"
-               ></Label>
-        <Button Text="Iniciar Sesión" BorderRadius="10" ></Button>
-        <Label Text="{x:Static fonts:IconsConstantes.User}"
-               FontSize="Header"
-               TextColor="Beige"
-               FontFamily="{StaticResource Fontello }"
-               HorizontalOptions="Center"
-               ></Label>-->
-       <!-- <StackLayout>
-            <Image Source="" x:Name="ImgFirma" WidthRequest="100" HeightRequest="100"  />
-        </StackLayout> -->
+    
         <StackLayout x:Name="LayoutConexion" >
             <Label Text="" TextColor="Blue" x:Name="LblConexion"/>
         </StackLayout>
         <!--ItemsSource="{Binding LClientes}"-->
         <CollectionView  x:Name="MyCollectionView"  
-                     Margin="15"                     
+                     Margin="5"                     
                      SelectionMode="Single"  
                      ItemsSource="{Binding LEmpresas}"
                    	 SelectionChanged="MyCollectionView_SelectionChanged">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="1"/>
-        </CollectionView.ItemsLayout>
-            
-            <CollectionView.ItemTemplate>
-                
+        </CollectionView.ItemsLayout>            
+            <CollectionView.ItemTemplate>                
             <DataTemplate>                
                 <Frame Padding="5" CornerRadius="20" BorderColor="Blue"  BackgroundColor="Beige" 
                        IsClippedToBounds="True" >
-                    <Grid HeightRequest="110" BackgroundColor="Beige"  >
+                    <Grid HeightRequest="100" BackgroundColor="Beige"   >
                         <Grid.ColumnDefinitions >
                             <ColumnDefinition Width=".2*"/>
                             <ColumnDefinition Width=".5*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".5*"/>
-                            <RowDefinition Height=".4*"/>
-                            <RowDefinition Height=".4*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".9*"/>
+                            <RowDefinition Height=".9*"/>
+                            <RowDefinition Height=".7*"/>
+                            <!--<RowDefinition Height=".0*"/>-->
+                            <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
                         <Image VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"
@@ -101,28 +72,27 @@
                         <Label Grid.Column="1" 
                                Grid.Row="0"
                                FontAttributes="Bold"
-                               FontSize="Body"
+                               FontSize="Small"                               
                                Text="{Binding Rut}"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center" TextColor="Black" />
                         <Label Grid.Column="1" 
-                               Grid.Row="1"
-                               FontAttributes="Bold"
-                               FontSize="Body"
+                               Grid.Row="1"                               
+                               FontSize="Micro"
                                Text="{Binding Empresa}"
                                VerticalOptions="Center"/>
                         <Label Grid.Column="1" 
                                Grid.Row="2"                               
-                               FontSize="Small"
+                               FontSize="Micro"
                                Text="{Binding Telefono}"
                                VerticalOptions="Center"/>
+                        <!--<Label Grid.Column="1" 
+                               Grid.Row="3"                               
+                               FontSize="Micro"
+                               Text="{Binding Url}"
+                               VerticalOptions="Center"/>-->
                         <Label Grid.Column="1" 
                                Grid.Row="3"                               
-                               FontSize="Small"
-                               Text="{Binding Url}"
-                               VerticalOptions="Center"/>
-                        <Label Grid.Column="1" 
-                               Grid.Row="4"                               
-                               FontSize="Small"
+                               FontSize="Micro"
                                Text="{Binding Direccion}"
                                VerticalOptions="Center"/>                        
                     </Grid>                    
@@ -173,14 +143,14 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>-->
-        <StackLayout Margin="20,35,20,20">
+        <!--<StackLayout Margin="20,35,20,20">
             <Label Text="Photo Picker"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
             <Button Text="Pick Photo"
                     Clicked="OnPickPhotoButtonClicked" />
             <Image x:Name="image" />
-        </StackLayout>
+        </StackLayout>-->
     </StackLayout>
     
 </ContentPage>

@@ -7,13 +7,19 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Plugin.Media.Abstractions;
 using SignaturePad.Forms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Cell = iText.Layout.Element.Cell;
@@ -28,6 +34,7 @@ using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace AppSIMyS.ViewModels
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormatoServicio : ContentPage
     {
@@ -36,17 +43,25 @@ namespace AppSIMyS.ViewModels
         public static ClsEmpresas EmpresaActiva;
         public static string nroOrden;
         public static string TipoInforme;
-        
+          
+
         public FormatoServicio(string usuario, string RutCliente, ImageSource LogoEmpresa)
         {
             InitializeComponent();
+            BindingContext = new FormatoServicioViewModel();
             LbUsuario.Text = usuario;
             LbRutCliente.Text = RutCliente;
             LLenarClientes();
             EmpresaActual = RutCliente;
             //LogoEmpresaAct = LogoEmpresa;
             EmpresaActiva = new ClsEmpresas();
-            
+            //LstImagenes = new ObservableCollection<ImagenServicio>();
+            //ImagenServicio imagenServicio = new ImagenServicio();
+            //imagenServicio.Imagen = null;
+            //imagenServicio.Comentario = "111111";
+            //imagenServicio.Empresa = "111111";
+            ////LstImagenes.Add(imagenServicio);
+            //MyCollectionView.ItemsSource = LstImagenes;
 
             var EmpresaActiva1 = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
             
@@ -560,15 +575,39 @@ namespace AppSIMyS.ViewModels
         //}
 
 
-        async void OnPickPhotoButtonClicked(object sender, EventArgs e)
+        async void SeleccionarImagen_Clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsEnabled = false;
-            
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            if (stream != null)
+
+            var cameraOptions = new PickMediaOptions();
+            cameraOptions.PhotoSize = PhotoSize.Small;
+
+            var photo = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(cameraOptions); // opciones personalizadas
+            if (photo != null)
             {
-                image.Source = ImageSource.FromStream(() => stream);
+                image.Source = ImageSource.FromStream(() =>
+                {
+                    return photo.GetStream();
+                });
+                agregarImagen();
+                
             }
+            
+            //Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            //if (stream != null)
+            //{
+            //    image.Source = ImageSource.FromStream(() => stream);                
+            //    agregarImagen();
+            //}
+
+
+            //byte[] bytesAvailable = new byte[stream.Length];
+            //stream.Read(bytesAvailable, 0, bytesAvailable.Length);
+            
+
+
+            //LstImagenes.Add(ImgSer);
+            //MyCollectionView.ItemsSource = LstImagenes;
 
             ((Button)sender).IsEnabled = true;
         }
@@ -592,14 +631,91 @@ namespace AppSIMyS.ViewModels
 
         private async void BtnCamara_Clicked(object sender, EventArgs e)
         {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
+            var cameraOptions = new StoreCameraMediaOptions();
+            cameraOptions.PhotoSize = PhotoSize.Small;
+            //var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions()); // opiones generales 
+            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(cameraOptions); // opciones personalizadas
             if (photo != null)
             {
                 image.Source = ImageSource.FromStream(() =>
                 {
                     return photo.GetStream();
                 });
+                //Image imagen = (Bitmap)((new ImageConverter()).ConvertFrom(photo));
+                //Stream stream = await ((StreamImageSource)image.Source).Stream(CancellationToken.None);
+                agregarImagen();
+                //byte[] bytesAvailable = new byte[stream.Length];
+                //stream.Read(bytesAvailable, 0, bytesAvailable.Length);
+                //TblImagenServicio ImgSer = new TblImagenServicio();
+                //ImgSer.Imagen = bytesAvailable;
+                //ImgSer.Comentario = "Prueba de Galeria";
+                //ImgSer.Empresa = "xxsxsxs";
+
             }
+        }
+        //public async Task<byte[]> ConvertImageSourceToBytesAsync(ImageSource imageSource)
+        //{
+
+        //byte[] imageArray = null;
+
+        //using (MemoryStream memory = new MemoryStream())
+        //{
+
+        //    Stream stream = imageSource.GetStream();
+        //    stream.CopyTo(memory);
+        //    imageArray = memory.ToArray();
+        //}
+
+        //Stream stream = await ((StreamImageSource)imageSource).Stream(CancellationToken.None);
+        //byte[] bytesAvailable = new byte[stream.Length];
+        //stream.Read(bytesAvailable, 0, bytesAvailable.Length);
+
+        //return bytesAvailable;
+        //}
+        //public byte[] ImageSourceToBytes(BitmapEncoder encoder, ImageSource imageSource)
+        //{
+        //    byte[] bytes = null;
+        //    var bitmapSource = imageSource as BitmapSource;
+
+        //    if (bitmapSource != null)
+        //    {
+        //        encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+        //        using (var stream = new MemoryStream())
+        //        {
+        //            encoder.Save(stream);
+        //            bytes = stream.ToArray();
+        //        }
+        //    }
+
+        //    return bytes;
+        //}
+        public async void agregarImagen()
+        {
+            Stream stream1 = await ((StreamImageSource)image.Source).Stream(CancellationToken.None);
+            byte[] bytesAvailable = new byte[stream1.Length];
+            stream1.Read(bytesAvailable, 0, bytesAvailable.Length);
+
+
+            TblImagenServicio ImgSer = new TblImagenServicio();
+            ImgSer.Imagen = bytesAvailable;
+            ImgSer.Comentario = "Prueba de Galeria";
+            ImgSer.Empresa = "xxsxsxs";
+            ImgSer.Id = (new Random().Next(1,1000000));
+            //App.SQLiteDB.AgregarTblImagenServicio(ImgSer);
+            App.SQLiteDB.AgregarTblImagenServicio(ImgSer);
+
+            //MyCollectionView.SetBinding(ItemsView.ItemsSourceProperty, "LstImagenes");
+            BindingContext = new FormatoServicioViewModel();
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+
+            
+            DisplayAlert("DEMO", "Has presionado un control ImageButton - " + "2", "OK");
+            DisplayAlert("DEMO", "Has presionado un control ImageButton" + MyCollectionView.ItemsSource.ToString(), "OK");
+             
         }
     }
 }
