@@ -711,11 +711,26 @@ namespace AppSIMyS.ViewModels
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
+            //var data = ImageButton.Parameter;
+            ImageButton button1 = (ImageButton)sender;
+            string commandParameter = button1.CommandParameter.ToString();
 
-            
-            DisplayAlert("DEMO", "Has presionado un control ImageButton - " + "2", "OK");
-            DisplayAlert("DEMO", "Has presionado un control ImageButton" + MyCollectionView.ItemsSource.ToString(), "OK");
-             
+            //DisplayAlert("DEMO", "Has presionado un control ImageButton - " + commandParameter, "OK");
+            //DisplayAlert("DEMO", "Has presionado un control ImageButton" + MyCollectionView.ItemsSource.ToString(), "OK");
+
+            var action = await DisplayAlert("Advertencia!!!", "Seguro de Eliminar la Imagen Nro. " + commandParameter, "Yes", "No");
+            if (action)
+            {
+                App.SQLiteDB.EliminarTblImagenServicio(commandParameter);
+                BindingContext = new FormatoServicioViewModel();
+            }
+
         }
+
+        //private void EliminarImagen_Tapped(object sender, EventArgs e)
+        //{
+        //    var tappedEvgs = e as TappedEventArgs;
+        //    var data = tappedEvgs.Parameter;
+        //}
     }
 }

@@ -168,7 +168,10 @@ namespace AppSIMyS.Data
         {
             var result = db.QueryAsync<ClsEmpresas>("insert into TblImagenServicio (empresa, comentario, imagen) values (?,?,?)", imagen.Empresa, imagen.Comentario, imagen.Imagen);
         }
-
+        public void EliminarTblImagenServicio(string Id)
+        {
+            var result = db.QueryAsync<ClsEmpresas>("delete from TblImagenServicio where id=?", Id);
+        }
         // fin imagenes
     }
 }

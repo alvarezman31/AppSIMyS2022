@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sign="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
-             x:Class="AppSIMyS.ViewModels.FormatoServicio">
+             x:Class="AppSIMyS.ViewModels.FormatoServicio" Title="Formato Servicios" >
     
     
     <ContentPage.Content>
@@ -31,72 +31,7 @@
 
                 </CollectionView>-->
 
-                <!--Area de imagenes-->
-                <CollectionView  x:Name="MyCollectionView"  
-                     Margin="15"                     
-                     SelectionMode="Single"  
-                     ItemsSource="{Binding LstImagenes}"
-                   	 >
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="1"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-
-                        <DataTemplate>
-                            <Frame Padding="5" CornerRadius="20" BorderColor="Blue" BackgroundColor="Beige" 
-                       IsClippedToBounds="True" >
-                                <Grid HeightRequest="110" BackgroundColor="Beige"  >
-                                    <Grid.ColumnDefinitions >
-                                        <ColumnDefinition Width=".2*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <!--<RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>-->
-                                    </Grid.RowDefinitions>
-                                    <Image VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               Aspect="AspectFill"
-                               Grid.Column="0"
-                               Grid.RowSpan="2"   
-                               Source="{Binding Imagen}" >
-                                        <Image.GestureRecognizers>
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                    <Label Grid.Column="1" 
-                               Grid.Row="0"                               
-                               FontAttributes="Bold"
-                               FontSize="Small"
-                               Text="{Binding Comentario}"
-                               VerticalOptions="Center"/>
-                                    
-                                    <Label Grid.Column="1" 
-                               Grid.Row="1"                               
-                               FontAttributes="Bold"
-                               FontSize="Body"
-                               Text="{Binding Id}"
-                               VerticalOptions="Center"/>
-
-                               <ImageButton Source="eliminar.jpg" Grid.Column="1" Grid.Row="2"
-            BackgroundColor="Transparent"
-            WidthRequest="20"
-            HeightRequest="20"
-            FlexLayout.AlignSelf="Center"
-            FlexLayout.Grow="1"        
-            Clicked="ImageButton_Clicked" CommandParameter="{Binding Id}"
-            Aspect="AspectFit"/>
-
-                                </Grid>
-                            </Frame>
-
-                        </DataTemplate>
-
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <!--fin imagenes-->
+               
                 <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
@@ -151,6 +86,76 @@
                     <Button Clicked="Save" Text="Salvar"/>
                 </StackLayout>
                 <StackLayout>
+                    <!--Area de imagenes-->
+                    <CollectionView  x:Name="MyCollectionView"  
+                     Margin="15"                     
+                     SelectionMode="Single"  
+                     ItemsSource="{Binding LstImagenes}" 
+                   	 >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="1"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate>
+                                <Frame Padding="5" CornerRadius="20" BorderColor="Blue" BackgroundColor="Beige" 
+                       IsClippedToBounds="True" >
+                                    <Grid HeightRequest="110" BackgroundColor="Beige"  >
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width=".2*"/>
+                                            <ColumnDefinition Width=".5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <!--<RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>-->
+                                        </Grid.RowDefinitions>
+                                        <Image VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               Aspect="AspectFill"
+                               Grid.Column="0"
+                               Grid.RowSpan="2"   
+                               Source="{Binding Imagen}" >
+                                            <Image.GestureRecognizers>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label Grid.Column="1" 
+                               Grid.Row="0"                               
+                               FontAttributes="Bold"
+                               FontSize="Small"
+                               Text="{Binding Comentario}"
+                               VerticalOptions="Center"/>
+
+                                        <Label Grid.Column="1" 
+                               Grid.Row="1"                               
+                               FontAttributes="Bold"
+                               FontSize="Body"
+                               Text="{Binding Id}"
+                               VerticalOptions="Center"/>
+
+                                        <ImageButton Source="eliminar.jpg" Grid.Column="1" Grid.Row="2" 
+                                        BackgroundColor="Transparent"
+                                        WidthRequest="20"
+                                        HeightRequest="20"
+                                        FlexLayout.AlignSelf="Center" 
+                                        FlexLayout.Grow="1" 
+                                        Clicked="ImageButton_Clicked" CommandParameter="{Binding Id}"
+                                        Aspect="AspectFit"/>
+                                        <!--<ImageButton.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="EliminarImagen"  CommandParameter="{Binding Id}" Tapped="EliminarImagen_Tapped"/>
+                                        </ImageButton.GestureRecognizers>
+                                    </ImageButton>-->
+
+                                    </Grid>
+                                </Frame>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <!--fin imagenes-->
                     <ListView x:Name="LstCliente">
                         <ListView.ItemTemplate>
                             <DataTemplate>

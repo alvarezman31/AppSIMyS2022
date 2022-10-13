@@ -78,12 +78,12 @@
                         <Label Grid.Column="1" 
                                Grid.Row="1"                               
                                FontSize="Micro"
-                               Text="{Binding Empresa}"
+                               Text="{Binding Descripcion}" TextColor="Black"
                                VerticalOptions="Center"/>
                         <Label Grid.Column="1" 
                                Grid.Row="2"                               
                                FontSize="Micro"
-                               Text="{Binding Telefono}"
+                               Text="{Binding Telefono}" TextColor="Black"
                                VerticalOptions="Center"/>
                         <!--<Label Grid.Column="1" 
                                Grid.Row="3"                               
@@ -93,7 +93,7 @@
                         <Label Grid.Column="1" 
                                Grid.Row="3"                               
                                FontSize="Micro"
-                               Text="{Binding Direccion}"
+                               Text="{Binding Direccion}" TextColor="Black"
                                VerticalOptions="Center"/>                        
                     </Grid>                    
                 </Frame>
