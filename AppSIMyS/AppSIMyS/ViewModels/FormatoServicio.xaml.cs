@@ -129,7 +129,7 @@ namespace AppSIMyS.ViewModels
                 Table tablaCliente = new Table(ClientesWith);                
                 foreach (var item in ClienteActual)
                 {
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Empresa:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Empresa:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
                     tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Descripcion).SetTextAlignment(TextAlignment.LEFT)));
                     tablaCliente.AddCell(new Cell().Add(new Paragraph("Fecha:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
                     tablaCliente.AddCell(new Cell().Add(new Paragraph(DateTime.Now.ToString("dd/MM/yyyy")).SetTextAlignment(TextAlignment.LEFT)));
