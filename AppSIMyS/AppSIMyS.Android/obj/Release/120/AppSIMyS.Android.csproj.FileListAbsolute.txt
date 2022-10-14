@@ -1520,3 +1520,4 @@ C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Androi
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\lp\109\jl\files.cache
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\android\assets\Plugin.Permissions.dll
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\android\assets\Plugin.Permissions.pdb
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\res\drawable\eliminar.jpg

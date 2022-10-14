@@ -12,7 +12,7 @@ namespace AppSIMyS.ViewModels
     
     public class FormatoServicioViewModel
     {
-        public static ObservableCollection<ImagenServicio> LstImagenes { get; set; }
+        public ObservableCollection<ImagenServicio> LstImagenes { get; set; }
         public FormatoServicioViewModel()
         {           
             string sql = "SELECT * FROM TblImagenServicio order by id";

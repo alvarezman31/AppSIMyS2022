@@ -160,7 +160,7 @@ namespace AppSIMyS.Data
         public IEnumerable<TblImagenServicio> GetTblImagenesByAsync2()
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result = db.QueryAsync<TblImagenServicio>("select * from TblImagenServicio");
+            var result = db.QueryAsync<TblImagenServicio>("select * from TblImagenServicio order by id ");
             return result.Result;
         }
 
