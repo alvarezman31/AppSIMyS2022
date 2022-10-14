@@ -3266,3 +3266,14 @@ C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Androi
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\android\src\mono\com\google\android\material\textfield\TextInputLayout_OnEditTextAttachedListenerImplementor.java
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\android\src\mono\com\google\android\material\textfield\TextInputLayout_OnEndIconChangedListenerImplementor.java
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\drawable\eliminar.jpg
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-anydpi-v26\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-hdpi\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-hdpi\alvaluc.ico
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xxhdpi\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xxhdpi\alvaluc.ico
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xhdpi\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xhdpi\alvaluc.ico
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xxxhdpi\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-xxxhdpi\alvaluc.ico
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-mdpi\alvaluc.png
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Debug\120\res\mipmap-mdpi\alvaluc.ico

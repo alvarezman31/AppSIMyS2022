@@ -165,6 +165,8 @@
     <None Include="Resources\logo_dcservicios.png" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\alvaluc.png" />
+    <BundleResource Include="Resources\alvaluc.ico" />
     <Content Include="Resources\eliminar.jpg" />
   </ItemGroup>
 </Project>

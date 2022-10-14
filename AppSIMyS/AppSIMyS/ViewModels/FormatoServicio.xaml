@@ -132,7 +132,7 @@
                             <DataTemplate>
                                 <Frame Padding="5" CornerRadius="20" BorderColor="Blue" BackgroundColor="Beige" 
                        IsClippedToBounds="True" >
-                                    <Grid HeightRequest="110" BackgroundColor="Beige" Padding="5"  >
+                                    <Grid HeightRequest="120" BackgroundColor="Beige" Padding="5"  >
                                         <Grid.ColumnDefinitions >
                                             <ColumnDefinition Width=".2*"/>
                                             <ColumnDefinition Width=".5*"/>

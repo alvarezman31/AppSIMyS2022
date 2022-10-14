@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace AppSIMyS.Models
 {
@@ -42,6 +43,33 @@ namespace AppSIMyS.Models
             }
 
         }
+
+        public static string AccederSql(string usuario, string clave)
+        {
+            String consulta="";
+            try
+            {
+                //lbEstado.Text = "";
+                consulta = "select * from usuarios where email = '" + usuario + "' and password= '" + Seguridad.Encriptar2(clave) + "'";
+                // String consulta = "select * from usuarios where email = '" + TxtEmail + "' and password= '" + TxtPassword.Text + "'";
+
+                SqlConnection con = conectarSql();
+                SqlDataReader reader = consultarSql(consulta, con);  // cmd.ExecuteReader();
+                consulta = "";
+                if (reader.Read())
+                {                 
+                    consulta = reader["rut"].ToString().Trim();// + '-' + reader["verifi"].ToString(),
+                }
+               con.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Disp(ex.Message);
+                //Response.Redirect("mantener/Configuracion.aspx");
+            }
+            return consulta;
+        }
+
         public static string md5(string Value)
         {
             System.Security.Cryptography.MD5CryptoServiceProvider x = new System.Security.Cryptography.MD5CryptoServiceProvider();

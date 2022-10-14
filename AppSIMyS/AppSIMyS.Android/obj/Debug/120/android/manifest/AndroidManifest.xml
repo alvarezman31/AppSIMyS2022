@@ -19,7 +19,7 @@
       <action android:name="android.media.browse.MediaBrowserService" />
     </intent>
   </queries>
-  <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/icon" android:label="AppSIMyS" android:theme="@style/MainTheme">
+  <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/alvaluc" android:label="AppSIMyS" android:theme="@style/MainTheme">
     <!--
     <provider android:name="android.support.v4.content.FileProvider"
           android:authorities="com.companyname.appsimys.fileprovider"
@@ -32,7 +32,7 @@
     <provider android:name="androidx.core.content.FileProvider" android:authorities="com.companyname.appsimys.fileprovider" android:exported="false" android:grantUriPermissions="true">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
     </provider>
-    <activity android:name="crc6430f15db7c5af7d42.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:icon="@mipmap/icon" android:label="AppSIMyS" android:theme="@style/MainTheme">
+    <activity android:name="crc6430f15db7c5af7d42.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:icon="@mipmap/alvaluc" android:label="AppSIMyS" android:theme="@style/MainTheme">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

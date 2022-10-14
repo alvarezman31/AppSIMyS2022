@@ -32,7 +32,7 @@
                     </Frame>
                 
                 <StackLayout Grid.Row="1"  Padding="20,10">
-                    <Entry x:Name="TxtUsuario" Placeholder="Usuario" PlaceholderColor="White" FontAttributes="Bold" ></Entry>
+                    <Entry x:Name="TxtUsuario" Placeholder="Usuario o Email" PlaceholderColor="White" FontAttributes="Bold" ></Entry>
                     <Entry x:Name="TxtClave"   Placeholder="Contraseña" PlaceholderColor="White" FontAttributes="Bold" IsPassword="True"></Entry>
                     <Button Clicked="BtnEntrar_Clicked"   x:Name="BtnEntrar" Text="Iniciar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>
                     <Button Pressed="BtnEntrar_Pressed"  x:Name="BtnCerrar" Text="Cerrar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>

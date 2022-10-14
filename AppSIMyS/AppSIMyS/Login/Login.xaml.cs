@@ -69,14 +69,14 @@ namespace AppSIMyS.Login
         }
 
 
-       
 
-public static string MD5Hash(string input)
+
+        public static string MD5Hash(string input)
         {
             StringBuilder hash = new StringBuilder();
             MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider(); // SHA256CryptoServiceProvider();
-            
-            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));            
+
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
             for (int i = 0; i < bytes.Length; i++)
             {
                 hash.Append(bytes[i].ToString("x2"));
@@ -100,7 +100,7 @@ public static string MD5Hash(string input)
 
         private void BtnEntrar_Clicked(object sender, EventArgs e)
         {
-            string usuario = Conectar.Acceder(TxtUsuario.Text, TxtClave.Text);
+            string usuario = Conectar.AccederSql(TxtUsuario.Text, TxtClave.Text);
             if (usuario == "")
             {
                 DisplayAlert("Advertencia", "Usuario o Clave Incorrecta", "Aceptar");
