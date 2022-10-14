@@ -5,6 +5,7 @@ using SQLite;
 using AppSIMyS.Models;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Drawing;
 
 namespace AppSIMyS.Data
 {
@@ -16,13 +17,14 @@ namespace AppSIMyS.Data
         {
             db = new SQLiteAsyncConnection(dbPath);
             // db.DropTableAsync<ClsEmpresas>().Wait();
-            db.DropTableAsync<TblImagenServicio>().Wait();
+            //db.DropTableAsync<TblImagenServicio>().Wait();
             db.CreateTableAsync<ClsClientes>().Wait();
             db.CreateTableAsync<ClsServicios>().Wait();
             db.CreateTableAsync<ClsDetServicios>().Wait();
             db.CreateTableAsync<ClsEmpresas>().Wait();
             db.CreateTableAsync<ClsUsuarios>().Wait();
             db.CreateTableAsync<TblImagenServicio>().Wait();
+            db.CreateTableAsync<TblUsuarios>().Wait();
         }
 
         public Task<int> SaveCliente(ClsClientes cliente)
@@ -74,6 +76,12 @@ namespace AppSIMyS.Data
             return db.Table<ClsClientes>().ToListAsync();
         }
 
+        public IEnumerable<ClsClientes> GetClientesByRutAsync2(string Rut)
+        {
+            var result = db.QueryAsync<ClsClientes>("select * from ClsClientes where rut = ?", Rut);
+            return result.Result;
+        }
+
         /// <summary>
         /// Recuperar clientes por rut 
         /// </summary>
@@ -100,42 +108,39 @@ namespace AppSIMyS.Data
         {
             return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).FirstOrDefaultAsync();
         }
-        public  IEnumerable<ClsEmpresas> GetClsEmpresasByRutAsync2(string Rut)
+        public IEnumerable<ClsEmpresas> GetClsEmpresasByRutAsync2(string Rut)
         {
-            //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            //string comando = "select top 1 * from ClsEmpresas where rut = '" + Rut + "'";
-            var result =  db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas where rut = ?", Rut);
-            //var result =  db.QueryAsync<ClsEmpresas>(comando);
+            var result = db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas where rut = ?", Rut);
             return result.Result;
         }
-        public  IEnumerable<ClsEmpresas> GetClsEmpresasByAsync2()
+        public IEnumerable<ClsEmpresas> GetClsEmpresasByAsync2()
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas");
+            var result = db.QueryAsync<ClsEmpresas>("select * from ClsEmpresas");
             return result.Result;
         }
-        public void  EliminarClsEmpresas()
+        public void EliminarClsEmpresas()
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("delete from ClsEmpresas");
+            var result = db.QueryAsync<ClsEmpresas>("delete from ClsEmpresas");
             //return result.Result;
         }
-        public void  EliminarClsClientes()
+        public void EliminarClsClientes()
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("delete from ClsClientes");
+            var result = db.QueryAsync<ClsEmpresas>("delete from ClsClientes");
             //return result.Result;
         }
-        public void  AgregarClsEmpresas(ClsEmpresas empresas)
+        public void AgregarClsEmpresas(ClsEmpresas empresas)
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("insert into ClsEmpresas (empresa, descripcion, rut, direccion, telefono, email, logo, piepagina) values (?,?,?,?,?,?,?,?)",empresas.Empresa,empresas.Descripcion,empresas.Rut, empresas.Direccion, empresas.Telefono, empresas.Empresa, empresas.Logo, empresas.PiePagina);
+            var result = db.QueryAsync<ClsEmpresas>("insert into ClsEmpresas (empresa, descripcion, rut, direccion, telefono, email, logo, piepagina) values (?,?,?,?,?,?,?,?)", empresas.Empresa, empresas.Descripcion, empresas.Rut, empresas.Direccion, empresas.Telefono, empresas.Email, empresas.Logo, empresas.PiePagina);
             //return result.Result;
         }
-        public void  AgregarClsClientes(ClsClientes cliente)
+        public void AgregarClsClientes(ClsClientes cliente)
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result =  db.QueryAsync<ClsEmpresas>("insert into ClsClientes (rut, empresa, descripcion, telefono, url,  direccion, logo, email) values (?,?,?,?,?,?,?,?)", cliente.Rut, cliente.Empresa, cliente.Descripcion, cliente.Telefono, cliente.Url, cliente.Direccion, cliente.Logo, cliente.Email);
+            var result = db.QueryAsync<ClsEmpresas>("insert into ClsClientes (rut, empresa, descripcion, telefono, url,  direccion, logo, email) values (?,?,?,?,?,?,?,?)", cliente.Rut, cliente.Empresa, cliente.Descripcion, cliente.Telefono, cliente.Url, cliente.Direccion, cliente.Logo, cliente.Email);
             //return result.Result;
         }
         public Task<List<ClsUsuarios>> GetUsuariosAsync()
@@ -168,11 +173,32 @@ namespace AppSIMyS.Data
         {
             var result = db.QueryAsync<ClsEmpresas>("insert into TblImagenServicio (empresa, comentario, imagen) values (?,?,?)", imagen.Empresa, imagen.Comentario, imagen.Imagen);
         }
-        public void EliminarTblImagenServicio(string Id)
+        public void EliminarTblImagenServicio(int  Id)
         {
             var result = db.QueryAsync<ClsEmpresas>("delete from TblImagenServicio where id=?", Id);
         }
+        public void ActualizarTblImagenServicio(int Id, string Comentario)
+        {
+            var result = db.QueryAsync<ClsEmpresas>("update TblImagenServicio set comentario=? where id=?", Comentario, Id);
+        }
         // fin imagenes
+
+        // usuarios
+        public void EliminarTblUsuarios()
+        {
+            var result = db.QueryAsync<TblUsuarios>("delete from TblUsuarios");
+        }
+        public void AgregarTblUsuarios(TblUsuarios cliente)
+        {
+            var result = db.QueryAsync<TblUsuarios>("insert into TblUsuarios (rut, nombres, email, password) values (?,?,?,?)", cliente.rut, cliente.nombres, cliente.email, cliente.password);
+        }
+
+        public IEnumerable<TblUsuarios> GetUsuario(string usuario, string password )
+        {
+            var result = db.QueryAsync<TblUsuarios>("select * from TblUsuarios where email = ? and password = ? ", usuario, password);
+            return result.Result;
+        }
+        // fin usuarios
     }
 }
 

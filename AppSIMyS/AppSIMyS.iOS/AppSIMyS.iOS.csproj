@@ -167,6 +167,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\alvaluc.png" />
     <BundleResource Include="Resources\alvaluc.ico" />
+    <BundleResource Include="Resources\actualizar.jpg" />
     <Content Include="Resources\eliminar.jpg" />
   </ItemGroup>
 </Project>

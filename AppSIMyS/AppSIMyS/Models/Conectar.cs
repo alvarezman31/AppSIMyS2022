@@ -46,8 +46,14 @@ namespace AppSIMyS.Models
 
         public static string AccederSql(string usuario, string clave)
         {
-            String consulta="";
-            try
+            string consulta="";
+            var ImagenesServicios = App.SQLiteDB.GetUsuario(usuario, Seguridad.Encriptar2(clave));            
+            foreach (var item in ImagenesServicios)
+            {
+                consulta = item.rut;
+            }
+            return consulta;
+                try
             {
                 //lbEstado.Text = "";
                 consulta = "select * from usuarios where email = '" + usuario + "' and password= '" + Seguridad.Encriptar2(clave) + "'";

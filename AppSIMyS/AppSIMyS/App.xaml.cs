@@ -48,14 +48,9 @@ namespace AppSIMyS
             }
             else
             {
-                /*LayoutConexion.BackgroundColor = Color.Blue;
-                LblConexion.Text = "---- Conectado ----";
-                LblConexion.TextColor = Color.White;
-                DisplayAlert("Advertencia", "Conectado", "Ok");*/
-                //App.SQLiteDB.DeleteEmpresas();
-                //App.SQLiteDB.DeleteEmpresas();
                 App.SQLiteDB.EliminarClsEmpresas();
                 App.SQLiteDB.EliminarClsClientes();
+                App.SQLiteDB.EliminarTblUsuarios();
                 //Limpiar = 1;
                 string comando = "Select * from conds_empresas order by descripcion";
                 SqlConnection con1 = Conectar.conectarSql();
@@ -63,14 +58,13 @@ namespace AppSIMyS
                 //ClsEmpresas empresa = new ClsEmpresas();
                 ClsEmpresas empresaNew = new ClsEmpresas();
                 while (res1.Read())
-                {
-                    
+                {                    
                     empresaNew.Rut = res1["rut"].ToString();
                     empresaNew.Empresa = res1["empresa"].ToString();
                     empresaNew.Descripcion = res1["descripcion"].ToString();
                     empresaNew.Direccion = res1["direccion"].ToString();
                     empresaNew.Telefono = res1["telefono"].ToString();
-
+                    empresaNew.Email= res1["email"].ToString();
                     empresaNew.Logo = null;// res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
                     empresaNew.PiePagina = null;// res1["PiePagina"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["lo
                     
@@ -78,19 +72,7 @@ namespace AppSIMyS
                         empresaNew.Logo = (byte[])res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
                     if (res1["PiePagina"].ToString() != "")
                         empresaNew.PiePagina = (byte[])res1["PiePagina"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
-
-                    //if (App.SQLiteDB.GetClsEmpresasByRutAsync(empresaNew.Rut) != null)
-                    //{
-
-                    //    App.SQLiteDB.UpdateEmpresa(empresaNew);
-                    //}
-                    //else
-                    //{
-                    //App.SQLiteDB.SaveEmpresa(empresaNew);
-                    // App.SQLiteDB.SaveEmpresa(empresaNew);
                     App.SQLiteDB.AgregarClsEmpresas(empresaNew);
-                    //}
-                    
 
                 }
                 comando = "Select * from conds_clientes order by razon";
@@ -105,16 +87,29 @@ namespace AppSIMyS
                         clienteNew.Rut = res1["rut"].ToString().Trim() + "-" + res1["verifi"].ToString().Trim();
                         clienteNew.Empresa = res1["rut"].ToString();
                         clienteNew.Descripcion = res1["razon"].ToString();
-                        empresaNew.Direccion = res1["direccion"].ToString();
+                        clienteNew.Direccion = res1["direccion"].ToString();
                         clienteNew.Telefono = res1["telefono"].ToString();
                         clienteNew.Url = res1["url"].ToString();
                         clienteNew.Email = res1["email"].ToString();
                         clienteNew.Logo = null;// res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
                         if (res1["logo"].ToString() != "")
                             clienteNew.Logo = (byte[])res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
-
                         App.SQLiteDB.AgregarClsClientes(clienteNew);
+                    }
+                }
+                comando = "Select * from usuarios ";                
+                res1.Close();
+                res1 = Conectar.consultarSql(comando, con1);
+                while (res1.Read())
+                {
+                    TblUsuarios clienteNew = new TblUsuarios();
+                    {
 
+                        clienteNew.rut = res1["rut"].ToString().Trim();// + "-" + res1["verifi"].ToString().Trim();
+                        clienteNew.nombres = res1["nombres"].ToString();
+                        clienteNew.email = res1["email"].ToString();
+                        clienteNew.password = res1["password"].ToString();
+                        App.SQLiteDB.AgregarTblUsuarios(clienteNew);
                     }
                 }
             }
