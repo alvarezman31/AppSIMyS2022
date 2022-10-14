@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -38,12 +39,12 @@ namespace AppSIMyS.ViewModels
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormatoServicio : ContentPage
     {
-        public static string EmpresaActual;  
+        public static string EmpresaActual;
         //public static byte[] LogoEmpresaAct;
         public static ClsEmpresas EmpresaActiva;
         public static string nroOrden;
         public static string TipoInforme;
-          
+
 
         public FormatoServicio(string usuario, string RutCliente, ImageSource LogoEmpresa)
         {
@@ -64,7 +65,9 @@ namespace AppSIMyS.ViewModels
             //MyCollectionView.ItemsSource = LstImagenes;
 
             var EmpresaActiva1 = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
-            
+
+
+
             foreach (var item in EmpresaActiva1)
             {
                 //Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
@@ -77,7 +80,7 @@ namespace AppSIMyS.ViewModels
                 EmpresaActiva.Rut = item.Rut;
                 EmpresaActiva.Descripcion = item.Descripcion;
                 EmpresaActiva.Direccion = item.Direccion;
-                EmpresaActiva.Telefono=item.Telefono;
+                EmpresaActiva.Telefono = item.Telefono;
                 EmpresaActiva.Email = item.Email;
 
                 //image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
@@ -172,10 +175,10 @@ namespace AppSIMyS.ViewModels
             Random nro = new Random();
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"), root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
-            
+
             nroOrden = nro.Next(20000000, 99999999).ToString();
-            fileName = "OT" +  nroOrden + ".pdf";
-            
+            fileName = "OT" + nroOrden + ".pdf";
+
             //Save the document to the stream
             //MemoryStream stream = new MemoryStream();
             //PdfWriter writer = new PdfWriter(stream);
@@ -202,8 +205,29 @@ namespace AppSIMyS.ViewModels
             // encabezado 
             pdf.AddEventHandler(PdfDocumentEvent.START_PAGE, new HeaderEventHandler1());
 
-            document.Add(new Paragraph("Lorem Ipsum ..."));
-            document.Add(new Paragraph(Convert.ToBase64String(Firma)));
+            //document.Add(new Paragraph("Lorem Ipsum ..."));
+            //document.Add(new Paragraph(Convert.ToBase64String(Firma)));
+
+            var ImagenesServicios = App.SQLiteDB.GetTblImagenesByAsync2();
+            if (ImagenesServicios.Count() > 0)
+            {
+                float[] tablaImagenesWith = { 300F, 200F };
+                Table tablaImagenes = new Table(tablaImagenesWith);
+                tablaImagenes.AddCell(new Cell().Add(new Paragraph("Imagen").SetTextAlignment(TextAlignment.CENTER)));
+                tablaImagenes.AddCell(new Cell().Add(new Paragraph("Comentario").SetTextAlignment(TextAlignment.CENTER)));
+                Image img2;
+                foreach (var item in ImagenesServicios)
+                {
+                    img2 = new Image(ImageDataFactory
+           .Create(item.Imagen))
+           .SetTextAlignment(TextAlignment.CENTER).SetHeight(50).SetWidth(50);
+                    tablaImagenes.AddCell(new Cell().Add(img2).SetHorizontalAlignment(HorizontalAlignment.CENTER));
+                    tablaImagenes.AddCell(new Cell().Add(new Paragraph(item.Comentario)).SetBorder(Border.NO_BORDER));
+                }
+                document.Add(tablaImagenes);
+            }
+
+
 
 
             float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
@@ -459,7 +483,7 @@ namespace AppSIMyS.ViewModels
             var picker = (Picker)sender;
             //int selectedIndex = 
             LbTipoServicio.Text = picker.SelectedIndex.ToString();
-            TipoInforme= picker.SelectedItem.ToString(); 
+            TipoInforme = picker.SelectedItem.ToString();
         }
 
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -479,7 +503,7 @@ namespace AppSIMyS.ViewModels
             {
                 PdfDocumentEvent pdfEvent = (PdfDocumentEvent)@event;
                 PdfDocument pdfDoc = pdfEvent.GetDocument();
-                PdfPage page = pdfEvent.GetPage();                
+                PdfPage page = pdfEvent.GetPage();
                 var document = new Document(pdfDoc);
                 iText.Layout.Element.Image img;
                 img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
@@ -524,14 +548,14 @@ namespace AppSIMyS.ViewModels
                 table.AddCell(new Cell(1, 2).Add(new Paragraph("Informe de " + TipoInforme)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12).SetBorderBottom(Border.NO_BORDER).SetVerticalAlignment(VerticalAlignment.BOTTOM));
                 table.AddCell(new Cell(1, 2).Add(new Paragraph(" Nro: OT-" + nroOrden)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12).SetBorderTop(Border.NO_BORDER).SetVerticalAlignment(VerticalAlignment.TOP));
                 //table.AddCell(new Cell(1, 1).Add(new Paragraph(" Nro: OT-" + nroOrden)).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12));
-                
+
                 //table.AddCell(new Cell(1,2).Add(new Paragraph(TipoInforme)));                
-                
-                table.AddCell(new Cell(1,4).Add(new Paragraph(EmpresaActiva.Direccion)).SetBorder(Border.NO_BORDER).SetFontSize(10));
-                
-                table.AddCell(new Cell(1,4).Add(new Paragraph("Telefono: " + EmpresaActiva.Telefono + " Email: " + EmpresaActiva.Email)).SetBorder(Border.NO_BORDER).SetFontSize(10));
+
+                table.AddCell(new Cell(1, 4).Add(new Paragraph(EmpresaActiva.Direccion)).SetBorder(Border.NO_BORDER).SetFontSize(10));
+
+                table.AddCell(new Cell(1, 4).Add(new Paragraph("Telefono: " + EmpresaActiva.Telefono + " Email: " + EmpresaActiva.Email)).SetBorder(Border.NO_BORDER).SetFontSize(10));
                 //table.AddCell(new Cell(1, 1).Add(new Paragraph("")).SetBorder(Border.NO_BORDER));
-                
+
                 //table.AddCell(new Cell().Add(new Paragraph("222")).SetBorder(Border.NO_BORDER));
                 //table.AddCell(new Cell().Add(new Paragraph("144")).SetBorder(Border.NO_BORDER));
                 //table.AddCell(new Cell().Add(new Paragraph("244")).SetBorder(Border.NO_BORDER));
@@ -541,11 +565,11 @@ namespace AppSIMyS.ViewModels
             }
             public Table getTableFooter(PdfDocumentEvent docEvent)
             {
-              /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
-                Byte[] bindata;
-                bindata = (byte[])(EmpresaActiva.);
-                image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
-                */
+                /* Xamarin.Forms.Image image1 = new Xamarin.Forms.Image();
+                  Byte[] bindata;
+                  bindata = (byte[])(EmpresaActiva.);
+                  image1.Source = ImageSource.FromStream(() => new MemoryStream(bindata));
+                  */
                 float[] pointColumnWidths = { 1 };
                 Table table = new Table(pointColumnWidths);
                 iText.Layout.Element.Image img;
@@ -590,9 +614,9 @@ namespace AppSIMyS.ViewModels
                     return photo.GetStream();
                 });
                 agregarImagen();
-                
+
             }
-            
+
             //Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
             //if (stream != null)
             //{
@@ -603,7 +627,7 @@ namespace AppSIMyS.ViewModels
 
             //byte[] bytesAvailable = new byte[stream.Length];
             //stream.Read(bytesAvailable, 0, bytesAvailable.Length);
-            
+
 
 
             //LstImagenes.Add(ImgSer);
@@ -699,9 +723,9 @@ namespace AppSIMyS.ViewModels
 
             TblImagenServicio ImgSer = new TblImagenServicio();
             ImgSer.Imagen = bytesAvailable;
-            ImgSer.Comentario = "Prueba de Galeria";
-            ImgSer.Empresa = "xxsxsxs";
-            ImgSer.Id = (new Random().Next(1,1000000));
+            ImgSer.Comentario = TxtComentario.Text.Trim();// "Prueba de Galeria";
+            ImgSer.Empresa = EmpresaActual;// "xxsxsxs";
+            ImgSer.Id = (new Random().Next(1, 1000000));
             //App.SQLiteDB.AgregarTblImagenServicio(ImgSer);
             App.SQLiteDB.AgregarTblImagenServicio(ImgSer);
 

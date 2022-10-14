@@ -52,14 +52,14 @@ namespace AppSIMyS.Login
                 {
                     LayoutConexion.BackgroundColor = Color.Red;
                     LblConexion.Text = "---- Sin conexión ----";
-                    DisplayAlert("Advertencia", "Sin Internet", "Ok");
+                    //DisplayAlert("Advertencia", "Sin Internet", "Ok");
                 }
                 else
                 {
                     LayoutConexion.BackgroundColor = Color.Blue;
                     LblConexion.Text = "---- Conectado ----";
                     LblConexion.TextColor = Color.White;
-                    DisplayAlert("Advertencia", "Conectado", "Ok");
+                    //DisplayAlert("Advertencia", "Conectado", "Ok");
 
                 }
 
