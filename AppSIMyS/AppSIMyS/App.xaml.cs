@@ -51,6 +51,7 @@ namespace AppSIMyS
                 App.SQLiteDB.EliminarClsEmpresas();
                 App.SQLiteDB.EliminarClsClientes();
                 App.SQLiteDB.EliminarTblUsuarios();
+                App.SQLiteDB.EliminarTblServicios();
                 //Limpiar = 1;
                 string comando = "Select * from conds_empresas order by descripcion";
                 SqlConnection con1 = Conectar.conectarSql();
@@ -91,6 +92,7 @@ namespace AppSIMyS
                         clienteNew.Telefono = res1["telefono"].ToString();
                         clienteNew.Url = res1["url"].ToString();
                         clienteNew.Email = res1["email"].ToString();
+                        clienteNew.Persona1 = res1["persona1"].ToString();
                         clienteNew.Logo = null;// res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
                         if (res1["logo"].ToString() != "")
                             clienteNew.Logo = (byte[])res1["logo"]; //ImageSource.FromStream(() => new MemoryStream((byte[])res1["logo"]));// 
@@ -110,6 +112,21 @@ namespace AppSIMyS
                         clienteNew.email = res1["email"].ToString();
                         clienteNew.password = res1["password"].ToString();
                         App.SQLiteDB.AgregarTblUsuarios(clienteNew);
+                    }
+                }
+
+                comando = "Select * from conds_servicios ";
+                res1.Close();
+                res1 = Conectar.consultarSql(comando, con1);
+                while (res1.Read())
+                {
+                    TblServicios clienteNew = new TblServicios();
+                    {
+
+                        clienteNew.Codigo= res1["codigo"].ToString().Trim();// + "-" + res1["verifi"].ToString().Trim();
+                        clienteNew.Descripcion = res1["descripcion"].ToString();
+                        
+                        App.SQLiteDB.AgregarTblServicios(clienteNew);
                     }
                 }
             }

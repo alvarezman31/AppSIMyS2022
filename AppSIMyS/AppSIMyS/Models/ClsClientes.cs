@@ -15,6 +15,7 @@ namespace AppSIMyS.Models
         public string Url { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
+        public string Persona1 { get; set; }
         public byte[]? Logo { get; set; }
     }
 }

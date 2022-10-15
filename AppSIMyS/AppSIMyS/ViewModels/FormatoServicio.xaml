@@ -2,13 +2,11 @@
 
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sign="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
-             x:Class="AppSIMyS.ViewModels.FormatoServicio" Title="Formato Servicios" >
-
-
-    <ContentPage Title="Cliente">
-        <ScrollView  >
-            <StackLayout  >               
-
+             x:Class="AppSIMyS.ViewModels.FormatoServicio" Title="Formato Servicios" BackgroundColor="LightBlue">
+    <ContentPage Title="Cliente" IconImageSource="eliminar.jpg" HeightRequest="5" >
+        <ScrollView  BackgroundColor="White" >
+            <StackLayout  >
+                <Button x:Name="BtnNuevo" Text="Nuevo Informe" Clicked="BtnNuevo_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
                 <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
@@ -32,11 +30,6 @@
 
                 <Entry x:Name="LbConCopia"  Placeholder="Enviar Correo a..." Text="manuelalvarezl@hotmail.com"  />
                 <Entry x:Name="TxtObservacion"  Placeholder="Observación" Text="manuelalvarezl@hotmail.com" />
-               
-                
-               
-                
-                
                 <StackLayout>
 
                   
@@ -51,8 +44,104 @@
         </ScrollView>
 
     </ContentPage>
-    <ContentPage Title="Imagenes">
-        <ScrollView  >
+
+    <ContentPage Title="Serv.">
+        <ScrollView BackgroundColor="White" >
+            <StackLayout Margin="20,35,20,20">                
+                <Label Text="--- Area de Servicios ---"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                
+                <Picker x:Name="ListServicios"                         
+                        Title="--- Seleccionar Servicio --- "                           
+                        SelectedItem="{Binding Codigo}" 
+                        ItemsSource="{Binding GetLstServicios}"
+                        ItemDisplayBinding="{Binding Descripcion}"  
+                        SelectedIndexChanged="ListServicios_SelectedIndexChanged"  StyleClass="fieldForm" />
+                <Label Text="Comentario" TextColor="Black"/>
+                <Editor x:Name="TxtComentarioServicio" Placeholder="Ingrese Comentario" HeightRequest="150" />
+                <Label Text="Cant." TextColor="Black"/>
+                <Entry x:Name="NroCantidad"  Keyboard="Numeric" />
+                <Label x:Name="LblCodServicio"/>
+                <Label x:Name="TxtDescServicio"/>
+                <Button x:Name="BtnAgregarServicio" Text="Agregar Servicio" Clicked="BtnAgregarServicio_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0" />
+                <!--Area de det servicios-->
+                <CollectionView  x:Name="ColectionServicios"  
+                     Margin="5"                     
+                     SelectionMode="Single"  
+                     ItemsSource="{Binding LstDetServicios}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="1"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="0" CornerRadius="20" BorderColor="Blue"
+                       IsClippedToBounds="True" >
+                                <Grid HeightRequest="220"  Padding="5"  >
+                                    <Grid.ColumnDefinitions >
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <!--<ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>-->
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".5*"/>                                       
+                                        <RowDefinition Height="1*"/>                                       
+                                        <RowDefinition Height=".5*"/>                                       
+                                    </Grid.RowDefinitions>
+                               <Label  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                               FontAttributes="Bold"  TextColor="Black" 
+                               FontSize="Micro"
+                               Text="{Binding Descripcion}"
+                               VerticalOptions="Center"/>
+                                    <Editor Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                               HeightRequest="100" TextColor="Black"                                                      
+                               FontSize="Small"
+                               Text="{Binding Comentario}" x:Name="TxtComentarioServicio"
+                               VerticalOptions="Center"/>
+                                    <Entry Grid.Column="0" Grid.Row="2" 
+                               HeightRequest="100"                                                      
+                               FontSize="Small" Keyboard="Numeric" TextColor="Black"
+                               Text="{Binding Cantidad}" x:Name="TxtCantidadServicio"
+                               VerticalOptions="Center"/>
+                                    <Label IsVisible="false"                     
+                               FontAttributes="Bold"
+                               FontSize="Body"
+                               Text="{Binding Id}"
+                               VerticalOptions="Center"/>
+
+                                    <ImageButton Source="eliminar.jpg" Grid.Column="1" Grid.Row="2" 
+                                        BackgroundColor="Transparent"
+                                        WidthRequest="20"
+                                        HeightRequest="20"
+                                        FlexLayout.AlignSelf="Center" 
+                                        FlexLayout.Grow="1" 
+                                        Clicked="ImageButtonServicios_Clicked"   CommandParameter="E"
+                                        Aspect="AspectFit"/>
+                                    <ImageButton  Source="actualizar.jpg" Grid.Column="2" Grid.Row="2" 
+                                        BackgroundColor="Transparent"
+                                        WidthRequest="20"
+                                        HeightRequest="20"
+                                        FlexLayout.AlignSelf="Center" 
+                                        FlexLayout.Grow="1" 
+                                        Clicked="ImageButtonServicios_Clicked" CommandParameter="A"
+                                        Aspect="AspectFit"/>
+
+                                </Grid>
+                            </Frame>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!--fin det servicios-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage> <!--SErvicios-->
+    <ContentPage Title="Img.">
+        <ScrollView BackgroundColor="White" >
             <StackLayout Margin="20,35,20,20">
                 <Label Text="--- Area de Imagenes ---"
                    FontAttributes="Bold"
@@ -66,10 +155,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Text="Galeria" Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" HeightRequest="10"/>
-                    <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="10"/>
-                </Grid>
-                
+                    <Button Text="Galeria" Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" HeightRequest="10" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
+                    <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="10" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
+                </Grid>                
                 <Image x:Name="image" IsVisible="false"/>
                 <!--Area de imagenes-->
                 <CollectionView  x:Name="MyCollectionView"  
@@ -80,7 +168,6 @@
                         <GridItemsLayout Orientation="Vertical" Span="1"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-
                         <DataTemplate>
                             <Frame Padding="0" CornerRadius="20" BorderColor="Blue"
                        IsClippedToBounds="True" >
@@ -145,17 +232,19 @@
                 <!--fin imagenes-->
             </StackLayout>
         </ScrollView>
-    </ContentPage>
+    </ContentPage> <!--imagenes--> 
     <ContentPage Title="Firma">
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <StackLayout>
+                <Label Text="Firma Técnico"/>
                 <sign:SignaturePadView x:Name="signature" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
             </StackLayout>
             <StackLayout>
+                <Label Text="Firma Cliente"/>
                 <sign:SignaturePadView x:Name="signatureCliente" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
             </StackLayout>
             <StackLayout>
-                <Button Clicked="Save" Text="Salvar"/>
+                <Button Clicked="Save" Text="Salvar" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
             </StackLayout>
         </StackLayout>
     </ContentPage>

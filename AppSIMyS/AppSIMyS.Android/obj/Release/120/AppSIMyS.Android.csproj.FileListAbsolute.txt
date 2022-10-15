@@ -1532,3 +1532,4 @@ C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Androi
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\res\mipmap-xxxhdpi\alvaluc.ico
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\res\mipmap-mdpi\alvaluc.png
 C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\res\mipmap-mdpi\alvaluc.ico
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS.Android\obj\Release\120\res\drawable\actualizar.jpg

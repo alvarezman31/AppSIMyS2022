@@ -47,6 +47,7 @@ namespace AppSIMyS.ViewModels
             LbUsuario.Text = usuario;
             LbRutCliente.Text = RutCliente;
             LLenarClientes();
+            LLenarServicios();
             EmpresaActual = RutCliente;            
             EmpresaActiva = new ClsEmpresas();
             
@@ -68,7 +69,6 @@ namespace AppSIMyS.ViewModels
             Navigation.RemovePage(this);
 
         }
-
         public async void LLenarClientes()
         {
             var GetLstcliente = await App.SQLiteDB.GetClientesAsync();
@@ -77,8 +77,14 @@ namespace AppSIMyS.ViewModels
             {
                 ListClientes.ItemsSource = GetLstcliente;
             }
-
-
+        }
+        public async void LLenarServicios()
+        {
+            var GetLstServicios = await App.SQLiteDB.GetServiciosAsync();
+            if (GetLstServicios != null)
+            {
+                ListServicios.ItemsSource = GetLstServicios;
+            }
         }
         public async void Save(object sender, EventArgs eventArgs)
         {
@@ -117,42 +123,100 @@ namespace AppSIMyS.ViewModels
             var writer = new PdfWriter(stream);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf);
-            document.SetMargins(120f, 70f, 100f, 70f);
+            document.SetMargins(120f, 50f, 100f, 50f);
 
             // encabezado 
             pdf.AddEventHandler(PdfDocumentEvent.START_PAGE, new HeaderEventHandler1());
 
-            var ClienteActual = App.SQLiteDB.GetClientesByRutAsync2(LbRutCliente.Text.Trim());
+            string tecnico = "";
+            var UsuariosActual = App.SQLiteDB.GetUsuariosByRutAsync2(LbUsuario.Text.Trim());
+            if (UsuariosActual.Count() > 0)
+            {
+                foreach (var item in UsuariosActual)
+                {
+                    tecnico = (item.nombres == null ? "" : item.nombres);
+                }
+            }
+                var ClienteActual = App.SQLiteDB.GetClientesByRutAsync2(LbRutCliente.Text.Trim());
             if (ClienteActual.Count() > 0)
             {
-                float[] ClientesWith = { 100F, 300F, 100F, 300F };
+                float[] ClientesWith = { 70F, 330F, 70F, 300F };
                 Table tablaCliente = new Table(ClientesWith);                
                 foreach (var item in ClienteActual)
                 {
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Empresa:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Descripcion).SetTextAlignment(TextAlignment.LEFT)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Fecha:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph(DateTime.Now.ToString("dd/MM/yyyy")).SetTextAlignment(TextAlignment.LEFT)));
                     
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Dirección:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Direccion).SetTextAlignment(TextAlignment.LEFT)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Teléfono:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Telefono).SetTextAlignment(TextAlignment.LEFT)));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Empresa:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Descripcion).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Fecha:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(DateTime.Now.ToString("dd/MM/yyyy")).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
 
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Rut:").SetTextAlignment(TextAlignment.RIGHT)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Rut).SetTextAlignment(TextAlignment.LEFT)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Ciudad").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)));
-                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Santiago").SetTextAlignment(TextAlignment.LEFT)));
+
+                    
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Dirección:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Direccion).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Teléfono:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Telefono).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Rut:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Rut).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Ciudad:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Santiago").SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Atención Sr:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph((item.Persona1 == null ? "" : item.Persona1)).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph("Técnico:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    tablaCliente.AddCell(new Cell().Add(new Paragraph(tecnico).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
 
 
                 }
                 document.Add(tablaCliente);
+                document.Add(new Paragraph("").SetFontSize(5));
+            }
+            var ServiciosActuales = App.SQLiteDB.GetDetServiciosByRutAsync2();
+            if (ServiciosActuales.Count() > 0)
+            {
+                float[] ServiciosWith = { 70F, 600F};
+                Table tablaServicios  = new Table(ServiciosWith);
+                tablaServicios.AddCell(new Cell().Add(new Paragraph("Cant.").SetFontSize(10)).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER));
+                tablaServicios.AddCell(new Cell().Add(new Paragraph("Descripción").SetFontSize(10)).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER));
+                
+                foreach (var item in ServiciosActuales)
+                {
+
+                    tablaServicios.AddCell(new Cell().Add(new Paragraph(item.Cantidad.ToString()).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    tablaServicios.AddCell(new Cell().Add(new Paragraph(item.Descripcion).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    
+
+                    
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Dirección:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Direccion).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Teléfono:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Telefono).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Rut:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Rut).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Ciudad:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Santiago").SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Atención Sr:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph((item.Persona1 == null ? "" : item.Persona1)).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph("Técnico:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+                    //tablaCliente.AddCell(new Cell().Add(new Paragraph(tecnico).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
+
+
+                }
+                tablaServicios.AddCell(new Cell().Add(new Paragraph("").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetHeight(1));
+                tablaServicios.AddCell(new Cell().Add(new Paragraph("").SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderTop(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER).SetHeight(1));
+
+                document.Add(tablaServicios);
+                document.Add(new Paragraph("").SetFontSize(5));
             }
 
 
             var ImagenesServicios = App.SQLiteDB.GetTblImagenesByAsync2();
             if (ImagenesServicios.Count() > 0)
             {
+                document.Add(new Paragraph("Area de Imagenes").SetFontSize(10));
                 float[] tablaImagenesWith = { 300F, 200F };
                 Table tablaImagenes = new Table(tablaImagenesWith);
                 tablaImagenes.AddCell(new Cell().Add(new Paragraph("Imagen").SetTextAlignment(TextAlignment.CENTER)));
@@ -168,9 +232,6 @@ namespace AppSIMyS.ViewModels
                 }
                 document.Add(tablaImagenes);
             }
-
-
-
 
             float[] pointColumnWidths = { 100F, 150F, 100F, 150F, 100F };
             Table table = new Table(pointColumnWidths);
@@ -206,8 +267,6 @@ namespace AppSIMyS.ViewModels
 
             cmSendMailCcopy(Path.Combine(root, fileName));
             //cmSendMailCcopy(Path.Combine("/AppSimys", fileName));
-
-
         }
 
         protected void cmSendMailCcopy(string file)
@@ -302,8 +361,7 @@ namespace AppSIMyS.ViewModels
             var picker = (Picker)sender;            
             ClsClientes dt = picker.SelectedItem as ClsClientes;
             LbTipoServicio.Text = dt.Empresa;// .ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
-            LbRutCliente.Text = dt.Rut;
-           
+            LbRutCliente.Text = dt.Rut;           
         }
 
         public class HeaderEventHandler1 : IEventHandler
@@ -375,7 +433,7 @@ namespace AppSIMyS.ViewModels
       
         async void SeleccionarImagen_Clicked(object sender, EventArgs e)
         {
-            if (TxtComentario.Text == "")
+            if (TxtComentario.Text.Trim() == "")
             {
                 await DisplayAlert("Advertencia", "Debe Agregar Comentario para la Imagen", "OK");
                 return;
@@ -425,11 +483,10 @@ namespace AppSIMyS.ViewModels
       
         public async void agregarImagen()
         {
+            
             Stream stream1 = await ((StreamImageSource)image.Source).Stream(CancellationToken.None);
             byte[] bytesAvailable = new byte[stream1.Length];
             stream1.Read(bytesAvailable, 0, bytesAvailable.Length);
-
-
             TblImagenServicio ImgSer = new TblImagenServicio();
             ImgSer.Imagen = bytesAvailable;
             ImgSer.Comentario = TxtComentario.Text.Trim();// "Prueba de Galeria";
@@ -464,10 +521,73 @@ namespace AppSIMyS.ViewModels
                     break;
                 default:
                     break;
-            }
-            
+            }            
+        }
+        private void ListClientes_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
 
-       
+        private void ListServicios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            TblServicios dt = picker.SelectedItem as TblServicios;
+            if (dt != null)
+            {
+                LblCodServicio.Text = dt.Codigo;
+                TxtDescServicio.Text = dt.Descripcion;
+            }
+        }
+
+        private void BtnAgregarServicio_Clicked(object sender, EventArgs e)
+        {
+            if (LblCodServicio.Text.Trim()=="")
+                {
+                DisplayAlert("Advertencia", "Debe seleccionar un servicio", "OK");
+                return;
+            }
+            ClsDetServicios ImgSer = new ClsDetServicios();
+            ImgSer.Codigo= LblCodServicio.Text;
+            ImgSer.Comentario = TxtComentarioServicio.Text.Trim();// "Prueba de Galeria";
+            ImgSer.Cantidad = Convert.ToInt32(NroCantidad.Text);
+            ImgSer.Descripcion = TxtDescServicio.Text;
+            //App.SQLiteDB.AgregarTblImagenServicio(ImgSer);
+            App.SQLiteDB.AgregarClsDetServicios(ImgSer);
+            BindingContext = new FormatoServicioViewModel();
+            LblCodServicio.Text="";
+        }
+
+        private async void ImageButtonServicios_Clicked(object sender, EventArgs e)
+        {
+            ImageButton button1 = (ImageButton)sender;
+            var Data = (ClsDetServicios)button1.BindingContext;
+            string commandParameter = button1.CommandParameter.ToString();
+            switch (commandParameter)
+            {
+                case "A":
+                    App.SQLiteDB.ActualizarClsDetServicios(Data.Id, Data.Comentario, Data.Cantidad);
+                    await DisplayAlert("Advertencia", "Registro Actualizado ", "OK");
+                    BindingContext = new FormatoServicioViewModel();
+                    break;
+                case "E":
+                    var action = await DisplayAlert("Advertencia!!!", "Seguro de eliminar " + Data.Descripcion, "Yes", "No");
+                    if (action)
+                    {
+                        App.SQLiteDB.EliminarClsDetServicios(Data.Id);
+                        BindingContext = new FormatoServicioViewModel();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void BtnNuevo_Clicked(object sender, EventArgs e)
+        {
+            App.SQLiteDB.EliminarClsDetServicios();
+            App.SQLiteDB.EliminarTblImagenServicio();
+            BindingContext = new FormatoServicioViewModel();
+
+        }
     }
 }

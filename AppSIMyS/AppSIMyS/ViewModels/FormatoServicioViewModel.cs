@@ -13,10 +13,15 @@ namespace AppSIMyS.ViewModels
     public class FormatoServicioViewModel
     {
         public ObservableCollection<ImagenServicio> LstImagenes { get; set; }
+        public ObservableCollection<ClsDetServicios> LstDetServicios { get; set; }
         public FormatoServicioViewModel()
         {           
             string sql = "SELECT * FROM TblImagenServicio order by id";
             LstImagenes = new ObservableCollection<ImagenServicio>();
+            LstDetServicios = new ObservableCollection<ClsDetServicios>();
+            var DetalleServicios = App.SQLiteDB.GetClsDetServiciosByRutAsync2();
+         
+            
             var ImagenesServicios = App.SQLiteDB.GetTblImagenesByAsync2();
             LstImagenes.Clear();
             foreach (var item in ImagenesServicios)
@@ -30,7 +35,19 @@ namespace AppSIMyS.ViewModels
                 imagen.Imagen = image1.Source;
                 imagen.Id = item.Id;
                 LstImagenes.Add(imagen);
-            }          
+            }
+
+            LstDetServicios.Clear();
+            foreach (var item in DetalleServicios)
+            {
+               
+                ClsDetServicios servicio = new ClsDetServicios();
+                servicio.Comentario = item.Comentario;
+                servicio.Id = item.Id;
+                servicio.Descripcion = item.Descripcion;
+                servicio.Cantidad = item.Cantidad;
+                LstDetServicios.Add(servicio);
+            }
         }
     }
 }

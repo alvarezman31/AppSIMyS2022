@@ -25,6 +25,8 @@ namespace AppSIMyS.Data
             db.CreateTableAsync<ClsUsuarios>().Wait();
             db.CreateTableAsync<TblImagenServicio>().Wait();
             db.CreateTableAsync<TblUsuarios>().Wait();
+            db.CreateTableAsync<TblServicios>().Wait();
+            db.CreateTableAsync<ClsDetServicios>().Wait();
         }
 
         public Task<int> SaveCliente(ClsClientes cliente)
@@ -94,9 +96,9 @@ namespace AppSIMyS.Data
         }
 
 
-        public Task<List<ClsServicios>> GetServiciosAsync()
+        public Task<List<TblServicios>> GetServiciosAsync()
         {
-            return db.Table<ClsServicios>().ToListAsync();
+            return db.Table<TblServicios>().ToListAsync();
         }
 
         public Task<List<ClsEmpresas>> GetClsEmpresasAsync()
@@ -198,7 +200,56 @@ namespace AppSIMyS.Data
             var result = db.QueryAsync<TblUsuarios>("select * from TblUsuarios where email = ? and password = ? ", usuario, password);
             return result.Result;
         }
+
+        public IEnumerable<TblUsuarios> GetUsuariosByRutAsync2(string Rut)
+        {
+            var result = db.QueryAsync<TblUsuarios>("select * from TblUsuarios where rut = ?", Rut);
+            return result.Result;
+        }
         // fin usuarios
+        
+        // Servicios
+        public void EliminarTblServicios()
+        {
+            var result = db.QueryAsync<TblServicios>("delete from TblServicios");
+        }
+        public void AgregarTblServicios(TblServicios cliente)
+        {
+            var result = db.QueryAsync<TblServicios>("insert into TblServicios (codigo, descripcion) values (?,?)", cliente.Codigo, cliente.Descripcion);
+        }
+
+        // fin servicios
+        // Detalle Servicios
+        public void EliminarClsDetServicios()
+        {
+            var result = db.QueryAsync<ClsDetServicios>("delete from ClsDetServicios");
+        }
+        public void AgregarClsDetServicios(ClsDetServicios cliente)
+        {
+            var result = db.QueryAsync<ClsDetServicios>("insert into ClsDetServicios (codigo, cantidad, comentario, descripcion) values (?,?,?,?)", cliente.Codigo, cliente.Cantidad, cliente.Comentario, cliente.Descripcion);
+        }
+
+        public IEnumerable<ClsDetServicios> GetClsDetServiciosByRutAsync2()
+        {
+            var result = db.QueryAsync<ClsDetServicios>("select * from ClsDetServicios order by id ");
+            return result.Result;
+        }
+        public void EliminarClsDetServicios(int Id)
+        {
+            var result = db.QueryAsync<ClsDetServicios>("delete from ClsDetServicios where id=?", Id);
+        }
+        public void ActualizarClsDetServicios(int Id, string Comentario, int cantidad)
+        {
+            var result = db.QueryAsync<ClsDetServicios>("update ClsDetServicios set comentario=?,cantidad=? where id=?", Comentario, cantidad, Id);
+        }
+
+        public IEnumerable<ClsDetServicios> GetDetServiciosByRutAsync2()
+        {
+            var result = db.QueryAsync<ClsDetServicios>("select * from ClsDetServicios ");
+            return result.Result;
+        }
+
+        // fin Detalle  servicios
     }
 }
 
