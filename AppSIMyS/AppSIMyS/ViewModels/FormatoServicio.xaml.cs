@@ -226,7 +226,7 @@ namespace AppSIMyS.ViewModels
                 {
                     img2 = new Image(ImageDataFactory
            .Create(item.Imagen))
-           .SetTextAlignment(TextAlignment.CENTER).SetHeight(200).SetWidth(200);
+           .SetTextAlignment(TextAlignment.CENTER).SetHeight(150).SetWidth(150);
                     tablaImagenes.AddCell(new Cell().Add(img2).SetHorizontalAlignment(HorizontalAlignment.CENTER));
                     tablaImagenes.AddCell(new Cell().Add(new Paragraph(item.Comentario)).SetVerticalAlignment(VerticalAlignment.MIDDLE));
                 }
