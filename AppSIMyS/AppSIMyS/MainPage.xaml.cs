@@ -1,4 +1,4 @@
-﻿using AppSIMyS.Fonts;
+﻿
 using AppSIMyS.Models;
 using AppSIMyS.ViewModels;
 using Syncfusion.Pdf.Graphics;
@@ -32,21 +32,7 @@ namespace AppSIMyS
             LbUsuario.Text = usuario.Trim();
             BindingContext = new MainPageViewModel();
             MyCollectionView.SelectedItem = false;
-            LblConexion.Text = "";
-            //if (Connectivity.NetworkAccess!= NetworkAccess.Internet)
-            //{
-            //    LayoutConexion.BackgroundColor = Color.Red; 
-            //    LblConexion.Text = "---- Sin conexión ----";
-            //    DisplayAlert("Advertencia","Sin Internet","Ok");
-            //}
-            //else
-            //{
-            //    LayoutConexion.BackgroundColor = Color.Blue;
-            //    LblConexion.Text = "---- Conectado ----";
-            //    LblConexion.TextColor = Color.White;
-            //    DisplayAlert("Advertencia", "Conectado", "Ok");
-            //}
-            //LlenarColletionView();
+            LblConexion.Text = "";          
             
 
         }
@@ -81,19 +67,9 @@ namespace AppSIMyS
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             //var cliente = e.Item as Clientes;
-            DisplayAlert("Advertencia", "cliente.Rut", "Aceptar");
+           // DisplayAlert("Advertencia", "cliente.Rut", "Aceptar");
         }
 
-        //private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var cliente = e.CurrentSelection;
-        //    DisplayAlert("Advertencia", "cliente", "Aceptar");            
-        //}
-
-        //async void ExecuteHubTappedCommand(object parameter)
-        //{
-        //    await DisplayAlert("Message", "item " + parameter + " clicked", "Ok");
-        //}
 
         private  void MyCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -107,22 +83,6 @@ namespace AppSIMyS
                 MyCollectionView.SelectedItem = false;
                  Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente, LogoEmpresa));
             }
-
-           // await DisplayAlert("Registro", "Guardado Existosamente", "OK");
-
-            //var GetLstcliente = await App.SQLiteDB.GetClsEmpresasAsync();
-
-            //if (GetLstcliente != null)
-            //{
-            //    MyCollectionView.ItemsSource = GetLstcliente;
-            //}
-            //DisplayAlert("Advertencia", "Cliente Ant:" + clientesAnt + (char)13 + "Cliente Act:" +clientesAct, "Aceptar");
-
-
-
-            //FormatoServicio formatoServicio = new FormatoServicio(LbUsuario.Text);
-            //Navigation.PushAsync(formatoServicio);
-            //DisplayAlert("Advertencia", clientesAct, "Aceptar");
 
         }
     }

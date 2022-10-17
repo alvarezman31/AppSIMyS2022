@@ -13,6 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Fonts\IconsConstantes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\fontello.ttf" />
     <None Remove="logo_dcservicios.png" />
   </ItemGroup>
 
@@ -21,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Fonts\fontello.ttf" />
+    <EmbeddedResource Include="Fonts\IconsConstantes.cs" />
     <EmbeddedResource Include="logo_dcservicios.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

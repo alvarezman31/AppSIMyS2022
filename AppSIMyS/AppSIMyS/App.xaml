@@ -17,8 +17,9 @@
                 <On Platform="iOS" Value="Poppins-Light"/>
                 <On Platform="Android" Value="Poppins-Light.ttf#Poppins-Light"/>
             </OnPlatform>-->
-        </ResourceDictionary>
+        </ResourceDictionary>              
         <x:String x:Key="usuario">&#xE808;</x:String>
+        <x:String x:Key="camara">&#xE800;</x:String> 
     </Application.Resources>
 
 </Application>

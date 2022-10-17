@@ -21,8 +21,8 @@
                 </Grid.RowDefinitions>
                 
                     <Frame CornerRadius="60" 
-                        HeightRequest="80"
-                        WidthRequest="80"
+                        HeightRequest="70"
+                        WidthRequest="70"
                         HorizontalOptions="Center"
                         Margin="0,30,0,10" BackgroundColor="LightBlue"
                         Padding="0"
@@ -32,14 +32,14 @@
                     </Frame>
                 
                 <StackLayout Grid.Row="1"  Padding="20,10">                    
-                    <Entry x:Name="TxtUsuario" Placeholder="Usuario o Email" PlaceholderColor="White" FontAttributes="Bold" ></Entry>
-                    <Entry x:Name="TxtClave"   Placeholder="Contraseña" PlaceholderColor="White" FontAttributes="Bold" IsPassword="True"></Entry>
-                    <Button Clicked="BtnEntrar_Clicked"   x:Name="BtnEntrar" Text="Iniciar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>
-                    <Button Pressed="BtnEntrar_Pressed"  x:Name="BtnCerrar" Text="Cerrar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  ></Button>
+                    <Entry x:Name="TxtUsuario" Placeholder="Usuario o Email" PlaceholderColor="White" TextColor="Black" ></Entry>
+                    <Entry x:Name="TxtClave"   Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True" TextColor="Black"></Entry>
+                    <Button Clicked="BtnEntrar_Clicked"   x:Name="BtnEntrar" Text="Iniciar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0" TextColor="Black" ></Button>
+                    <Button Pressed="BtnEntrar_Pressed"  x:Name="BtnCerrar" Text="Cerrar Sesión" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  TextColor="Black" ></Button>
                 </StackLayout>
                 <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="10" VerticalOptions="Center">
-                    <Label Text=" • Copyright © Alvaluc 2022 • " FontSize="Micro"></Label>
-                    <Label Text=" • All rights reserved. Privacy Policy • " FontSize="Micro"></Label>                
+                    <Label Text=" • Copyright © Alvaluc 2022 • " FontSize="Micro" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
+                    <Label Text=" • All rights reserved. Privacy Policy • " FontSize="Micro" TextColor="Black" HorizontalTextAlignment="Center"></Label>                
                 </StackLayout>
             </Grid>
         </Grid> 
