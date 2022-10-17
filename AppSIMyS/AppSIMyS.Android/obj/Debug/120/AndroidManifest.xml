@@ -14,7 +14,7 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.CAMERA" />
-  <application android:label="AppSIMyS" android:theme="@style/MainTheme" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/alvaluc" android:debuggable="true" android:extractNativeLibs="true">
+  <application android:label="AppSIMyS" android:theme="@style/MainTheme" android:icon="@drawable/alvaluc" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true" android:extractNativeLibs="true">
     <!--<provider android:name="android.support.v4.content.FileProvider"
           android:authorities="com.companyname.appsimys.fileprovider"
           android:exported="false"

@@ -3,33 +3,50 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sign="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
              x:Class="AppSIMyS.ViewModels.FormatoServicio" Title="Formato Servicios" BackgroundColor="LightBlue">
-    <ContentPage Title="Cliente" IconImageSource="eliminar.jpg" HeightRequest="5" >
-        <ScrollView  BackgroundColor="White" >
-            <StackLayout  >
-                <Button x:Name="BtnNuevo" Text="Nuevo Informe" Clicked="BtnNuevo_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
-                <Label Text="Welcome to Xamarin.Forms!"
+    <ContentPage IconImageSource="clientesapp.png" x:Name="CntCliente"  >
+        <ScrollView  >
+            <StackLayout BackgroundColor="White"  Margin="10" >
+                <Label Text="--- Datos del Cliente ---"
+                   FontAttributes="Bold" TextColor="Black"
+                   HorizontalOptions="Center" />
+                <Button x:Name="BtnNuevo" Text="Nuevo Informe" Clicked="BtnNuevo_Clicked" BorderRadius="20" BackgroundColor="LightBlue"  Margin="0,40,0,0"/>
+                <!--<Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                <Label x:Name="LbUsuario" Text="" />
-                <Label x:Name="LbRutCliente" Text="" />
-                <Label x:Name="LbTipoServicio" Text="" />
+                HorizontalOptions="CenterAndExpand" />-->
+                <Label x:Name="LbUsuario" Text="" IsVisible="false"/>
+               
+                <Label x:Name="LbTipoServicio" Text="" IsVisible="false" />
 
-                <Picker Title="--- Seleccionar Tipo Servicio --- " SelectedIndexChanged="Picker_SelectedIndexChanged" >
+                <!--<Picker Title="- - - Seleccionar Tipo Servicio - - - " SelectedIndexChanged="Picker_SelectedIndexChanged" >
                     <Picker.Items>
                         <x:String>Servicio</x:String>
                         <x:String>Mantención</x:String>
                         <x:String>Otro</x:String>
                     </Picker.Items>
-                </Picker>
+                </Picker>-->
+                <Label Text="Cliente" TextColor="Black"/>
                 <Picker x:Name="ListClientes"                         
                         Title="--- Seleccionar Cliente --- "                           
                         SelectedItem="{Binding Empresa}" 
                         ItemsSource="{Binding GetLstcliente}"
                         ItemDisplayBinding="{Binding Descripcion}"  
-                        SelectedIndexChanged="ListClientes_SelectedIndexChanged"  StyleClass="fieldForm" />
+                        SelectedIndexChanged="ListClientes_SelectedIndexChanged"  StyleClass="fieldForm" TextColor="Black" TitleColor="Black" />
 
-                <Entry x:Name="LbConCopia"  Placeholder="Enviar Correo a..." Text="manuelalvarezl@hotmail.com"  />
-                <Entry x:Name="TxtObservacion"  Placeholder="Observación" Text="manuelalvarezl@hotmail.com" />
+                <Label Text="Rut" TextColor="Black"/>
+                <Entry x:Name="LbRutCliente" TextColor="Black"/>
+                <Label Text="Descripción" TextColor="Black" />
+                <Entry x:Name="LbDescripcionCliente"  TextColor="Black" Text=""/>
+                <Label Text="Dirección" TextColor="Black" />
+                <Editor x:Name="LbDireccionCliente" HeightRequest="80" TextColor="Black" Text="" />
+                <Label Text="Teléfono" TextColor="Black"/>
+                <Entry x:Name="LbTelefonoCliente"  TextColor="Black" Text=""/>
+                <Label Text="Contacto" TextColor="Black"/>
+                <Entry x:Name="LbConctacoCliente" TextColor="Black" Text=""/>
+                <Label Text="Email" TextColor="Black"/>
+                <Entry x:Name="LbEmalCliente" TextColor="Black" Text=""/>
+
+                <!--<Entry x:Name="LbConCopia"  Placeholder="Enviar Correo a..." Text="manuelalvarezl@hotmail.com"  />
+                <Entry x:Name="TxtObservacion"  Placeholder="Observación" Text="manuelalvarezl@hotmail.com" />-->
                 <StackLayout>
 
                   
@@ -45,31 +62,32 @@
 
     </ContentPage>
 
-    <ContentPage Title="Serv.">
-        <ScrollView BackgroundColor="White" >
-            <StackLayout Margin="20,35,20,20">                
+    <ContentPage Title="" IconImageSource="servicios.png" x:Name="CntServicio">
+        <ScrollView  >
+            <StackLayout Margin="10" BackgroundColor="White">                
                 <Label Text="--- Area de Servicios ---"
-                   FontAttributes="Bold"
+                   FontAttributes="Bold" TextColor="Black"
                    HorizontalOptions="Center" />
-                
+
+                <Label Text="Servicios" TextColor="Black"/>
                 <Picker x:Name="ListServicios"                         
                         Title="--- Seleccionar Servicio --- "                           
                         SelectedItem="{Binding Codigo}" 
                         ItemsSource="{Binding GetLstServicios}"
                         ItemDisplayBinding="{Binding Descripcion}"  
-                        SelectedIndexChanged="ListServicios_SelectedIndexChanged"  StyleClass="fieldForm" />
+                        SelectedIndexChanged="ListServicios_SelectedIndexChanged"  StyleClass="fieldForm" TextColor="Black" TitleColor="Black" />
                 <Label Text="Comentario" TextColor="Black"/>
-                <Editor x:Name="TxtComentarioServicio" Placeholder="Ingrese Comentario" HeightRequest="150" />
+                <Editor x:Name="TxtComentarioServicio" Placeholder="Ingrese Comentario" HeightRequest="150"  TextColor="Black"/>
                 <Label Text="Cant." TextColor="Black"/>
-                <Entry x:Name="NroCantidad"  Keyboard="Numeric" />
-                <Label x:Name="LblCodServicio"/>
-                <Label x:Name="TxtDescServicio"/>
-                <Button x:Name="BtnAgregarServicio" Text="Agregar Servicio" Clicked="BtnAgregarServicio_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0" />
+                <Entry x:Name="NroCantidad"  Keyboard="Numeric"  TextColor="Black" />
+                <Label x:Name="LblCodServicio" TextColor="Black"/>
+                <Label x:Name="TxtDescServicio" TextColor="Black"/>
+                <Button x:Name="BtnAgregarServicio" Text="Agregar Servicio" Clicked="BtnAgregarServicio_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  TextColor="Black"/>
                 <!--Area de det servicios-->
                 <CollectionView  x:Name="ColectionServicios"  
                      Margin="5"                     
                      SelectionMode="Single"  
-                     ItemsSource="{Binding LstDetServicios}">
+                     ItemsSource="{Binding LstDetServicios}" >
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="1"/>
                     </CollectionView.ItemsLayout>
@@ -77,7 +95,7 @@
                         <DataTemplate>
                             <Frame Padding="0" CornerRadius="20" BorderColor="Blue"
                        IsClippedToBounds="True" >
-                                <Grid HeightRequest="220"  Padding="5"  >
+                                <Grid HeightRequest="150"  Padding="5"  >
                                     <Grid.ColumnDefinitions >
                                         <ColumnDefinition Width=".2*"/>
                                         <ColumnDefinition Width=".2*"/>
@@ -140,24 +158,28 @@
             </StackLayout>
         </ScrollView>
     </ContentPage> <!--SErvicios-->
-    <ContentPage Title="Img.">
-        <ScrollView BackgroundColor="White" >
-            <StackLayout Margin="20,35,20,20">
+    <ContentPage Title="" IconImageSource="imagenes.png" x:Name="CntImagenes">
+        <ScrollView  >
+            <StackLayout Margin="10" BackgroundColor="White" >
                 <Label Text="--- Area de Imagenes ---"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
-                <Editor x:Name="TxtComentario" Placeholder="Ingrese Comentario" HeightRequest="150" />
+                   HorizontalOptions="Center"  TextColor="Black" />
+                <Editor x:Name="TxtComentario" Placeholder="Ingrese Comentario" HeightRequest="150"  TextColor="Black" Text=""/>
                 <Grid HeightRequest="50"  Padding="5"  >
                     <Grid.ColumnDefinitions >
-                        <ColumnDefinition Width="1.1*"  />
-                        <ColumnDefinition Width="1.1*"/>                        
+                        <ColumnDefinition Width="1*"  />
+                        <ColumnDefinition Width="1*"/>                        
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                        <!--<RowDefinition Height="3*"/>-->
                     </Grid.RowDefinitions>
-                    <Button Text="Galeria" Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" HeightRequest="10" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
-                    <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="10" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
-                </Grid>                
+                    <!--<Button Text="Galeria" Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" BorderRadius="20" BackgroundColor="LightBlue" />
+                    <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1"  BorderRadius="20" BackgroundColor="LightBlue" />-->
+                    <ImageButton Source="galeria.png"  Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
+                    <ImageButton Source="camara.png"   Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" BackgroundColor="White"/>
+                </Grid>
+               
                 <Image x:Name="image" IsVisible="false"/>
                 <!--Area de imagenes-->
                 <CollectionView  x:Name="MyCollectionView"  
@@ -195,13 +217,13 @@
                                Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HeightRequest="150"                       
                                FontAttributes="Bold" 
                                FontSize="Small"
-                               Text="{Binding Comentario}" x:Name="TxtComentario"
+                               Text="{Binding Comentario}" x:Name="TxtComentario" TextColor="Black"
                                VerticalOptions="Center"/>
 
                                     <Label IsVisible="false"                     
                                FontAttributes="Bold"
                                FontSize="Body"
-                               Text="{Binding Id}"
+                               Text="{Binding Id}" 
                                VerticalOptions="Center"/>
 
                                     <ImageButton Source="eliminar.jpg" Grid.Column="1" Grid.Row="2" 
@@ -233,19 +255,30 @@
             </StackLayout>
         </ScrollView>
     </ContentPage> <!--imagenes--> 
-    <ContentPage Title="Firma">
-        <StackLayout BackgroundColor="White">
+    <ContentPage x:Name="CntFirmar" IconImageSource="iconofirma">
+        <ScrollView>            
+        <StackLayout BackgroundColor="White" Margin="10">
+                <Label Text="--- Area de Firmar ---"
+                   FontAttributes="Bold" TextColor="Black"
+                   HorizontalOptions="Center" />
+                <Label Text="Enviar copia a..." TextColor="Black" Margin="5"/>
+            <Entry x:Name="LbConCopia"  Placeholder="Enviar Correo a..."  FontSize="Small"  TextColor="Black" Text=""/>
+            <Label Text="Observación" TextColor="Black" />
+            <Editor x:Name="TxtObservacion"  Placeholder="Observación" HeightRequest="100" FontSize="Small" TextColor="Black" Text="" />
+
+            <Label Text="Firma Técnico" TextColor="Black"/>
             <StackLayout>
-                <Label Text="Firma Técnico"/>
-                <sign:SignaturePadView x:Name="signature" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
+                
+                <sign:SignaturePadView x:Name="signature" StrokeWidth="2" WidthRequest="150" HeightRequest="100" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
+            </StackLayout>
+            <Label Text="Firma Cliente" TextColor="Black"/>
+            <StackLayout>                
+                <sign:SignaturePadView x:Name="signatureCliente" StrokeWidth="2" WidthRequest="150" HeightRequest="100" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
             </StackLayout>
             <StackLayout>
-                <Label Text="Firma Cliente"/>
-                <sign:SignaturePadView x:Name="signatureCliente" StrokeWidth="2" WidthRequest="150" HeightRequest="150" BackgroundColor="White" StrokeColor="Black" CaptionText="Firma"></sign:SignaturePadView>
-            </StackLayout>
-            <StackLayout>
-                <Button Clicked="Save" Text="Salvar" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"/>
+                <Button Clicked="Save" Text="Salvar y Enviar" BorderRadius="20" BackgroundColor="LightBlue" Margin="10,10,10,20" HeightRequest="50"/>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage>
 </TabbedPage>

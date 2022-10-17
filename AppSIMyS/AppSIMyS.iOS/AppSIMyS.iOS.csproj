@@ -168,6 +168,13 @@
     <BundleResource Include="Resources\alvaluc.png" />
     <BundleResource Include="Resources\alvaluc.ico" />
     <BundleResource Include="Resources\actualizar.jpg" />
+    <BundleResource Include="Resources\camara.png" />
+    <BundleResource Include="Resources\alvalucicon.png" />
+    <BundleResource Include="Resources\clientesapp.png" />
     <Content Include="Resources\eliminar.jpg" />
+    <BundleResource Include="Resources\galeria.png" />
+    <BundleResource Include="Resources\imagenes.png" />
+    <BundleResource Include="Resources\servicios.png" />
+    <BundleResource Include="Resources\iconofirma.png" />
   </ItemGroup>
 </Project>
