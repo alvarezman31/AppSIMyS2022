@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppSIMyS.Menu.MenuTipoInforme"  >
+    <ContentPage.Content>
+        <StackLayout  >
+            <!--<Image  Source="fondologin.jpg" Aspect="AspectFill" Opacity=".5" ></Image>-->
+            <Label Text="Tipo de informe" TextColor="Black" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" Margin="5"/>
+            <!--<Image  Source="fondologin.jpg" Aspect="AspectFill" ></Image>-->
+            <!--<BoxView Color="LightBlue" Opacity=".8"></BoxView>-->
+            <Button   x:Name="BtnServicios" Text="Servicio" BorderRadius="20" BackgroundColor="LightBlue" Margin="5" TextColor="Black"  Clicked="BtnServicios_Clicked"></Button>
+            <Button   x:Name="BtnMantencion" Text="Mantención" BorderRadius="20" BackgroundColor="LightBlue" Margin="5"  TextColor="Black" Clicked="BtnMantencion_Clicked" ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

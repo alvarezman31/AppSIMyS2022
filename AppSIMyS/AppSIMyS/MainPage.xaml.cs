@@ -1,6 +1,7 @@
 ﻿
 using AppSIMyS.Models;
 using AppSIMyS.ViewModels;
+using AppSIMyS.Menu;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf;
 using System;
@@ -81,7 +82,8 @@ namespace AppSIMyS
             {
 
                 MyCollectionView.SelectedItem = false;
-                 Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente, LogoEmpresa));
+                 //Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente, LogoEmpresa));
+                 Navigation.PushAsync(new MenuTipoInforme(LbUsuario.Text, RutCliente, LogoEmpresa));
             }
 
         }

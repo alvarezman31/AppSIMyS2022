@@ -19,7 +19,9 @@
             </OnPlatform>-->
         </ResourceDictionary>              
         <x:String x:Key="usuario">&#xE808;</x:String>
-        <x:String x:Key="camara">&#xE800;</x:String> 
+        <x:String x:Key="usuario2">&#xf062;</x:String>
+        <x:String x:Key="camara">&#xE800;</x:String>
+        <x:String x:Key="galeria">&#xe804;</x:String> 
     </Application.Resources>
 
 </Application>

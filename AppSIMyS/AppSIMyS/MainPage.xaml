@@ -15,7 +15,7 @@
             HorizontalOptions="EndAndExpand"
           Spacing="10">
             <Label
-               Text="{StaticResource usuario}"              
+               Text="{StaticResource usuario2}"              
                FontSize="18"
                TextColor="White"                
                 FontFamily="FT"

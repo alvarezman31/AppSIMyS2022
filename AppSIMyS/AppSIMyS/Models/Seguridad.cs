@@ -78,7 +78,7 @@ namespace AppSIMyS.Models
             catch (CryptographicException e)
             {
                 Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
-                return null;
+                return "";
             }
             // You may want to catch more exceptions here...
         }
@@ -95,7 +95,7 @@ namespace AppSIMyS.Models
             byte[] Key = ASCIIEncoding.UTF8.GetBytes(KeyString);
             byte[] IV = ASCIIEncoding.UTF8.GetBytes(IVString);
 
-            string encrypted = null;
+            string encrypted = "";
             RijndaelManaged rj = new RijndaelManaged();
             rj.Key = Key;
             rj.IV = IV;
@@ -122,12 +122,12 @@ namespace AppSIMyS.Models
             catch (CryptographicException e)
             {
                 Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
-                return null;
+                return "";
             }
             catch (UnauthorizedAccessException e)
             {
                 Console.WriteLine("A file error occurred: {0}", e.Message);
-                return null;
+                return "";
             }
             catch (Exception e)
             {

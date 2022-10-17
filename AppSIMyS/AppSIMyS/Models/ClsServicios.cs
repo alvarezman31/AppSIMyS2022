@@ -8,11 +8,11 @@ namespace AppSIMyS.Models
     {
         [PrimaryKey]
         public int Id { get; set; }
-        public string Cliente { get; set; }
+        public string? Cliente { get; set; }
         public DateTime Fecha { get; set; }
-        public string Tecnico { get; set; }
-        public string Descripcion { get; set; }
-        public string Observacion { get; set; }
+        public string? Tecnico { get; set; }
+        public string? Descripcion { get; set; }
+        public string? Observacion { get; set; }
 
 
     }

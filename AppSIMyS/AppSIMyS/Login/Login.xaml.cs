@@ -20,8 +20,8 @@ namespace AppSIMyS.Login
 
         //private static byte[] _salt = __To_Do__("Add a app specific salt here");
         //public static string EncryptionKey = "WLN@2020";
-        static string strKey = "WLN@2020";
-        static string strIV = "101712";
+        //static string strKey = "WLN@2020";
+        //static string strIV = "101712";
         static int validado;
         public Login()
         {

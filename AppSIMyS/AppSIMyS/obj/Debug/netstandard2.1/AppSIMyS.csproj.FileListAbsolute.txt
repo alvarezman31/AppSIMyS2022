@@ -124,3 +124,4 @@ C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\De
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\refint\AppSIMyS.dll
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\AppSIMyS.pdb
 C:\Users\usuario\Source\Repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\ref\AppSIMyS.dll
+C:\Users\usuario\source\repos\alvarezman31\AppSIMyS2022\AppSIMyS\AppSIMyS\obj\Debug\netstandard2.1\Menu\MenuTipoInforme.xaml.g.cs

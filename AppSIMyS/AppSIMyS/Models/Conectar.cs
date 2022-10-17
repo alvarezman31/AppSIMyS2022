@@ -53,27 +53,27 @@ namespace AppSIMyS.Models
                 consulta = item.rut;
             }
             return consulta;
-                try
-            {
-                //lbEstado.Text = "";
-                consulta = "select * from usuarios where email = '" + usuario + "' and password= '" + Seguridad.Encriptar2(clave) + "'";
-                // String consulta = "select * from usuarios where email = '" + TxtEmail + "' and password= '" + TxtPassword.Text + "'";
+            //    try
+            //{
+            //    //lbEstado.Text = "";
+            //    consulta = "select * from usuarios where email = '" + usuario + "' and password= '" + Seguridad.Encriptar2(clave) + "'";
+            //    // String consulta = "select * from usuarios where email = '" + TxtEmail + "' and password= '" + TxtPassword.Text + "'";
 
-                SqlConnection con = conectarSql();
-                SqlDataReader reader = consultarSql(consulta, con);  // cmd.ExecuteReader();
-                consulta = "";
-                if (reader.Read())
-                {                 
-                    consulta = reader["rut"].ToString().Trim();// + '-' + reader["verifi"].ToString(),
-                }
-               con.Close();
-            }
-            catch (SqlException ex)
-            {
-                //Disp(ex.Message);
-                //Response.Redirect("mantener/Configuracion.aspx");
-            }
-            return consulta;
+            //    SqlConnection con = conectarSql();
+            //    SqlDataReader reader = consultarSql(consulta, con);  // cmd.ExecuteReader();
+            //    consulta = "";
+            //    if (reader.Read())
+            //    {                 
+            //        consulta = reader["rut"].ToString().Trim();// + '-' + reader["verifi"].ToString(),
+            //    }
+            //   con.Close();
+            //}
+            //catch (SqlException ex)
+            //{
+            //    //Disp(ex.Message);
+            //    //Response.Redirect("mantener/Configuracion.aspx");
+            //}
+            //return consulta;
         }
 
         public static string md5(string Value)

@@ -16,7 +16,7 @@ namespace AppSIMyS.ViewModels
         public ObservableCollection<ClsDetServicios> LstDetServicios { get; set; }
         public FormatoServicioViewModel()
         {           
-            string sql = "SELECT * FROM TblImagenServicio order by id";
+            //string sql = "SELECT * FROM TblImagenServicio order by id";
             LstImagenes = new ObservableCollection<ImagenServicio>();
             LstDetServicios = new ObservableCollection<ClsDetServicios>();
             var DetalleServicios = App.SQLiteDB.GetClsDetServiciosByRutAsync2();

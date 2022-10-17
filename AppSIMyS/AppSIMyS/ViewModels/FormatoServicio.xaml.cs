@@ -34,13 +34,13 @@ namespace AppSIMyS.ViewModels
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormatoServicio : TabbedPage
     {
-        public static string EmpresaActual;        
-        public static ClsEmpresas EmpresaActiva;
-        public static string nroOrden;
+        public static string? EmpresaActual;        
+        public static ClsEmpresas? EmpresaActiva;
+        public static string? nroOrden;
         public static string TipoInforme = "Servicio";
 
 
-        public FormatoServicio(string usuario, string RutCliente, ImageSource LogoEmpresa)
+        public FormatoServicio(string usuario, string RutCliente)
         {
             InitializeComponent();
             BindingContext = new FormatoServicioViewModel();
@@ -107,7 +107,7 @@ namespace AppSIMyS.ViewModels
                 return;
             }
             var signatureMemoryStream = sig as MemoryStream;
-            byte[] data = signatureMemoryStream.ToArray();
+            byte[]? data = signatureMemoryStream.ToArray();
 
 
             sig = await signatureCliente.GetImageStreamAsync(SignatureImageFormat.Png);
@@ -117,7 +117,7 @@ namespace AppSIMyS.ViewModels
                 return;
             }
             signatureMemoryStream = sig as MemoryStream;
-            byte[] dataCliente = signatureMemoryStream.ToArray();
+            byte[]? dataCliente = signatureMemoryStream.ToArray();
 
             ClsServicios servicios = new ClsServicios();
             servicios.Cliente = LbRutCliente.Text.Trim();
@@ -136,8 +136,9 @@ namespace AppSIMyS.ViewModels
         protected void GenerarPdfFormatoServicio(byte[] Firma, byte[] FirmaCliente)
         {
             Random nro = new Random();
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"), root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
+            //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OT" + nro.Next(200000, 999999).ToString() + ".pdf"),
+            string root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
 
             nroOrden = nro.Next(20000000, 99999999).ToString();
             fileName = "OT" + nroOrden + ".pdf";
@@ -281,23 +282,23 @@ namespace AppSIMyS.ViewModels
 
         protected void cmSendMailCcopy(string file)
         {
-            string mailTo;
-            string mailCopy;
-            string mailFrom;
-            string mailSubject;
-            string mailBody;
-            string mailAuthentication;
-            string mailPassword;
-            string mailSmtpServer;
+            //string mailTo;
+            //string mailCopy;
+            //string mailFrom;
+            //string mailSubject;
+            //string mailBody;
+            //string mailAuthentication;
+            //string mailPassword;
+            //string mailSmtpServer;
 
-            List<string> mailAttachment = null;
+            List<string>? mailAttachment = null;
             
             try
             {
                 MailMessage mail = new MailMessage();
 
                 string mailDe = "manuelalvarezl@hotmail.com";
-                string deNombre = "Manuel Alvarez";
+                //string deNombre = "Manuel Alvarez";
                 string mailPara = LbEmalCliente.Text.Trim();
                 string mailCopia = LbConCopia.Text.Trim();// "manuelalvarez3108@gmail.com";
                 string asunto = "Prueba envio Xamarin";
@@ -306,7 +307,7 @@ namespace AppSIMyS.ViewModels
                 string mailContra = "M@@l*2209";
                 string mailSmtp = "smtp.office365.com";
                 int mailPuerto = 587;
-                List<string> mailAdjunto = mailAttachment;
+                List<string>? mailAdjunto = mailAttachment;
 
                 try
                 {
@@ -369,7 +370,7 @@ namespace AppSIMyS.ViewModels
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;            
-            ClsClientes dt = picker.SelectedItem as ClsClientes;
+            ClsClientes? dt = picker.SelectedItem as ClsClientes;
             if (dt != null)
             {
                 LbTipoServicio.Text = dt.Empresa;// .ItemsSource[picker.SelectedIndex].ToString(); //picker.SelectedItem.ToString();
@@ -391,8 +392,7 @@ namespace AppSIMyS.ViewModels
                 PdfDocument pdfDoc = pdfEvent.GetDocument();
                 PdfPage page = pdfEvent.GetPage();
                 var document = new Document(pdfDoc);
-                iText.Layout.Element.Image img;
-                img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
+                iText.Layout.Element.Image img = new Image(ImageDataFactory.Create(EmpresaActiva.Logo)).SetTextAlignment(TextAlignment.CENTER).SetHeight(100).SetWidth(150);
 
 
                 Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 120, page.GetPageSize().GetRight() - 70, 100);
@@ -549,7 +549,7 @@ namespace AppSIMyS.ViewModels
         private void ListServicios_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
-            TblServicios dt = picker.SelectedItem as TblServicios;
+            TblServicios? dt = picker.SelectedItem as TblServicios;
             if (dt != null)
             {
                 LblCodServicio.Text = dt.Codigo;

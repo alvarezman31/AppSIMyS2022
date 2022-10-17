@@ -16,13 +16,13 @@
                VerticalTextAlignment="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
-    <ContentPage IconImageSource="clientesapp.png" x:Name="CntCliente"  >
+    <ContentPage IconImageSource="clientesapp.png" x:Name="CntCliente"   >
         <ScrollView  >
             <StackLayout BackgroundColor="White"  Margin="10" >
                 <Label Text="--- Datos del Cliente ---"
                    FontAttributes="Bold" TextColor="Black"
                    HorizontalOptions="Center" />
-                <Button x:Name="BtnNuevo" Text="Nuevo Informe" Clicked="BtnNuevo_Clicked" BorderRadius="20" BackgroundColor="LightBlue"  Margin="0,40,0,0"/>
+                <Button x:Name="BtnNuevo" Text="Nuevo Informe" Clicked="BtnNuevo_Clicked" BorderRadius="20" BackgroundColor="LightBlue"  Margin="0,5,0,0"/>
                 <!--<Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />-->
@@ -89,13 +89,13 @@
                         ItemsSource="{Binding GetLstServicios}"
                         ItemDisplayBinding="{Binding Descripcion}"  
                         SelectedIndexChanged="ListServicios_SelectedIndexChanged"  StyleClass="fieldForm" TextColor="Black" TitleColor="Black" />
-                <Label Text="Comentario" TextColor="Black"/>
-                <Editor x:Name="TxtComentarioServicio" Placeholder="Ingrese Comentario" HeightRequest="150"  TextColor="Black"/>
+                <Label Text="Comentario" TextColor="Black" />
+                <Editor x:Name="TxtComentarioServicio" Placeholder="Ingrese Comentario" HeightRequest="150"  TextColor="Black" Text=""/>
                 <Label Text="Cant." TextColor="Black"/>
-                <Entry x:Name="NroCantidad"  Keyboard="Numeric"  TextColor="Black" />
-                <Label x:Name="LblCodServicio" TextColor="Black"/>
-                <Label x:Name="TxtDescServicio" TextColor="Black"/>
-                <Button x:Name="BtnAgregarServicio" Text="Agregar Servicio" Clicked="BtnAgregarServicio_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,40,0,0"  TextColor="Black"/>
+                <Entry x:Name="NroCantidad"  Keyboard="Numeric"  TextColor="Black" Text="1"/>
+                <Label x:Name="LblCodServicio" TextColor="Black" IsVisible="false" Text=""/>
+                <Label x:Name="TxtDescServicio" TextColor="Black" IsVisible="false" Text=""/>
+                <Button x:Name="BtnAgregarServicio" Text="Agregar Servicio" Clicked="BtnAgregarServicio_Clicked" BorderRadius="20" BackgroundColor="LightBlue" Margin="0,5,0,0"  TextColor="Black"/>
                 <!--Area de det servicios-->
                 <CollectionView  x:Name="ColectionServicios"  
                      Margin="5"                     
@@ -189,10 +189,14 @@
                     </Grid.RowDefinitions>
                     <!--<Button Text="Galeria" Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" BorderRadius="20" BackgroundColor="LightBlue" />
                     <Button Text="Camara"  x:Name="BtnCamara" Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1"  BorderRadius="20" BackgroundColor="LightBlue" />-->
-                    <ImageButton Source="galeria.png"  Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" BackgroundColor="Black" />
-                    <ImageButton Source="camara.png"   Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" BackgroundColor="black"  />
+                    <!--<ImageButton Source="galeria.png"  Clicked="SeleccionarImagen_Clicked"  Grid.Row="0" Grid.Column="0" BackgroundColor="Black" />
+                    <ImageButton Source="camara.png"   Clicked="BtnCamara_Clicked" Grid.Row="0" Grid.Column="1" BackgroundColor="black"  />-->
+                 
+                    <Button Text="{StaticResource galeria}"  Grid.Row="0" Grid.Column="0" Clicked="SeleccionarImagen_Clicked" FontFamily="FT"  FontSize="30" BorderRadius="20" BackgroundColor="LightBlue" TextColor="Black" />
+                    <Button Text="{StaticResource camara}"   Grid.Row="0" Grid.Column="1" Clicked="BtnCamara_Clicked"         FontFamily="FT"  FontSize="30" BorderRadius="20" BackgroundColor="LightBlue" TextColor="Black" />
+                    
                 </Grid>
-                <Button Text="{StaticResource camara}"  FontFamily="FT"  FontSize="30" BorderRadius="20" BackgroundColor="LightBlue" TextColor="Black" /> 
+                
                 <Image x:Name="image" IsVisible="false"/>
                 <!--Area de imagenes-->
                 <CollectionView  x:Name="MyCollectionView"  

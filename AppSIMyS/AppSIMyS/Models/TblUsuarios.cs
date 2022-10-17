@@ -6,12 +6,12 @@ namespace AppSIMyS.Models
 {
     public class TblUsuarios
     {
-        public string password { get; set; }
-        public string rut { get; set; }
+        public string? password { get; set; }
+        public string? rut { get; set; }
         //public char verifi { get; set; }
-        public string nombres { get; set; }
+        public string? nombres { get; set; }
         //public string Cargo { get; set; }
-        public string email { get; set; }
+        public string? email { get; set; }
         //public string tipo { get; set; }
         //public string campo1 { get; set; }
         //public string campo2 { get; set; }
