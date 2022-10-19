@@ -83,7 +83,7 @@ namespace AppSIMyS
 
                 MyCollectionView.SelectedItem = false;
                  //Navigation.PushAsync(new FormatoServicio(LbUsuario.Text, RutCliente, LogoEmpresa));
-                 Navigation.PushAsync(new MenuTipoInforme(LbUsuario.Text, RutCliente, LogoEmpresa));
+                 Navigation.PushAsync(new MenuTipoInforme(LbUsuario.Text, RutCliente));
             }
 
         }

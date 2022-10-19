@@ -21,6 +21,7 @@ namespace AppSIMyS
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
             //MainPage = new AppShell();
+            //MainPage = new NavigationPage(new ItemsPage());
             MainPage = new NavigationPage(new Login.Login());
         }
 
@@ -111,6 +112,7 @@ namespace AppSIMyS
                         clienteNew.nombres = res1["nombres"].ToString();
                         clienteNew.email = res1["email"].ToString();
                         clienteNew.password = res1["password"].ToString();
+                        clienteNew.campo5 = res1["campo5"].ToString();
                         App.SQLiteDB.AgregarTblUsuarios(clienteNew);
                     }
                 }

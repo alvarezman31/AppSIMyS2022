@@ -1,10 +1,13 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using Xamarin.Essentials;
+using static System.Net.WebRequestMethods;
+using Xamarin.Forms;
 
 namespace AppSIMyS.Models
 {
@@ -150,6 +153,42 @@ namespace AppSIMyS.Models
             }
             con.Close();
             return retorno;
+        }
+        public static void  GuardarArchivoServicio(TblArchivoServicios servicios)
+        {
+            //int retorno;
+            //string sql = string.Format("insert into serv_detservicios (NroServicio, Cliente, Fecha, Tecnico, Descripcion, Observacion) Values('{0}','{1}','{2}')", );
+            //SqlConnection con = conectarSql();
+            //con.Open();
+            //SqlCommand cmd1 = con.CreateCommand();
+            //cmd1.CommandText = sql;
+            //try
+            //{
+            //    retorno = cmd1.ExecuteNonQuery();
+            //}
+            //catch (MySqlException ex)
+            //{
+            //    string m = ex.Message;
+            //    retorno = 0;
+            //}
+            //con.Close();
+            //return retorno;
+            using (SqlConnection Conn = conectarSql())
+            {
+                string comando = "insert into conds_servicio_archivo (nroservicio,nombre,archivo2,extension,mime,archivo) Values(@Solicitud,@Nombre,@File,@Extension,@Mime,@Archivo)";
+                //comando = "insert into conds_servicio_archivo (nroservicio,nombre,extension,mime,archivo) Values(@Solicitud,@Nombre,@Extension,@Mime,@Archivo)";
+                using (var sqlWrite = new SqlCommand(comando, Conn))
+                {
+                    sqlWrite.Parameters.Add("@Solicitud", SqlDbType.Int).Value = servicios.NroServicio;
+                    sqlWrite.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = servicios.Nombre;
+                    sqlWrite.Parameters.Add("@File", SqlDbType.VarBinary, int.MaxValue).Value = servicios.Archivo2;
+                    sqlWrite.Parameters.Add("@Extension", SqlDbType.VarChar).Value = servicios.Extension;
+                    sqlWrite.Parameters.Add("@Mime", SqlDbType.VarChar).Value = servicios.Mime;
+                    sqlWrite.Parameters.Add("@Archivo", SqlDbType.VarChar).Value = servicios.Archivo;
+                    sqlWrite.ExecuteNonQuery();
+                }
+            }
+            
         }
         public static SqlConnection conectarSql()
         {

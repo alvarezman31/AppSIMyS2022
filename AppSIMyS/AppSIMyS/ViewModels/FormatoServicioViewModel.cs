@@ -19,8 +19,7 @@ namespace AppSIMyS.ViewModels
             //string sql = "SELECT * FROM TblImagenServicio order by id";
             LstImagenes = new ObservableCollection<ImagenServicio>();
             LstDetServicios = new ObservableCollection<ClsDetServicios>();
-            var DetalleServicios = App.SQLiteDB.GetClsDetServiciosByRutAsync2();
-         
+            var DetalleServicios = App.SQLiteDB.GetClsDetServiciosByRutAsync2();         
             
             var ImagenesServicios = App.SQLiteDB.GetTblImagenesByAsync2();
             LstImagenes.Clear();

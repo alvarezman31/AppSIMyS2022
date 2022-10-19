@@ -10,6 +10,7 @@ namespace AppSIMyS.Models
     {
         [PrimaryKey, AutoIncrement, Column("Id")]
         public int Id { get; set; } 
+        public int NroServicio { get; set; } 
         public string? Empresa { get; set; }
         public string? Comentario { get; set; }
         public byte[]? Imagen { get; set; }

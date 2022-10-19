@@ -15,12 +15,12 @@ namespace AppSIMyS.Menu
         public string usuario1;
         public string RutCliente1;
         public ImageSource Logo1;
-        public MenuTipoInforme(string usuario, string RutCliente, ImageSource LogoEmpresa)
+        public MenuTipoInforme(string usuario, string RutCliente)
         {
             InitializeComponent();
             usuario1 = usuario;
             RutCliente1 = RutCliente;
-            Logo1 = LogoEmpresa;
+            //Logo1 = LogoEmpresa;
         }
 
         private void BtnMantencion_Clicked(object sender, EventArgs e)

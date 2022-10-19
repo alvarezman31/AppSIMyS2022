@@ -15,6 +15,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Security.Cryptography;
 using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -45,11 +46,17 @@ namespace AppSIMyS.ViewModels
             InitializeComponent();
             BindingContext = new FormatoServicioViewModel();
             LbUsuario.Text = usuario;
-            LbRutCliente.Text = RutCliente;
+            //LbRutCliente.Text = RutCliente;
             LLenarClientes();
             LLenarServicios();
             EmpresaActual = RutCliente;            
             EmpresaActiva = new ClsEmpresas();
+            //LblNroServicio.Text =
+            LblNroServicio.Text = App.SQLiteDB.ProximoClsServicios().ToString();
+            //foreach (var item in Servicos)
+            //{
+                //LblNroServicio.Text = (item.NroServicio+1).ToString();
+            //}
             
             var EmpresaActiva1 = App.SQLiteDB.GetClsEmpresasByRutAsync2(RutCliente);
             foreach (var item in EmpresaActiva1)
@@ -120,14 +127,20 @@ namespace AppSIMyS.ViewModels
             byte[]? dataCliente = signatureMemoryStream.ToArray();
 
             ClsServicios servicios = new ClsServicios();
+            servicios.NroServicio = Convert.ToInt32(LblNroServicio.Text);
             servicios.Cliente = LbRutCliente.Text.Trim();
             servicios.Tecnico = LbUsuario.Text.Trim();
             servicios.Observacion = TxtObservacion.Text.Trim();
-            Conectar.GuardarServicio(servicios);
-            ClsDetServicios detservicios = new ClsDetServicios();
-            detservicios.IdServicio = 1;
-            detservicios.IdTipoServicio = Convert.ToInt32(LbTipoServicio.Text.Trim());
-            Conectar.GuardarDetalleServicio(detservicios);
+            servicios.Fecha = DateTime.Now;
+            App.SQLiteDB.AgregarClsServicios(servicios);
+            //Conectar.GuardarServicio(servicios);
+            
+            
+            //ClsDetServicios detservicios = new ClsDetServicios();
+            //detservicios.IdServicio = 1;
+            //detservicios.IdTipoServicio = Convert.ToInt32(LbTipoServicio.Text.Trim());
+            //Conectar.GuardarDetalleServicio(detservicios);
+
             GenerarPdfFormatoServicio(data, dataCliente);
         }
 
@@ -141,6 +154,7 @@ namespace AppSIMyS.ViewModels
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OT" + nro.Next(200000, 999999).ToString() + ".pdf");
 
             nroOrden = nro.Next(20000000, 99999999).ToString();
+            nroOrden = LblNroServicio.Text.ToString().PadLeft(8,'0');
             fileName = "OT" + nroOrden + ".pdf";
 
             var stream = new MemoryStream();
@@ -175,8 +189,6 @@ namespace AppSIMyS.ViewModels
                     tablaCliente.AddCell(new Cell().Add(new Paragraph("Fecha:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
                     tablaCliente.AddCell(new Cell().Add(new Paragraph(DateTime.Now.ToString("dd/MM/yyyy")).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
 
-
-                    
                     tablaCliente.AddCell(new Cell().Add(new Paragraph("Dirección:").SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
                     tablaCliente.AddCell(new Cell().Add(new Paragraph(LbDireccionCliente.Text).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
                     //tablaCliente.AddCell(new Cell().Add(new Paragraph(item.Direccion).SetTextAlignment(TextAlignment.LEFT).SetFontSize(10)).SetBorderBottom(Border.NO_BORDER).SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER));
@@ -275,6 +287,16 @@ namespace AppSIMyS.ViewModels
 
             //Save the stream as a file in the device and invoke it for viewing
             DependencyService.Get<ISavePdf>().SaveAndView(fileName, "application/pdf", stream, root);
+
+            TblArchivoServicios tblArchivoServicios = new TblArchivoServicios();
+            tblArchivoServicios.Extension = ".pdf";
+            tblArchivoServicios.Mime = "application/pdf";
+            tblArchivoServicios.Nombre = fileName;
+            tblArchivoServicios.Archivo2 = stream.ToArray();
+            tblArchivoServicios.NroServicio = Convert.ToInt32(LblNroServicio.Text);
+            tblArchivoServicios.Archivo = "/img/iconopdf.jpg";
+            App.SQLiteDB.AgregarTblArchivoServicios(tblArchivoServicios);
+            Conectar.GuardarArchivoServicio(tblArchivoServicios);
 
             cmSendMailCcopy(Path.Combine(root, fileName));
             //cmSendMailCcopy(Path.Combine("/AppSimys", fileName));
@@ -456,7 +478,7 @@ namespace AppSIMyS.ViewModels
                 await DisplayAlert("Advertencia", "Debe Agregar Comentario para la Imagen", "OK");
                 return;
             }
-            ((ImageButton)sender).IsEnabled = false;
+            ((Button)sender).IsEnabled = false;
 
             var cameraOptions = new PickMediaOptions();
             cameraOptions.PhotoSize = PhotoSize.Small;
@@ -472,7 +494,7 @@ namespace AppSIMyS.ViewModels
 
             }
 
-            ((ImageButton)sender).IsEnabled = true;
+            ((Button)sender).IsEnabled = true;
         }
 
       
@@ -506,6 +528,7 @@ namespace AppSIMyS.ViewModels
             byte[] bytesAvailable = new byte[stream1.Length];
             stream1.Read(bytesAvailable, 0, bytesAvailable.Length);
             TblImagenServicio ImgSer = new TblImagenServicio();
+            ImgSer.NroServicio = -9999;
             ImgSer.Imagen = bytesAvailable;
             ImgSer.Comentario = TxtComentario.Text.Trim();// "Prueba de Galeria";
             ImgSer.Empresa = EmpresaActual;// "xxsxsxs";
@@ -565,6 +588,7 @@ namespace AppSIMyS.ViewModels
                 return;
             }
             ClsDetServicios ImgSer = new ClsDetServicios();
+            ImgSer.NroServicio = -9999;
             ImgSer.Codigo= LblCodServicio.Text;
             ImgSer.Comentario = TxtComentarioServicio.Text.Trim();// "Prueba de Galeria";
             ImgSer.Cantidad = Convert.ToInt32(NroCantidad.Text);

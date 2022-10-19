@@ -9,6 +9,7 @@ namespace AppSIMyS.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public int NroServicio { get; set; }
         public int IdServicio{ get; set; }
         public int IdTipoServicio{ get; set; }
         public string Codigo { get; set; }

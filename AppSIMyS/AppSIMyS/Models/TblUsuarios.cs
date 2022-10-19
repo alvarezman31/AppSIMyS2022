@@ -12,6 +12,8 @@ namespace AppSIMyS.Models
         public string? nombres { get; set; }
         //public string Cargo { get; set; }
         public string? email { get; set; }
+        public string? campo5 { get; set; }
+
         //public string tipo { get; set; }
         //public string campo1 { get; set; }
         //public string campo2 { get; set; }

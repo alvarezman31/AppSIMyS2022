@@ -26,7 +26,7 @@ namespace AppSIMyS.Data
             db.CreateTableAsync<TblImagenServicio>().Wait();
             db.CreateTableAsync<TblUsuarios>().Wait();
             db.CreateTableAsync<TblServicios>().Wait();
-            db.CreateTableAsync<ClsDetServicios>().Wait();
+            db.CreateTableAsync<TblArchivoServicios>().Wait();
         }
 
         public Task<int> SaveCliente(ClsClientes cliente)
@@ -167,13 +167,13 @@ namespace AppSIMyS.Data
         public IEnumerable<TblImagenServicio> GetTblImagenesByAsync2()
         {
             //return db.Table<ClsEmpresas>().Where(a => a.Empresa == Rut).ToListAsync().ConfigureAwait(false);
-            var result = db.QueryAsync<TblImagenServicio>("select * from TblImagenServicio order by id ");
+            var result = db.QueryAsync<TblImagenServicio>("select * from TblImagenServicio where Nroservicio = -9999 order by id ");
             return result.Result;
         }
 
         public void AgregarTblImagenServicio(TblImagenServicio imagen)
         {
-            var result = db.QueryAsync<ClsEmpresas>("insert into TblImagenServicio (empresa, comentario, imagen) values (?,?,?)", imagen.Empresa, imagen.Comentario, imagen.Imagen);
+            var result = db.QueryAsync<ClsEmpresas>("insert into TblImagenServicio (empresa, NroServicio, comentario, imagen) values (?,?,?,?)", imagen.Empresa, imagen.NroServicio, imagen.Comentario, imagen.Imagen);
         }
         public void EliminarTblImagenServicio(int  Id)
         {
@@ -208,7 +208,7 @@ namespace AppSIMyS.Data
         }
         // fin usuarios
         
-        // Servicios
+        // tabla Servicios
         public void EliminarTblServicios()
         {
             var result = db.QueryAsync<TblServicios>("delete from TblServicios");
@@ -218,7 +218,7 @@ namespace AppSIMyS.Data
             var result = db.QueryAsync<TblServicios>("insert into TblServicios (codigo, descripcion) values (?,?)", cliente.Codigo, cliente.Descripcion);
         }
 
-        // fin servicios
+        // fin tabla servicios
         // Detalle Servicios
         public void EliminarClsDetServicios()
         {
@@ -226,12 +226,12 @@ namespace AppSIMyS.Data
         }
         public void AgregarClsDetServicios(ClsDetServicios cliente)
         {
-            var result = db.QueryAsync<ClsDetServicios>("insert into ClsDetServicios (codigo, cantidad, comentario, descripcion) values (?,?,?,?)", cliente.Codigo, cliente.Cantidad, cliente.Comentario, cliente.Descripcion);
+            var result = db.QueryAsync<ClsDetServicios>("insert into ClsDetServicios (NroServicio, codigo, cantidad, comentario, descripcion) values (?,?,?,?,?)", cliente.NroServicio, cliente.Codigo, cliente.Cantidad, cliente.Comentario, cliente.Descripcion);
         }
 
         public IEnumerable<ClsDetServicios> GetClsDetServiciosByRutAsync2()
         {
-            var result = db.QueryAsync<ClsDetServicios>("select * from ClsDetServicios order by id ");
+            var result = db.QueryAsync<ClsDetServicios>("select * from ClsDetServicios where Nroservicio = -9999 order by id ");
             return result.Result;
         }
         public void EliminarClsDetServicios(int Id)
@@ -248,8 +248,78 @@ namespace AppSIMyS.Data
             var result = db.QueryAsync<ClsDetServicios>("select * from ClsDetServicios ");
             return result.Result;
         }
-
         // fin Detalle  servicios
+
+        // Encabezado Servicios Servicios
+        public int ProximoClsServicios()
+        {
+            //var result = db.Query("ClsServicios",null,"max(NroServicio",);
+            //var result = db.QueryAsync<ClsServicios>("Select * from ClsServicios order by nroservicio ");
+            
+            var result1 = db.ExecuteScalarAsync<int>("Select max(NroServicio) from ClsServicios");
+            int var = result1.Result;
+            return var+1;
+        }
+        public void EliminarClsServicios()
+        {
+            var result = db.QueryAsync<ClsServicios>("delete from ClsServicios");
+        }
+        public void AgregarClsServicios(ClsServicios cliente)
+        {
+            var result = db.QueryAsync<ClsDetServicios>("insert into ClsServicios (NroServicio, Cliente, Fecha, Tecnico, Descripcion, Observacion) values (?,?,?,?,?,?)", cliente.NroServicio, cliente.Cliente, cliente.Fecha, cliente.Tecnico, cliente.Descripcion, cliente.Observacion);
+        }
+
+        public IEnumerable<ClsServicios> GetClsServiciosByRutAsync2()
+        {
+            var result = db.QueryAsync<ClsServicios>("select * from ClsDetServicios order by id ");
+            return result.Result;
+        }
+        public void EliminarClsServicios(int Id)
+        {
+            var result = db.QueryAsync<ClsServicios>("delete from ClsDetServicios where id=?", Id);
+        }
+        public void ActualizarClsServicios(int Id, string Comentario, int cantidad)
+        {
+            var result = db.QueryAsync<ClsServicios>("update ClsDetServicios set comentario=?,cantidad=? where id=?", Comentario, cantidad, Id);
+        }
+
+        public IEnumerable<ClsServicios> GetServiciosByRutAsync2()
+        {
+            var result = db.QueryAsync<ClsServicios>("select * from ClsDetServicios ");
+            return result.Result;
+        }
+        // fin Encabezado servicios 
+        
+        // Archivos Servicios
+        
+        public void EliminarTblArchivoServicios()
+        {
+            var result = db.QueryAsync<TblArchivoServicios>("delete from TblArchivoServicios");
+        }
+
+        public void AgregarTblArchivoServicios(TblArchivoServicios ArchivoServicio)
+        {
+            var result = db.QueryAsync<TblArchivoServicios>("insert into TblArchivoServicios (nroservicio,nombre,archivo2,extension,mime,archivo) values (?,?,?,?,?,?)", ArchivoServicio.NroServicio, ArchivoServicio.Nombre, ArchivoServicio.Archivo2, ArchivoServicio.Extension, ArchivoServicio.Mime, ArchivoServicio.Archivo);
+        }
+
+        public IEnumerable<TblArchivoServicios> SelectTblArchivoServicios()
+        {
+            var result = db.QueryAsync<TblArchivoServicios>("select * from TblArchivoServicios order by id ");
+            return result.Result;
+        }
+
+        //public void EliminarTblArchivoServicios(int Id)
+        //{
+        //    var result = db.QueryAsync<TblArchivoServicios>("delete from TblArchivoServicios where id=?", Id);
+        //}
+        //public void ActualizarTblArchivoServicios(int Id, string Comentario, int cantidad)
+        //{
+        //    var result = db.QueryAsync<ClsServicios>("update TblArchivoServicios set comentario=?,cantidad=? where id=?", Comentario, cantidad, Id);
+        //}
+
+
+        // fin Encabezado servicios
+
     }
 }
 
